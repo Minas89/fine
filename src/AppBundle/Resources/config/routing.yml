@@ -1,0 +1,78 @@
+app_homepage:
+    path:     /{_locale}
+    defaults: { _controller: AppBundle:Default:index, _locale: en }
+    requirements:
+       _locale: am|ru|en
+
+app_blog:
+    resource: "@AppBundle/Resources/config/routing/blog.yml"
+    prefix: /{_locale}/blog
+    requirements:
+           _locale: am|ru|en
+
+app_cart:
+    resource: "@AppBundle/Resources/config/routing/cart.yml"
+    prefix: /{_locale}/cart
+    requirements:
+           _locale: am|ru|en
+
+search:
+    path: /{_locale}/search
+    defaults: { _controller: AppBundle:Search:search }
+    requirements:
+           _locale: am|ru|en
+
+app_wishlist:
+    resource: "@AppBundle/Resources/config/routing/wish.yml"
+    prefix: /{_locale}/wishlist
+    requirements:
+       _locale: am|ru|en
+
+app_category:
+    path: /{_locale}/{slug}
+    defaults: { _controller: AppBundle:Categories:catByCat, _locale: en }
+    requirements:
+       _locale: am|ru|en
+
+app_new_products:
+    path: /{_locale}/news/{slug}
+    defaults: { _controller: AppBundle:Products:newsByCat, _locale: en }
+    requirements:
+       _locale: am|ru|en
+
+app_creators:
+    path: /{_locale}/creators/{slug}
+    defaults: { _controller: AppBundle:Creators:allByCat, _locale: en }
+    requirements:
+       _locale: am|ru|en
+
+app_one_text:
+    path: /{_locale}/info/{slug}
+    defaults: { _controller: AppBundle:Texts:text }
+    requirements:
+           _locale: am|ru|en
+
+app_creators_products:
+    path: /{_locale}/creators/{slug}/{creator}
+    defaults: { _controller: AppBundle:Creators:products, _locale: en }
+    requirements:
+       _locale: am|ru|en
+
+app_products:
+    path: /{_locale}/{category}/{slug}
+    defaults: { _controller: AppBundle:Products:byCat, _locale: en }
+    requirements:
+       _locale: am|ru|en
+
+app_single_product:
+    path: /{_locale}/product/{category}/{slug}
+    defaults: { _controller: AppBundle:Products:single, _locale: en }
+    requirements:
+       _locale: am|ru|en
+
+account:
+    resource: "@AppBundle/Resources/config/routing/user.yml"
+    prefix: /{_locale}/my/profile
+
+
+

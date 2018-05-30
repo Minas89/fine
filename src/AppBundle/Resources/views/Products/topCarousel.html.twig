@@ -1,0 +1,41 @@
+<div id="editorPicks" class="text-center">
+    <div class="row">
+        <div class="col-xs-12">
+            {% set locale = app.request.get('_locale') %}
+            <div class="text-center">
+                <h2 class="module-header">
+                    {{ "product.editors"|trans }}
+                </h2>
+            </div>
+            <div class="topOwl owl-carousel owl-theme">
+                {% for product in products  %}
+                    <div class="item topCarousel">
+                        <div class="carouselImgDiv">
+                            <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
+                                <img src="{% path product.image, 'big' %}" alt="">
+                            </a>
+                        </div>
+
+                        <div class="carouselTitleDiv">
+                            <hr>
+                            <p class="text-center">
+                                <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
+                                    {% if locale == 'en' %}
+                                        {{ product.titleEng }}
+                                    {% endif %}
+                                    {% if locale == 'ru' %}
+                                        {{ product.titleRus }}
+                                    {% endif %}
+                                    {% if locale == 'am' %}
+                                        {{ product.titleArm }}
+                                    {% endif %}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+

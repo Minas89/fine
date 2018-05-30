@@ -1,0 +1,8 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field%}
+    {% if object.image is not null %}
+        <img src="{% path object.image, 'big' %}" alt="adminImage" width="200">
+    {% endif %}
+
+{% endblock %}

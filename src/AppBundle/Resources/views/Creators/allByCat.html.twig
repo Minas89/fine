@@ -1,0 +1,71 @@
+{% extends '@App/layout.html.twig' %}
+
+{% block content %}
+    {% set locale = app.request.get('_locale') %}
+    {% set class = '' %}
+    <div class="row">
+        <div class="col-sm-3 col-md-3 bbg">
+            <div class="creatorTitles">
+                {{ "titles.creators"|trans }}
+            </div>
+            <ul id="catList" class="pl0">
+                {% for cat in mainCats  %}
+                    {% if cat.slug == category.slug %}
+                        {% set class = 'active' %}
+                    {% else %}
+                        {% set class = 'notactive' %}
+                    {% endif %}
+                    <li class="{{ class }}">
+                        <a href="{{ path('app_creators', {'slug': cat.slug}) }}">
+                            {% if locale == 'en' %}
+                                {{ cat.titleEng }}
+                            {% endif %}
+                            {% if locale == 'ru' %}
+                                {{ cat.titleRus }}
+                            {% endif %}
+                            {% if locale == 'am' %}
+                                {{ cat.titleArm }}
+                            {% endif %}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-sm-9 col-md-9 bbg">
+            <div class="creatorTitles">
+                {% if locale == 'en' %}
+                    {{ category.titleEng }}
+                {% endif %}
+                {% if locale == 'ru' %}
+                    {{ category.titleRus }}
+                {% endif %}
+                {% if locale == 'am' %}
+                    {{ category.titleArm }}
+                {% endif %}
+            </div>
+            <div class="creatorsDiv">
+                {% for creator in creators  %}
+                    <div class="col-xs-6 col-sm-4">
+                        <div class="oneCreator">
+                            <a href="{{ path('app_creators_products', {'creator': creator.slug, 'slug': creator.category.slug}) }}">
+                                <img src="{% path creator.image,'small' %}" alt="{{ creator.titleEng }}">
+                                {% if locale == 'en' %}
+                                    <p class="creatorT">{{ creator.titleEng }}</p>
+                                    <p class="creatorC">{{ creator.category.titleEng }}</p>
+                                {% endif %}
+                                {% if locale == 'ru' %}
+                                    <p class="creatorT">{{ creator.titleRus }}</p>
+                                    <p class="creatorC">{{ creator.category.titleRus }}</p>
+                                {% endif %}
+                                {% if locale == 'am' %}
+                                    <p class="creatorT">{{ creator.titleArm }}</p>
+                                    <p class="creatorC">{{ creator.category.titleArm }}</p>
+                                {% endif %}
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

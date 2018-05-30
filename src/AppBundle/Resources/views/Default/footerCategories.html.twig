@@ -1,0 +1,17 @@
+{% set locale = app.request.get('_locale') %}
+<ul id="footerCategoryMenu">
+    {% for category in mainCategories  %}
+        <li>
+            <a href="{{ path('app_category', { 'slug': category.slug}) }}">
+                {% if locale == 'en' %}
+                    {{ category.titleEng }}
+                {% elseif locale == 'ru' %}
+                    {{ category.titleRus }}
+                {% elseif locale == 'am' %}
+                    {{ category.titleArm }}
+                {% endif %}
+            </a>
+        </li>
+        <li><span>-</span></li>
+    {% endfor %}
+</ul>

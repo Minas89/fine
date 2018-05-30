@@ -1,0 +1,77 @@
+services:
+    app.admin.categories:
+        class: AppBundle\Admin\CategoriesAdmin
+        arguments: [~, AppBundle\Entity\Categories, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Categories }
+        public: true
+
+    app.admin.products:
+        class: AppBundle\Admin\ProductsAdmin
+        arguments: [~, AppBundle\Entity\Products, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Products }
+        public: true
+
+    app.admin.product_details:
+        class: AppBundle\Admin\ProductDetailsAdmin
+        arguments: [~, AppBundle\Entity\ProductDetails, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: ProductDetails }
+        public: true
+
+    app.admin.creators:
+        class: AppBundle\Admin\CreatorsAdmin
+        arguments: [~, AppBundle\Entity\Creators, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Creators }
+        public: true
+
+    app.admin.banners:
+        class: AppBundle\Admin\BannersAdmin
+        arguments: [~, AppBundle\Entity\Banners, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Banners }
+        public: true
+
+    app.admin.colors:
+        class: AppBundle\Admin\ColorsAdmin
+        arguments: [~, AppBundle\Entity\Colors, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Colors }
+        public: true
+
+    app.admin.texts:
+        class: AppBundle\Admin\TextsAdmin
+        arguments: [~, AppBundle\Entity\Texts, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Texts }
+        public: true
+
+    app.admin.blogs:
+        class: AppBundle\Admin\BlogsAdmin
+        arguments: [~, AppBundle\Entity\Blogs, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Blogs }
+        public: true
+
+    app.admin.order_statuses:
+        class: AppBundle\Admin\OrderStatusesAdmin
+        arguments: [~, AppBundle\Entity\OrderStatuses, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: OrderStatuses }
+        public: true
+
+    app.admin.orders:
+        class: AppBundle\Admin\OrdersAdmin
+        arguments: [~, AppBundle\Entity\Orders, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Orders }
+        public: true
+
+    app.admin.order_items:
+        class: AppBundle\Admin\OrderItemsAdmin
+        arguments: [~, AppBundle\Entity\OrderItems, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: OrderItems }
+        public: true

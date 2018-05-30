@@ -1,0 +1,67 @@
+{% extends 'FOSUserBundle::userLayout.html.twig' %}
+
+
+{% block userContent %}
+    {% if user.phone is not null %}
+        {% set phone = user.phone %}
+    {% else %}
+        {% set phone = false %}
+    {% endif %}
+    <div class="fioDiv">
+        <h4>{{ "account_menu.deliveryInfo"|trans }}</h4>
+        <h5><span id="successMessage" class="text-success"></span></h5>
+        <div class="form-group">
+            <label for="phone">{{ "account_menu.phone_number"|trans }}</label>
+            <input type="number" class="form-control input-lg goldInput" id="phoneNumber" placeholder="37491222222"
+                    {% if phone %}value="{{ phone }}" {% endif %}>
+        </div>
+        <button onclick="savePhoneNumber()" type="button" class="btn btn-gold btn-lg w100">{{ "account_menu.save_number"|trans }}</button>
+        <hr>
+        <h4>{{ "account_menu.user_addresses"|trans }}</h4>
+        {% if addresses|length > 0 %}
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>N</th>
+                    <th>{{ "account_menu.address"|trans }}</th>
+                    <th>{{ "account_menu.action"|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for key,address in addresses  %}
+                    <tr>
+                        <td>{{ key + 1 }}</td>
+                        <td>{{ address.address }}</td>
+                        <td>
+                            <form action="{{ path('delete_address') }}" method="post" id="deleteAddress">
+                                <input type="hidden" value="{{ address.id }}" name="id">
+                                <button type="button" class="deleteAddressButton btn btn-sm btn-danger" onsubmit='return confirm({{ "account_menu.sure_question"|trans }})'>
+                                    {{ "account_menu.delete"|trans }}
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+        <form action="{{ path('add_address') }}" method="post">
+            <div class="form-group">
+                <label for="address">Add new</label>
+                <textarea name="userAddress" id="userAddress" cols="30" rows="3" class="form-control goldInput"></textarea>
+            </div>
+            <button type="submit" class="btn btn-gold btn-lg w100">{{ "account_menu.add_address"|trans }}</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascriptsBottom %}
+    {{ parent() }}
+    <script>
+        $(".deleteAddressButton").click(function(){
+            confirm('{{ "account_menu.sure_question"|trans }}');
+           $("#deleteAddress").submit();
+        });
+    </script>
+{% endblock %}

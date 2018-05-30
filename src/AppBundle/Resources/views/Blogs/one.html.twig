@@ -1,0 +1,61 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block breadcrumbs %}
+    {% set locale = app.request.get('_locale') %}
+    <div class="row">
+        <ol class="breadcrumb" id="myBreadcrumb">
+            <li><a href="{{ path('app_homepage') }}">{{ "menu.home"|trans }}</a></li>
+            <li>
+                <a href="{{ path('blog_index') }}"> {{ "footer.menu.blog"|trans }}</a>
+            </li>
+            <li class="active">
+                {% if locale == 'en' %}
+                    {{ blog.titleEng }}
+                {% endif %}
+                {% if locale == 'ru' %}
+                    {{ blog.titleRus }}
+                {% endif %}
+                {% if locale == 'en' %}
+                    {{ blog.titleArm }}
+                {% endif %}
+            </li>
+        </ol>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    {% set locale = app.request.get('_locale') %}
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1 class="blogTitle text-center">
+                {% if locale == 'en' %}
+                    {% if locale == 'en' %}
+                        {{ blog.titleEng }}
+                    {% endif %}
+                    {% if locale == 'ru' %}
+                        {{ blog.titleRus }}
+                    {% endif %}
+                    {% if locale == 'en' %}
+                        {{ blog.titleArm }}
+                    {% endif %}
+                {% endif %}
+            </h1>
+
+            <div class="blogText">
+                {% if locale == 'en' %}
+                    {% if locale == 'en' %}
+                        {{ blog.textEng|raw }}
+                    {% endif %}
+                    {% if locale == 'ru' %}
+                        {{ blog.textRus|raw }}
+                    {% endif %}
+                    {% if locale == 'en' %}
+                        {{ blog.textArm|raw }}
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

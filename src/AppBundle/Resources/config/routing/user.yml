@@ -1,0 +1,17 @@
+save_fio:
+    path: /save
+    defaults: { _controller: AppBundle:User:setFio }
+    methods: POST
+
+profile_delivery_info:
+    path: /deliveryInfo
+    defaults: { _controller: AppBundle:User:deliveryInfo }
+
+add_address:
+   path: /add/address
+   defaults: { _controller: AppBundle:User:addAddress }
+
+delete_address:
+   path: /remove/address
+   defaults: { _controller: AppBundle:User:removeAddress}
+   methods: [POST]

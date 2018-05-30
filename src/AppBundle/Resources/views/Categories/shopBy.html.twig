@@ -1,0 +1,37 @@
+{% if categories|length > 0 %}
+    {% set locale = app.request.get('_locale') %}
+    <div id="shopBycategory" class="text-center">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="shopBy owl-carousel owl-theme">
+                    {% for category in categories  %}
+                        <div class="item topCarousel">
+                            <div class="carouselImgDiv">
+                                <a href="{{ path('app_category',{ '_locale' : locale, 'slug' : category.slug }) }}">
+                                    <img src="{% path category.image, 'big' %}" alt="">
+                                </a>
+                            </div>
+
+                            <div class="carouselTitleDiv">
+                                <hr>
+                                <p class="text-center">
+                                    <a href="{{ path('app_category',{ '_locale' : locale, 'slug' : category.slug }) }}">
+                                        {% if locale == 'en' %}
+                                            {{ category.titleEng }}
+                                        {% endif %}
+                                        {% if locale == 'ru' %}
+                                            {{ category.titleRus }}
+                                        {% endif %}
+                                        {% if locale == 'am' %}
+                                            {{ category.titleArm }}
+                                        {% endif %}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

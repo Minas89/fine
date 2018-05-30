@@ -1,0 +1,18 @@
+add_to_cart:
+     path: /add
+     defaults: { _controller: AppBundle:Cart:add}
+
+remove_from_cart:
+     path: /remove
+     defaults: { _controller: AppBundle:Cart:remove }
+     methods: POST
+
+cart:
+     path: /
+     defaults: { _controller: AppBundle:Cart:index }
+
+purchase:
+     path: /purchase
+     defaults: { _controller: AppBundle:Cart:purchase }
+     methods: [GET,POST]
+

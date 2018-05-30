@@ -1,0 +1,86 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block breadcrumbs %}
+    {% set locale = app.request.get('_locale') %}
+    <div class="row">
+
+            <ol class="breadcrumb" id="myBreadcrumb">
+                <li><a href="{{ path('app_homepage') }}">Home</a></li>
+                {% if category.parent %}
+                    <li>
+                        <a href="{{ path('app_category', {'slug': category.parent.slug}) }}">
+                            {% if locale == 'en' %}
+                                {{ category.parent.titleEng }}
+                            {% elseif locale == 'ru' %}
+                                {{ category.parent.titleRus }}
+                            {% elseif locale == 'am' %}
+                                {{ category.parent.titleArm }}
+                            {% endif %}
+                        </a>
+                    </li>
+                {% endif %}
+                <li class="active">
+                    {% if locale == 'en' %}
+                        {{ category.titleEng }}
+                    {% elseif locale == 'ru' %}
+                        {{ category.titleRus }}
+                    {% elseif locale == 'am' %}
+                        {{ category.titleArm }}
+                    {% endif %}
+                </li>
+            </ol>
+
+    </div>
+
+{% endblock %}
+{% block content %}
+    {% set locale = app.request.get('_locale') %}
+    {% if category %}
+        {% if category.children|length > 0 %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="mainCat">
+                        {% if locale == 'en' %}
+                            {{ category.titleEng }}
+                        {% elseif locale == 'ru' %}
+                            {{ category.titleRus }}
+                        {% elseif locale == 'am' %}
+                            {{ category.titleArm }}
+                        {% endif %}
+                    </h2>
+                </div>
+                <div class="col-xs-12">
+                    <div class="row">
+                        {% for child in category.children  %}
+                            <div class="col-md-3 col-xs-6">
+                                <div class="oneCategory">
+                                    {% if child.children|length > 0 %}
+                                        <a href="{{ path('app_category', {'slug': child.slug}) }}">
+                                    {% else %}
+                                        <a href="{{ path('app_products', {'category': category.slug, 'slug': child.slug}) }}">
+                                    {% endif %}
+                                            {# <img src="..." alt="...">#}
+                                            <div class="categoryTitle">
+                                                {% if locale == 'en' %}
+                                                    {{ child.titleEng }}
+                                                {% elseif locale == 'ru' %}
+                                                    {{ child.titleRus }}
+                                                {% elseif locale == 'am' %}
+                                                    {{ child.titleArm }}
+                                                {% endif %}
+                                            </div>
+
+                                            <img src="{% path child.image,"big" %}" class="img-responsive" alt="">
+                                            <span>SHOP</span>
+                                        </a>
+                                    </div>
+                                </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    {% endif %}
+
+{% endblock %}

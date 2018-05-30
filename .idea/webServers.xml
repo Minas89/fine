@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="6bedc3ca-4a32-4ba2-be48-de35e631c93b" name="Finearter" url="http://82.146.53.132">
+        <fileTransfer host="82.146.53.132" port="21" rootFolder="/www/finearter.com" password="dfccdfc3dfc4dfcfdfcbdfd8dfdedfcfdfd8df87dfdedfc7dfda" username="finearter">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

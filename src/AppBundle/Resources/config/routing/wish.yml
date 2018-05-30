@@ -1,0 +1,11 @@
+add_wish:
+    path: /add
+    defaults: { _controller: AppBundle:Wishlist:add }
+
+remove_wish:
+    path: /remove
+    defaults: { _controller: AppBundle:Wishlist:remove }
+
+user_wishes:
+    path: /list
+    defaults: { _controller: AppBundle:Wishlist:list }

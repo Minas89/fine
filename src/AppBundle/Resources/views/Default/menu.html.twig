@@ -1,0 +1,77 @@
+{% set locale = app.request.get('_locale') %}
+{% set class = '' %}
+<nav class="navbar mb0">
+    <div class="container-fluid pl0">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pl0" id="bs-example-navbar-collapse-1">
+            {#{{ knp_menu_render('AppBundle:Builder:mainMenu') }}#}
+            <ul class="nav navbar-nav" id="mainMenu">
+                {% for category in mainCategories  %}
+                    {% if category.children|length > 0 %}
+                        {% set class = 'dropdown' %}
+                    {% endif %}
+                    {% if locale == 'en' %}
+                        <li class="{{ class }}">
+                            <a href="{{ path('app_category', {'slug': category.slug}) }}" class="dropdown-toggle">{{ category.titleEng }}</a>
+                            {% if class ==  'dropdown' %}
+                                <div class="row dropdown-menu w320">
+                                    <div class="col-sm-6 white hinh">
+                                        <div class="text-center">
+                                            <h5>{{ "menu.shopBy"|trans|upper }}</h5>
+                                        </div>
+                                        <ul id="catMenu">
+                                            <li><a href="{{ path('app_new_products', {'slug': category.slug}) }}">{{ "menu.new"|trans }} {{ category.titleEng }}</a></li>
+                                            <li><a href="{{ path('app_category', {'slug': category.slug}) }}">{{ "menu.all"|trans }} {{ category.titleEng }}</a></li>
+                                            {% for child in category.children  %}
+                                                <li><a href="{{ path('app_category', {'slug': child.slug }) }}">{{ child.titleEng }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6 grey hinh">
+                                        <div class="text-center">
+                                            <h5>{{ "menu.moreWays"|trans|upper }}</h5>
+                                        </div>
+                                        <ul id="moreMenu">
+                                            <li>
+                                                <a href="{{ path('app_creators', {'slug': category.slug}) }}">
+                                                    {% if category.type is constant('AppBundle\\Entity\\Categories::ArtistType') %}
+                                                        {{ "menu.shopByArtist"|trans }}
+                                                    {% endif %}
+                                                    {% if category.type is constant('AppBundle\\Entity\\Categories::CreatorType') %}
+                                                        {{ "menu.shopByCreator"|trans }}
+                                                    {% endif %}
+                                                    {% if category.type is constant('AppBundle\\Entity\\Categories::DesignerType') %}
+                                                        {{ "menu.shopByDesigner"|trans }}
+                                                    {% endif %}
+                                                </a>
+                                                <a href="#">
+                                                    {{ "menu.shopByStyle"|trans }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </li>
+
+                    {% elseif  locale == 'ru'  %}
+                        <li><a href="#">{{ category.titleRus }}</a></li>
+                    {% elseif  locale == 'am'  %}
+                        <li><a href="#">{{ category.titleArm }}</a></li>
+                    {% endif  %}
+                {% endfor %}
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

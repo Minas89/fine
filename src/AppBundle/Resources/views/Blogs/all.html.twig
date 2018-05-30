@@ -1,0 +1,41 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block breadcrumbs %}
+    {% set locale = app.request.get('_locale') %}
+    <div class="row">
+        <ol class="breadcrumb" id="myBreadcrumb">
+            <li><a href="{{ path('app_homepage') }}">{{ "menu.home"|trans }}</a></li>
+            <li class="active">
+               {{ "footer.menu.blog"|trans }}
+            </li>
+        </ol>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% if blogs %}
+        {% set locale = app.request.get('_locale') %}
+        {% for blog in blogs  %}
+            <div class="row oneBlog">
+                <div class="col-md-6">
+                    <a href="{{ path('blog_one', {'slug': blog.slug}) }}">
+                        <img src="{% path blog.image,"reference" %}" class="img-responsive" alt="Blog">
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="blogListTitle">
+                        <a href="{{ path('blog_one', {'slug': blog.slug}) }}">
+                            {% if locale == 'en' %}
+                                {{ blog.titleEng }}
+                            {% elseif locale == 'ru' %}
+                                {{ blog.titleRus }}
+                            {% elseif locale == 'am' %}
+                                {{ blog.titleArm }}
+                            {% endif %}
+                        </a>
+                    </h2>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

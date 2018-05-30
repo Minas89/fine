@@ -1,0 +1,45 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block breadcrumbs %}
+    {% set locale = app.request.get('_locale') %}
+    <div class="row">
+        <ol class="breadcrumb" id="myBreadcrumb">
+            <li><a href="{{ path('app_homepage') }}">{{ "menu.home"|trans }}</a></li>
+            <li class="active">
+                {% if locale == 'en' %}
+                    {{ text.titleEng }}
+                {% elseif locale == 'ru' %}
+                    {{ text.titleRus }}
+                {% elseif locale == 'am' %}
+                    {{ text.titleArm }}
+                {% endif %}
+            </li>
+        </ol>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% set locale = app.request.get('_locale') %}
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <h2 class="mainCat">
+                {% if locale == 'en' %}
+                    {{ text.titleEng }}
+                {% elseif locale == 'ru' %}
+                    {{ text.titleRus }}
+                {% elseif locale == 'am' %}
+                    {{ text.titleArm }}
+                {% endif %}
+            </h2>
+        </div>
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+            {% if locale == 'en' %}
+                {{ text.textEng|raw }}
+            {% elseif locale == 'ru' %}
+                {{ text.textRus|raw }}
+            {% elseif locale == 'am' %}
+                {{ text.textArm|raw }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+    {% set locale = app.request.get('_locale') %}
+    {% set total = 0 %}
+
+    <div class="cartProducts row ml0 mr0">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <h2>{{ "cart.products"|trans }}</h2>
+                    <hr class="grey">
+                </div>
+                {% for product in products  %}
+                    {% set total = total + product.price %}
+                    <div id="cartProduct{{ product.id }}" class="col-xs-12 cartProduct">
+                        <div class="col-md-6 cartProductLeft">
+                            <a href="{{ path('app_single_product', { 'category': product.category.slug, 'slug': product.slug}) }}">
+                                <img src="{% path product.image, "big" %}" alt="Product" class="img-responsive">
+                            </a>
+                        </div>
+                        <div class="col-md-6 purchaseProduct">
+                            <a href="{{ path('app_single_product', { 'category': product.category.slug, 'slug': product.slug}) }}">
+                                {% if locale == 'en' %}
+                                    {{ product.titleEng }}
+                                {% elseif locale == 'ru' %}
+                                    {{ product.titleRus }}
+                                {% elseif locale == 'am' %}
+                                    {{ product.titleArm }}
+                                {% endif %}
+                            </a>
+
+                            <div class="cartProductPrice">
+                                <div class="pull-left">
+                                    <p>{{ "cart.price"|trans|upper }}</p>
+                                </div>
+                                <div class="pull-right">
+                                    <p>$ {{ product.price }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-8">
+                <div class="text-center">
+                    <h2>{{ "cart.customer_info"|trans }}</h2>
+                    <hr class="grey">
+                </div>
+
+                <div class="row" style="padding-top: 27px;">
+                    <form action="{{ path('purchase') }}" method="post" id="purchaseForm">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="firstName">{{ "account_menu.first_name"|trans }}</label>
+                                <input type="text" name="firstName" value="{{ user.firstname }}" class="form-control goldInput">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="lastName">{{ "account_menu.last_name"|trans }}</label>
+                                <input type="text" name="lastName" value="{{ user.lastname }}" class="form-control goldInput">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="phone">{{ "account_menu.phone_number"|trans }}</label>
+                                <input type="text" name="phone" value="{{ user.phone }}" class="form-control goldInput">
+                            </div>
+                        </div>
+                        {% if user.addresses|length > 0 %}
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="address">{{ "account_menu.address"|trans }}</label>
+                                    {% for address in user.addresses %}
+                                        <div class="radio">
+                                            <label><input type="radio" name="address" value="{{ address.id }}" required="required">{{ address.address }}</label>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="newAddress">{{ "account_menu.add_address"|trans }}</label>
+                                    <textarea name="newAddress" id="newAddress" class="goldInput form-control mt10"  rows="3" style="width: 100%;"></textarea>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="paymentMethod">{{ "cart.payment_method"|trans }}</label>
+                                <div class="radio">
+                                    <label><input type="radio" name="paymentMethod" checked disabled value="1">{{ "cart.pay_cash"|trans }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="text-center cartTotal">{{ "cart.total"|trans }}: $ {{ total }} </p>
+                            <button type="submit" class="btn btn-gold w100">{{ "product.purchase"|trans }}</button>
+                        </div>
+                    </form>
+                </div>
+                <hr class="grey">
+                {#<div class="row">
+                    <div class="col-md-2 pull-right cartTotalDiv">
+                        <p class="text-center cartTotal">{{ "cart.total"|trans }}: $ {{ total }} </p>
+                        <a onclick="submitPurchase()" class="btn btn-gold w100">{{ "product.purchase"|trans }}</a>
+                    </div>
+                </div>#}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascriptsBottom %}
+    {{ parent() }}
+    <script>
+        function submitPurchase(){
+            $("#purchaseForm").submit();
+        }
+    </script>
+{% endblock %}

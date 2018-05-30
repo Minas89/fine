@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    {% block stylesheet %}
+        <link rel="stylesheet" href="{{ asset('css/style.css?v=1.0') }}" media="all">
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
+    {% endblock %}
+</head>
+<body>
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 top"></div>
+
+            <div class="col-xs-12 black222">
+                <div class="row">
+                    <div class="col-md-2 col-xs-6  pr0">
+                        <a href="{{ path('app_homepage') }}"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
+                    </div>
+
+                    <div class="col-md-4 col-xs-6 pull-right">
+                        <ul id="topMenu">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <li>
+                                    <a href="{{ path('fos_user_profile_show') }}">
+                                        {{ app.user.username }}
+                                        <i class="glyphicon glyphicon-user ml10"></i>
+                                    </a>
+                                </li>
+                                <li><span>|</span></li>
+                                <li>
+                                    <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="{{ path('fos_user_security_login') }}">Log In</a>
+                                </li>
+                                <li><span>|</span></li>
+                                <li>
+                                    <a href="{{ path('fos_user_registration_register') }}">Sign Up</a>
+                                </li>
+                            {% endif %}
+                            <li>
+                                <a href="{{ path('user_wishes') }}">
+                                    <i class="glyphicon glyphicon-heart-empty"></i>
+                                    {{ render(controller('AppBundle:Wishlist:count')) }}
+                                </a>
+                            </li>
+                            {{ render(controller('AppBundle:Cart:cartCount')) }}
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 col-xs-12">
+                        <div class="form-group">
+                            <form action="{{ path('search')}}" method="get">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="inputSuccess"
+                                           placeholder="Search for items, creators, or styles" name="q">
+
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt0 mb0">
+                <div class="row">
+                    <div class="col-xs-12">
+                       {{ render(controller('AppBundle:Default:mainMenu')) }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</header>
+
+<div id="content">
+    <div class="container-fluid">
+        {% block breadcrumbs %}{% endblock %}
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <ul id="footerMenu">
+                    <li><a href="{{ path('app_one_text',{'slug': 'about'}) }}">{{ "footer.menu.about"|trans }}</a></li>
+                    <li><a href="#">{{ "footer.menu.support"|trans }}</a></li>
+                    <li><a href="{{ path('blog_index') }}">{{ "footer.menu.blog"|trans }}</a></li>
+                    <li><a href="#">{{ "footer.menu.magazine"|trans }}</a></li>
+                    <li><a href="#">{{ "footer.menu.careers"|trans }}</a></li>
+                    <li><a href="#">{{ "footer.menu.press"|trans }}</a></li>
+                    <li><a href="#">{{ "footer.menu.contact us"|trans }}</a></li>
+                </ul>
+                <ul id="socialDiv">
+                    <li><a href="#" class="twitterA"><i class="fa fa-twitter fa-2x"></i></a></li>
+                    <li><a href="#" class="facebookA"><i class="fa fa-facebook fa-2x"></i></a></li>
+                    <li><a href="#" class="pinterestA"><i class="fa fa-pinterest-p fa-2x"></i></a></li>
+                    <li><a href="#" class="instagramA"><i class="fa fa-instagram fa-2x"></i></a></li>
+                </ul>
+                <div id="copy">
+                    <p>&copy;finearter.com
+                        <a href="{{ path('app_one_text', {'slug': 'user-agreement'}) }}">{{ "footer.menu.agreement"|trans }}</a>
+                        <a href="#">{{ "footer.menu.policy"|trans }}</a>
+                    </p>
+                </div>
+                <div id="footerCategories">
+                    {{ render(controller('AppBundle:Default:footerCategoryMenu')) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+{% block javascriptsBottom %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <script>
+        $('ul.nav li.dropdown').hover(function() {
+            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+            $(this).find('.dropdown-menu').css('display','flex');
+        }, function() {
+            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+        });
+    </script>
+    <script src="{{ asset('js/myScripts.js?v=1.0') }}"></script>
+{% endblock %}
+</body>
+</html>

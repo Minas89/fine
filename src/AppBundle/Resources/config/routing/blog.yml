@@ -1,0 +1,7 @@
+blog_index:
+     path: /
+     defaults: { _controller: AppBundle:Blog:index }
+
+blog_one:
+     path: /{slug}
+     defaults: { _controller: AppBundle:Blog:one}

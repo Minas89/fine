@@ -1,0 +1,21 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 pl30">
+            <h2 class="accountInfo">{{ "user.accountInfo"|trans }}</h2>
+        </div>
+
+        <div class="col-md-3 pl30">
+            <div class="accountMenuDiv ">
+                {{ knp_menu_render('AppBundle:Builder:accountMenu') }}
+            </div>
+        </div>
+        <div class="col-md-5">
+            {% block userContent %}
+
+            {% endblock %}
+        </div>
+
+    </div>
+{% endblock %}

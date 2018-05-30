@@ -1,0 +1,43 @@
+{% extends 'FOSUserBundle::userLayout.html.twig' %}
+
+{% block userContent %}
+
+        <div class="fioDiv">
+            <h4>{{ "account_menu.personalInfo"|trans }}</h4>
+            <h5><span id="successMessage" class="text-success"></span></h5>
+            <div class="form-group">
+                <label for="title">Title</label><br>
+                <label class="radio-inline">
+                    <input type="radio" name="title" value="mr" {% if user.title == 'mr' %}checked{% endif %}>MR.
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="title" value="mrs" {% if user.title == 'mrs' %}checked{% endif %}>MRS.
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="title" value="ms" {% if user.title == 'ms' %}checked{% endif %}>MS.
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="firstName">{{ "account_menu.first_name"|trans }}</label>
+                <input type="text" name="firstName" class="form-control input-lg goldInput" id="accountFirstName"
+                       {% if user.firstname is not null %}value="{{ user.firstname }}" {% endif %}>
+            </div>
+            <div class="form-group">
+                <label for="lastName">{{ "account_menu.last_name"|trans }}</label>
+                <input type="text" name="lastName" class="form-control input-lg goldInput" id="accountLastName"
+                       {% if user.lastname is not null %}value="{{ user.lastname }}" {% endif %}>
+            </div>
+            <div class="form-group has-error has-feedback">
+                <label for="email">{{ "account_menu.email"|trans }}</label>
+                <input type="email" name="email" class="form-control input-lg goldInput" id="accountEmail"
+                       value="{{ user.email }}">
+                <span class="glyphicon" id="validateEmailSpan"></span>
+                <p class="help-block"></p>
+            </div>
+            <button onclick="saveFio()" type="button" class="btn btn-gold btn-lg w100">{{ "account_menu.save"|trans }}</button>
+            {#  </form>#}
+        </div>
+
+
+{% endblock %}

@@ -1,0 +1,181 @@
+{% set locale = app.request.get("_locale") %}
+<div id="filtersDiv">
+    <div class="filterHeader row">
+        <div class="col-xs-6">
+            <div class="pull-left">
+                <span class="filterTitle">{{ "filters.filters"|trans|upper }}</span>
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="pull-right">
+                <span class="productCount">{{ products|length }} {{ "filters.results"|trans }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="filterSearch row">
+        <div class="col-xs-12">
+            <form action="#">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="inputSuccess"
+                           placeholder="{{ "filters.search_placeholder"|trans }}">
+
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="accordionFilter row">
+        <div class="col-xs-12">
+            {% if app.request.get('_route') == 'app_products' %}
+            <div class="accordion-container">
+                <a href="#" class="accordion-toggle filterLabel">{{ "filters.category"|trans|upper }}
+                    <span class="pull-right arrow">
+                        <i class="fa fa-angle-right fa-2x"></i>
+                    </span>
+                </a>
+                    <div class="accordion-content" style="display: none;">
+                        <div class="topMainCat mb15">
+                            {% for cat in categories|reverse  %}
+                            {% if loop.first %}
+                                <a href="{{ path('app_category', {'slug': cat.slug}) }}" class="mb15">
+                                    {% if locale == 'en' %}
+                                        {{ cat.titleEng }}
+                                    {% endif %}
+                                    {% if locale == 'ru' %}
+                                        {{ cat.titleRus }}
+                                    {% endif %}
+                                    {% if locale == 'am' %}
+                                        {{ cat.titleArm }}
+                                    {% endif %}
+                                </a>
+                            {% endif %}
+                            {% if loop.index0 %}
+                            <div class="mainSecond pl65">
+                                <a href="{{ path('app_category', {'slug': cat.slug}) }}" class="mb15">
+                                    {% if locale == 'en' %}
+                                        {{ cat.titleEng }}
+                                    {% endif %}
+                                    {% if locale == 'ru' %}
+                                        {{ cat.titleRus }}
+                                    {% endif %}
+                                    {% if locale == 'am' %}
+                                        {{ cat.titleArm }}
+                                    {% endif %}
+                                </a>
+                                {% endif %}
+                                {% endfor %}
+                                <div class="pl65">
+                                    <a href="{{ path('app_products', {'category': current.parent.slug, 'slug': current.slug}) }}" class="mb15">
+                                        {% if locale == 'en' %}
+                                            {{ current.titleEng }}
+                                        {% endif %}
+                                        {% if locale == 'ru' %}
+                                            {{ current.titleRus }}
+                                        {% endif %}
+                                        {% if locale == 'en' %}
+                                            {{ current.titleArm }}
+                                        {% endif %}
+                                        <div class="pull-right">
+                                            <span class="productCount">{{ products|length }} {{ "filters.results"|trans }}</span>
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+            </div>
+            {% endif %}
+            <div class="accordion-container">
+                <a href="#" class="accordion-toggle filterLabel">{{ "filters.price"|trans|upper }}
+                    <span class="pull-right arrow">
+                    <i class="fa fa-angle-right fa-2x"></i>
+                </span>
+                </a>
+                <div class="accordion-content"  style="display: none;">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="minPrice">from</label>
+                                <input type="number" class="form-control goldInput" name="minPrice" id="minPrice"
+                                  placeholder="min price">
+                            </div>
+                            <div class="form-group">
+                                <label for="maxPrice">to</label>
+                                <input type="number" class="form-control goldInput" name="maxPrice" id="maxPrice"
+                                       placeholder="max price">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-container">
+                <a href="#" class="accordion-toggle filterLabel">{{ "filters.dimensions"|trans|upper }}
+                    <span class="pull-right arrow">
+                        <i class="fa fa-angle-right fa-2x"></i>
+                    </span>
+                </a>
+                <div class="accordion-content" style="display: none;">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form action="">
+                                <div class="form-group">
+                                    <h5>{{ "filters.width"|trans|upper }}</h5>
+                                    <input type="number" name="widthMin" class="goldInput form-control" style="width: 43%; float: left" placeholder="min" id="minWidth">
+                                    <div style="float: left; margin-left: 10px;margin-right: 10px; margin-top: 5px;">to</div>
+                                    <input type="number" name="widthMin" class="goldInput form-control" style="width: 43%; float: left" placeholder="max" id="maxWidth">
+                                     <br><br>
+                                    <h5>{{ "filters.height"|trans|upper }}</h5>
+                                    <input type="number" name="minHeight" class="goldInput form-control"
+                                           style="width: 43%; float: left" placeholder="min" id="minHeight">
+                                    <div style="float: left; margin-left: 10px;margin-right: 10px; margin-top: 5px;">to</div>
+                                    <input type="number" name="maxHeight" class="goldInput form-control"
+                                           style="width: 43%; float: left" placeholder="max" id="maxHeight">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if colors %}
+                <div class="accordion-container">
+                    <a href="#" class="accordion-toggle filterLabel">{{ "filters.color"|trans|upper }}
+                        <span class="pull-right arrow">
+                        <i class="fa fa-angle-right fa-2x"></i>
+                    </span>
+                    </a>
+                    <div class="accordion-content" style="display: none;">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                {% for color in colors %}
+                                    {% if locale == 'en' %}
+                                        <a href="javascript:void(0)" id="color{{ color.titleEng }}" title="{{ color.titleEng }}" class="oneColor"
+                                           style="background-color: {{ color.color }};" onclick="addColorFilter('{{ color.titleEng }}')"></a>
+                                    {% endif %}
+                                    {% if locale == 'ru' %}
+                                        <a href="javascript:void(0)" id="color{{ color.titleRus }}" title="{{ color.titleRus }}" class="oneColor"
+                                           style="background-color: {{ color.color }};" onclick="addColorFilter('{{ color.titleEng }}')"></a>
+                                    {% endif %}
+                                    {% if locale == 'am' %}
+                                        <a href="javascript:void(0)" id="color{{ color.titleArm }}" title="{{ color.titleArm }}" class="oneColor"
+                                           style="background-color: {{ color.color }};" onclick="addColorFilter('{{ color.titleEng }}')"></a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="form-group">
+                <button type="button" class="filter_button btn btn-gold w100">Search by filter</button>
+            </div>
+        </div>
+    </div>
+</div>

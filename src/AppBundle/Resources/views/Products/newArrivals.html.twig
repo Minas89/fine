@@ -1,0 +1,191 @@
+<div id="newArrivals" class="text-center">
+    <div class="row">
+        <div class="col-xs-12">
+            {% set locale = app.request.get('_locale') %}
+            <div class="text-center">
+                <h2 class="module-header">
+                    {{ "product.newArrivals"|trans }}
+                </h2>
+            </div>
+            {% set first = products|slice(0,5)|first %}
+            {% set second = products|slice(5,5)|first %}
+            <div class="newArrivals owl-carousel owl-theme ">
+                <div class="item topCarousel">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="newArrivalsCatImg">
+                                <a href="{{ path('app_products', {'category' : first.category.parent.slug, 'slug': first.category.slug}) }}">
+                                    {% if locale == 'en' %}
+                                        <h3>{{ first.category.titleEng }}</h3>
+                                    {% endif %}
+                                    {% if locale == 'ru' %}
+                                        <h3>{{ first.category.titleRus }}</h3>
+                                    {% endif %}
+                                    {% if locale == 'am' %}
+                                        <h3>{{ first.category.titleArm }}</h3>
+                                    {% endif %}
+                                    <img src="{% path first.category.image, "big" %}" alt="{{ first.category.titleEng }}">
+                                    <span>{{ "product.viewAll"|trans|upper }}</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row newRight">
+                                {% for product in products|slice(1,4)  %}
+                                    <div class="col-sm-6">
+                                        <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
+                                            <img src="{% path product.image, 'small' %}" alt="">
+                                            <p class="text-center">
+                                                {% if locale == 'en' %}
+                                                    {{ product.titleEng }}
+                                                {% endif %}
+                                                {% if locale == 'ru' %}
+                                                    {{ product.titleRus }}
+                                                {% endif %}
+                                                {% if locale == 'am' %}
+                                                    {{ product.titleArm }}
+                                                {% endif %}
+                                            </p>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item topCarousel">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="newArrivalsCatImg">
+                                <a href="{{ path('app_products', {'category' : first.category.parent.slug, 'slug': first.category.slug}) }}">
+                                    {% if locale == 'en' %}
+                                        <h3>{{ second.category.titleEng }}</h3>
+                                    {% endif %}
+                                    {% if locale == 'ru' %}
+                                        <h3>{{ second.category.titleRus }}</h3>
+                                    {% endif %}
+                                    {% if locale == 'am' %}
+                                        <h3>{{ second.category.titleArm }}</h3>
+                                    {% endif %}
+                                    <img src="{% path first.category.image, "big" %}" alt="first.category.titleEng">
+                                    <span>{{ "product.viewAll"|trans|upper }}</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row newRight">
+                                {% for product in products|slice(6,4)  %}
+                                    <div class="col-sm-6">
+                                        <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
+                                            <img src="{% path product.image, 'small' %}" alt="">
+                                            <p class="text-center">
+                                                {% if locale == 'en' %}
+                                                    {{ product.titleEng }}
+                                                {% endif %}
+                                                {% if locale == 'ru' %}
+                                                    {{ product.titleRus }}
+                                                {% endif %}
+                                                {% if locale == 'am' %}
+                                                    {{ product.titleArm }}
+                                                {% endif %}
+                                            </p>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {# <div class="item topCarousel">
+                     <div class="row">
+                         <div class="col-sm-6">
+                             <div class="newArrivalsCatImg">
+                                 <a href="{{ path('app_products', {'category' : first.category.parent.slug, 'slug': first.category.slug}) }}">
+                                     {% if locale == 'en' %}
+                                         <h3>{{ first.category.titleEng }}</h3>
+                                     {% endif %}
+                                     {% if locale == 'ru' %}
+                                         <h3>{{ first.category.titleRus }}</h3>
+                                     {% endif %}
+                                     {% if locale == 'am' %}
+                                         <h3>{{ first.category.titleArm }}</h3>
+                                     {% endif %}
+                                     <img src="{% path first.category.image, "big" %}" alt="first.category.titleEng">
+                                     <span>{{ "product.viewAll"|trans|upper }}</span>
+                                 </a>
+                             </div>
+                         </div>
+                         <div class="col-sm-6">
+                             <div class="row newRight">
+                                 {% for product in products|slice(1,5)  %}
+                                     <div class="col-sm-6">
+                                         <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
+                                             <img src="{% path product.image, 'small' %}" alt="">
+                                             <p class="text-center">
+                                                 {% if locale == 'en' %}
+                                                     {{ product.titleEng }}
+                                                 {% endif %}
+                                                 {% if locale == 'ru' %}
+                                                     {{ product.titleRus }}
+                                                 {% endif %}
+                                                 {% if locale == 'am' %}
+                                                     {{ product.titleArm }}
+                                                 {% endif %}
+                                             </p>
+                                         </a>
+                                     </div>
+                                 {% endfor %}
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="item topCarousel">
+                     <div class="row">
+                         <div class="col-sm-6">
+                             <div class="newArrivalsCatImg">
+                                 <a href="{{ path('app_products', {'category' : first.category.parent.slug, 'slug': first.category.slug}) }}">
+                                     {% if locale == 'en' %}
+                                         <h3>{{ first.category.titleEng }}</h3>
+                                     {% endif %}
+                                     {% if locale == 'ru' %}
+                                         <h3>{{ first.category.titleRus }}</h3>
+                                     {% endif %}
+                                     {% if locale == 'am' %}
+                                         <h3>{{ first.category.titleArm }}</h3>
+                                     {% endif %}
+                                     <img src="{% path first.category.image, "big" %}" alt="first.category.titleEng">
+                                     <span>{{ "product.viewAll"|trans|upper }}</span>
+                                 </a>
+                             </div>
+                         </div>
+                         <div class="col-sm-6">
+                             <div class="row newRight">
+                                 {% for product in products|slice(1,5)  %}
+                                     <div class="col-sm-6">
+                                         <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
+                                             <img src="{% path product.image, 'small' %}" alt="">
+                                             <p class="text-center">
+                                                 {% if locale == 'en' %}
+                                                     {{ product.titleEng }}
+                                                 {% endif %}
+                                                 {% if locale == 'ru' %}
+                                                     {{ product.titleRus }}
+                                                 {% endif %}
+                                                 {% if locale == 'am' %}
+                                                     {{ product.titleArm }}
+                                                 {% endif %}
+                                             </p>
+                                         </a>
+                                     </div>
+                                 {% endfor %}
+                             </div>
+                         </div>
+                     </div>
+                 </div>#}
+            </div>
+
+
+        </div>
+    </div>
+</div>
+

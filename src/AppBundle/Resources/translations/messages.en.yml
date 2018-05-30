@@ -1,0 +1,104 @@
+menu:
+   home: Home
+   new: New Listings in
+   all: All
+   shopBy: Shop by category
+   shopByArtist: Shop by Artist
+   shopByCreator: Shop by Creator
+   shopByDesigner: Shop by Designer
+   shopByStyle: Shop by Style
+   moreWays: More ways to browse
+
+product:
+   about: About
+   details: Details
+   editors: TRENDY
+   newArrivals: New Arrivals for You
+   viewAll: view all
+   sortBy: Sort by
+   newest: Newest
+   priceHL: Price: High-Low
+   priceLH: Price: Low-High
+   viewDeatils: view details
+   makeOffer: make an offer
+   big_banner_index: Curated Weekly
+   ref_number: Reference Number
+   in_cart: Product is in the cart
+   purchase: PURCHASE
+   wishlist: My Wishlist
+   search_results: Search Resulst
+
+
+filters:
+   filters: filters
+   results: results
+   search_placeholder: Search within results
+   category: category
+   price: price
+   color: color
+   dimensions: Dimensions
+   width: width (cm)
+   height: height (cm)
+
+user:
+    login_welcome: Welcome to Site
+    register: Register
+    accountInfo: Account Information
+
+titles:
+   creators: Creators
+
+account_menu:
+   personalInfo: Personal Information
+   loginInfo: Login Information
+   paymentInfo: Payment Info
+   deliveryInfo: Delivery Info
+   first_name: First name
+   last_name: Last name
+   phone_number: Phone number
+   user_addresses: My addresses
+   save: Save
+   save_number: Save Number
+   add_address: Add address
+   savedSuccess: Succesfully Saved!
+   email: Email
+   not_valid_email: Incorrect email address.
+   hasEmail: The email used by another account
+   mand_field: This is a mandatory field.
+   current_pass: Current password
+   new_pass: New Password
+   new_pass_confirm: Repest new password
+   change: Change Password
+   address: Address
+   action: Action
+   delete: delete
+   sure_question: Are you sure?
+
+
+change_password:
+    submit: Change password
+    flash:
+        success: The password has been changed
+
+
+footer:
+     menu:
+        about: about us
+        support: support center
+        blog: Blog
+        magazine: magazine
+        careers: careers
+        press: press
+        contact us: contact us
+        agreement: User Agreement
+        policy: Privacy Policy
+
+cart:
+   my_cart: My Cart
+   back_to_shop: Back to Shopping
+   price: price
+   total: Total
+   products: Products
+   customer_info: Customer Info
+   payment_method: Payment method
+   pay_cash: Payment by cash

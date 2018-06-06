@@ -1,5 +1,7 @@
-{#{% extends "AppBundle::layout.html.twig" %}#}
+{% extends "AppBundle::layout.html.twig" %}
+{#
 {% extends "AppBundle::closed.html.twig" %}
+#}
 
 {% block stylesheet %}
     {{ parent() }}
@@ -94,4 +96,7 @@
             <div class="gold"></div>
         </div>
     </div>
+
+    {{ render(controller('AppBundle:Banners:smallBanners')) }}
+
 {% endblock %}

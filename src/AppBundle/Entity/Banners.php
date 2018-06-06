@@ -16,6 +16,8 @@ class Banners
     const BIG_IMG_FOR_INDEX = 1;
     const CAT_IMG_FOR_INDEX = 2;
 
+    const COUNT_ON_INDEX = 4;
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id()

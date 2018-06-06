@@ -17,18 +17,3 @@
         </div>
     </div>
 {% endif %}
-{% if catBanners is defined %}
-    <div id="catBanners">
-        <div class="row">
-            {% for banner in catBanners  %}
-                <div class="col-xs-12 col-sm-6">
-                    <div class="oneCatImg">
-                        <a href="{{ banner.url }}" target="{{ banner.target }}">
-                            <img src="{% path banner.image, 'reference' %}" class="img-responsive" alt="Banner">
-                        </a>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-{% endif %}

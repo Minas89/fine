@@ -1,3 +1,8 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url("../fonts/MyriadPro-Regular_0.otf");
+}
+
 .top{
     background-color: #a38e44;
     height: 5px;
@@ -112,9 +117,14 @@
     font-size: 20px;
 }
 
+#mainMenu{
+    font-family: "myFirstFont";
+}
+
+
 #mainMenu li a{
     color: #000;
-    font-family: "Proxima Nova Light", "Helvetica Neue", "helvetica", "arial", "sans-serif";
+    /*font-family: "Proxima Nova Light", "Helvetica Neue", "helvetica", "arial", "sans-serif";*/
     display: inline-block;
     font-size: 14px;
     letter-spacing: 1px;
@@ -142,7 +152,7 @@
 
 .dropdown-menu li a{
     color: #848484!important;
-    font-family: "Proxima Nova Light", "Helvetica Neue", "helvetica", "arial", "sans-serif";
+    /*font-family: "Proxima Nova Light", "Helvetica Neue", "helvetica", "arial", "sans-serif";*/
     display: block;
     font-size: 14px!important;
     padding: 5px 0;
@@ -912,36 +922,41 @@ a.filterLabel span{
 }
 
 footer{
-    padding: 30px 0 0;
+    padding: 0;
     text-align: center;
     font-size: 12px;
     letter-spacing: 2px;
-    background: #222;
+    background: #c2a661;
 }
 
-#footerMenu{
+.footerMenu{
     list-style-type: none;
-    margin: 25px;
+    margin: 15px;
 }
 
-#footerMenu li{
+.footerMenu li{
     display: inline-block;
-    margin-left: 15px;
+    margin-left: 5px;
 }
 
-#footerMenu li a{
-    color:#fff;
+.footerMenu li a{
+    color:grey;
     text-transform: uppercase;
 }
 
-#footerMenu li a:hover{
-    color: #c2a661;
+.footerMenu li span{
+    color: grey;
+}
+
+.footerMenu li a:hover{
+    color: #fff;
     text-decoration: none;
 }
 
 #socialDiv{
     list-style-type: none;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
+    margin-top: 40px;
 }
 
 #socialDiv li{
@@ -951,10 +966,14 @@ footer{
 
 #socialDiv li a{
     display: block;
-    border: 1px solid #888;
-    width: 50px;
-    border-radius: 100%;
-    padding: 10px;
+    /*border: 1px solid #000;*/
+    width: 40px;
+    /*border-radius: 100%;*/
+    /*padding: 10px;*/
+}
+
+#socialDiv img {
+    width: 100%;
 }
 
 #socialDiv li a i{
@@ -969,7 +988,7 @@ footer{
     color: #fff;
 }
 
-.twitterA:hover{
+/*.twitterA:hover{
     background-color: #0084b4;
 }
 
@@ -983,7 +1002,7 @@ footer{
 
 .instagramA:hover{
     background-color: #1769ff;
-}
+}*/
 
 #copy, #copy a{
     color: #888;
@@ -1224,4 +1243,12 @@ a.backTo:hover{
 
 #shopBycategory{
     margin-bottom: 15px;
+}
+
+.oneCatImg{
+    margin-bottom: 30px;
+}
+
+.pt30{
+    padding-top: 30px !important;
 }

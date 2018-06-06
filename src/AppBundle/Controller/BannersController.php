@@ -21,4 +21,19 @@ class BannersController extends Controller
             'bigBanner' => $bigBanner,
         ));
     }
+
+    public function smallBannersAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $banners = $em->getRepository('AppBundle:Banners')->findBy(
+            array('type' => Banners::CAT_IMG_FOR_INDEX),
+            array('id' => 'DESC'),
+            Banners::COUNT_ON_INDEX
+        );
+
+        return $this->render('AppBundle:Banners:indexSmallBanners.html.twig',array(
+            'banners' => $banners
+        ));
+    }
 }

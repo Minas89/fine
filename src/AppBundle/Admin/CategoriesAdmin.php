@@ -27,6 +27,7 @@ class CategoriesAdmin extends AbstractAdmin
             ->add('metaKeywords')
             ->add('metaDescription')
             ->add('parent')
+            ->add('shopBy')
         ;
     }
 
@@ -50,6 +51,9 @@ class CategoriesAdmin extends AbstractAdmin
                 'editable' => true
             ))
             ->add('position',null,array(
+                'editable' => true
+            ))
+            ->add('shopBy',null,array(
                 'editable' => true
             ))
             ->add('metaKeywords')
@@ -85,6 +89,7 @@ class CategoriesAdmin extends AbstractAdmin
             ->add('titleRus')
             ->add('titleEng')
             ->add('slug')
+            ->add('shopBy')
             ->add('textArm',CKEditorType::class)
             ->add('textRus',CKEditorType::class)
             ->add('textEng',CKEditorType::class)
@@ -106,11 +111,15 @@ class CategoriesAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('id')
+            ->add('shopBy')
             ->add('titleArm')
             ->add('titleRus')
             ->add('titleEng')
             ->add('slug')
             ->add('position')
+            ->add('textArm')
+            ->add('textRus')
+            ->add('textEng')
             ->add('metaKeywords')
             ->add('metaDescription')
         ;

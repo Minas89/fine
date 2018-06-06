@@ -52,7 +52,7 @@ class Categories extends AbstractEntity
     /**
      * @ORM\Column(type="boolean", name="shop_by" )
      */
-    protected $shopBy = 0;
+    protected $shopBy = false;
 
     /**
      * Constructor

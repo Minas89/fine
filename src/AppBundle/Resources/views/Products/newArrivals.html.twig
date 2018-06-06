@@ -34,7 +34,7 @@
                                 {% for product in products|slice(1,4)  %}
                                     <div class="col-sm-6">
                                         <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
-                                            <img src="{% path product.image, 'small' %}" alt="">
+                                            <img src="{% path product.image, 'big' %}" alt="">
                                             <p class="text-center">
                                                 {% if locale == 'en' %}
                                                     {{ product.titleEng }}
@@ -77,7 +77,7 @@
                                 {% for product in products|slice(6,4)  %}
                                     <div class="col-sm-6">
                                         <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
-                                            <img src="{% path product.image, 'small' %}" alt="">
+                                            <img src="{% path product.image, 'big' %}" alt="">
                                             <p class="text-center">
                                                 {% if locale == 'en' %}
                                                     {{ product.titleEng }}

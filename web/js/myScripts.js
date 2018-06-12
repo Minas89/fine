@@ -85,9 +85,12 @@ var addWish = function(id) {
                 str = str.substring(0, str.length - 1); // "12345.0"
                 count = parseInt(str);
 
-                count = count + 1;
+                if(isNaN(count)){
+                    count = 0;
+                }
 
-                $("#wishCount").html("(" + count +")").css('visibility','visible');
+                count = count + 1;
+                $("#wishCount").html("(" + count +")").css('display','inline-block');
             }
         },"json");
 
@@ -108,15 +111,12 @@ var removeWish = function(id,from) {
                 str = str.substr(1);
                 str = str.substring(0, str.length - 1); // "12345.0"
                 count = parseInt(str);
-
                 count = count - 1;
-
                 if(count === 0){
-                    $("#wishCount").html("(" + count +")").css('visibility','hidden');
+                    $("#wishCount").html("(" + count +")").css('display','none');
                 }else{
-                    $("#wishCount").html("(" + count +")").css('visibility','visible');
+                    $("#wishCount").html("(" + count +")").css('display','inline-block');
                 }
-
 
 
                 if(from == "wish"){

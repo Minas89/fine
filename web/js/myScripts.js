@@ -85,8 +85,10 @@ var addWish = function(id) {
                 str = str.substring(0, str.length - 1); // "12345.0"
                 count = parseInt(str);
 
+                if(isNaN(count)){
+                    count = 0;
+                }
                 count = count + 1;
-
                 $("#wishCount").html("(" + count +")").css('visibility','visible');
             }
         },"json");

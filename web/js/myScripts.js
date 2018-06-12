@@ -88,6 +88,7 @@ var addWish = function(id) {
                 if(isNaN(count)){
                     count = 0;
                 }
+
                 count = count + 1;
                 $("#wishCount").html("(" + count +")").css('visibility','visible');
             }

@@ -119,7 +119,6 @@ var removeWish = function(id,from) {
                 }
 
 
-
                 if(from == "wish"){
                     location.reload();
                 }

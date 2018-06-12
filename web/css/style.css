@@ -90,6 +90,7 @@
     list-style-type: none;
     float: right;
     font-size: 16px;
+    height: 25px;
 }
 
 #topMenu img{
@@ -1234,7 +1235,7 @@ a.backTo:hover{
 
 .formDiv .btn-default{
     background-color: #ffffff!important;
-    border: none !important;
+    /*border: none !important;*/
 }
 
 #bigBanner{
@@ -1251,4 +1252,9 @@ a.backTo:hover{
 
 .pt30{
     padding-top: 30px !important;
+}
+
+.languages{
+    position: relative;
+    z-index: 10;
 }

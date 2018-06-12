@@ -21,8 +21,26 @@ class SearchController extends Controller
         $locale = $request->getLocale();
         $products = $em->getRepository('AppBundle:Products')->findForSearch($q,$locale);
 
-        return $this->render('AppBundle:Search:searched.html.twig',array(
-            'products' => $products
-        ));
+        $wishes = array();
+        if($this->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+        {
+            $wishesObjects = $em->getRepository('AppBundle:Wishlist')->findByUser($this->getUser());
+            foreach($wishesObjects as $one)
+            {
+                $wishes[] = $one->getProduct();
+            }
+        }
+        $array = array(
+            'products' => $products,
+
+        );
+
+        if(count($wishes)){
+            $array['wishes'] = $wishes;
+        }
+
+
+
+        return $this->render('AppBundle:Search:searched.html.twig',$array);
     }
 }

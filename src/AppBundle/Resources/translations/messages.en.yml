@@ -26,7 +26,9 @@ product:
    in_cart: Product is in the cart
    purchase: PURCHASE
    wishlist: My Wishlist
-   search_results: Search Resulst
+   search_results: Search Results
+   price_request: REQUEST PRICE
+   contact_seller: Contact to seller
 
 
 filters:
@@ -104,3 +106,7 @@ cart:
    customer_info: Customer Info
    payment_method: Payment method
    pay_cash: Payment by cash
+
+
+search:
+     not_found: No results for this term. Please try an alternative term.

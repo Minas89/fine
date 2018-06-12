@@ -133,7 +133,8 @@
                     {% endif %}
                 {% else %}
                     <div class="buttons">
-                        <a href="#" class="btn btn-gold btn-lg mt15">MAKE AN OFFER</a>
+                        <button  data-toggle="modal" data-target="#priceRequest" class="btn btn-gold btn-lg mt15">{{ "product.price_request"|trans|upper }}</button>
+                        <a href="#" class="btn btn-gold btn-lg mt15">{{ "product.contact_seller"|trans|upper }}</a>
                     </div>
                 {% endif %}
 
@@ -199,6 +200,29 @@
             </div>
         </div>
     </div>
+
+    {# Price Request modal #}
+    <div id="priceRequest" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{ "product.price_request"|trans }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {# Price Request modal #}
+
 {% endblock %}
 
 {% block javascriptsBottom %}

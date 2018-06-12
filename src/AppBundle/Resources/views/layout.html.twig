@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>FineArter</title>
 
     {% block stylesheet %}
         <link rel="stylesheet" href="{{ asset('css/style.css?v=1.1.1') }}" media="all">
@@ -54,23 +54,26 @@
                     {{ render(controller('AppBundle:Cart:cartCount')) }}
                     {#  cart ICON #}
                     <li>
-                        <div {% if app.request.get('_locale') == 'am' %}style="display: block"{% else %}style="display: none"{% endif %} id="ru" onclick="setVisible('RU')">
-                            <a href="#">
-                                <img src="{{ asset('images/RU.png') }}" alt="" width="25">
-                            </a>
+                        <div class="languages">
+                            <div {% if app.request.get('_locale') == 'am' %}style="display: block"{% else %}style="display: none"{% endif %} id="am" onclick="setVisible('AM')">
+                                <a href="#">
+                                    <img src="{{ asset('images/AM.png') }}" alt="" width="25">
+                                </a>
+                            </div>
+
+                            <div {% if app.request.get('_locale') == 'ru' %}style="display: block"{% else %}style="display: none"{% endif %} id="ru" onclick="setVisible('RU')">
+                                <a href="#">
+                                    <img src="{{ asset('images/RU.png') }}" alt="" width="25">
+                                </a>
+                            </div>
+
+                            <div {% if app.request.get('_locale') == 'en' %}style="display: block"{% else %}style="display: none"{% endif %} id="en" onclick="setVisible('EN')">
+                                <a href="#">
+                                    <img src="{{ asset('images/EN.png') }}" alt="" width="25">
+                                </a>
+                            </div>
                         </div>
 
-                        <div {% if app.request.get('_locale') == 'ru' %}style="display: block"{% else %}style="display: none"{% endif %} id="ru" onclick="setVisible('RU')">
-                            <a href="#">
-                                <img src="{{ asset('images/RU.png') }}" alt="" width="25">
-                            </a>
-                        </div>
-
-                        <div {% if app.request.get('_locale') == 'en' %}style="display: block"{% else %}style="display: none"{% endif %} id="en" {#onclick="setVisible('EN')#}>
-                            <a href="#">
-                                <img src="{{ asset('images/EN.png') }}" alt="" width="25">
-                            </a>
-                        </div>
                     </li>
                 </ul>
             </div>
@@ -88,8 +91,11 @@
                 <div class="form-group">
                     <form action="{{ path('search')}}" method="get">
                         <div class="input-group">
+                            {% if app.request.get('q') is defined %}
+                                {% set q = app.request.get('q') %}
+                            {% endif %}
                             <input type="text" class="form-control" id="inputSuccess"
-                                   placeholder="Search within the catalog" name="q">
+                                   placeholder="Search within the catalog" name="q" {% if q is defined %}value="{{ q }}" {% endif %}>
 
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit">

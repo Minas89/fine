@@ -278,7 +278,6 @@
     color: #222;
     font-size: 1.08333em;
     line-height: 1.28571em;
-    text-align: left;
 }
 
 .product-name a{
@@ -1176,9 +1175,9 @@ a.backTo:hover{
     padding: 15px;
 }
 
-.wishlist{
+/*.wishlist{
     margin-right: 30px;
-}
+}*/
 
 .wishlist i{
     color: #c2a661;

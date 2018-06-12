@@ -25,27 +25,30 @@
                             {% endif %}
                         </div>
 
-                        <div class="product-title">
-                            <div class="product-name">
-                                <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
-                                    {% if locale == 'en' %}
-                                        {{ product.creator.titleEng }}<br>
-                                        {{ product.titleEng }}
-                                    {% elseif locale == 'ru' %}
-                                        {{ product.creator.titleRus }}<br>
-                                        {{ product.titleRus }}
-                                    {% elseif locale == 'am' %}
-                                        {{ product.creator.titleArm }}<br>
-                                        {{ product.titleArm }}
-                                    {% endif %}
-                                </a>
+                        <div class="text-center">
+                            <div class="product-title">
+                                <div class="product-name">
+                                    <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
+                                        {% if locale == 'en' %}
+                                            {{ product.creator.titleEng }}<br>
+                                            {{ product.titleEng }}
+                                        {% elseif locale == 'ru' %}
+                                            {{ product.creator.titleRus }}<br>
+                                            {{ product.titleRus }}
+                                        {% elseif locale == 'am' %}
+                                            {{ product.creator.titleArm }}<br>
+                                            {{ product.titleArm }}
+                                        {% endif %}
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <span class="product-price">
-                            <span class="product-price-item">
-                                ${{ product.price }}
+                            <span class="product-price">
+                                <span class="product-price-item">
+                                    ${{ product.price }}
+                                </span>
                             </span>
-                        </span>
+                        </div>
+
                     </div>
                 </div>
             {% elseif view == 'list' %}
@@ -91,10 +94,10 @@
                                 </div>
                                 {% if product.price is not null %}
                                     <span class="product-price">
-                                                <span class="product-price-item p0">
-                                                    ${{ product.price }}
-                                                </span>
-                                            </span>
+                                        <span class="product-price-item p0">
+                                            ${{ product.price }}
+                                        </span>
+                                    </span>
                                 {% endif %}
 
                             </div>

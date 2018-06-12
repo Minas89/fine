@@ -162,4 +162,70 @@ class UserController extends Controller
 
         throw $this->createAccessDeniedException('mi ban en chi');
     }
+
+    public function sendPriceRequestAction(Request $request)
+    {
+        if(!$request->isMethod($request::METHOD_POST)){
+            return $this->redirectToRoute('app_homepage');
+        }
+
+        $number = $request->request->get('phone');
+        $message = $request->request->get('message');
+        $productId = $request->request->get('productId');
+        $em = $this->getDoctrine()->getManager();
+
+        $product = $em->getRepository('AppBundle:Products')->find($productId);
+
+        $params = [
+            'number' => $number,
+            'message' => $message,
+            'product' => $product,
+            'user' => $this->getUser()
+        ];
+
+        $to = $this->container->getParameter('order_email');
+        $subject = 'Price Request';
+        $template = "AppBundle:Email:price_request.html.twig";
+
+        $this->sendEmail($to,$subject,$template,$params);
+
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer);
+    }
+
+
+    private function sendEmail($to, $subject,$template,array $params)
+    {
+        $message = (new \Swift_Message($subject))
+            ->setFrom('send@example.com')
+            ->setTo($to)
+            ->setBody(
+                $this->renderView(
+                // app/Resources/views/Emails/registration.html.twig
+                    //'Emails/registration.html.twig',
+                    $template,
+                    $params
+                ),
+                'text/html'
+            )
+            /*
+             * If you also want to include a plaintext version of the message
+            ->addPart(
+                $this->renderView(
+                    'Emails/registration.txt.twig',
+                    array('name' => $name)
+                ),
+                'text/plain'
+            )
+            */
+        ;
+
+        try{
+            $this->container->get('mailer')->send($message);
+        }catch (\Exception $exception){
+            echo $exception->getMessage();
+        }
+
+        return true;
+    }
 }

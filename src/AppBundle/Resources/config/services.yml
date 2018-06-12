@@ -3,3 +3,7 @@ services:
          class: AppBundle\Form\RegistrationType
          tags:
              - { name: form.type, alias: register }
+
+     app.email.manager:
+         class: AppBundle\Services\EmailManager
+         arguments: ["@service_container"]

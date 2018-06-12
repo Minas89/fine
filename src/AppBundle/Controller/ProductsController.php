@@ -91,9 +91,6 @@ class ProductsController extends Controller
               }
 
           }
-        }else{
-           /* $products = $em->getRepository('AppBundle:Products')
-            ->findBy(array('category'=> $lastcategory),array($criteria => $order));*/
         }
         $wishes = array();
         if($this->isGranted('IS_AUTHENTICATED_REMEMBERED'))

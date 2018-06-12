@@ -75,4 +75,6 @@ account:
     prefix: /{_locale}/my/profile
 
 
-
+app_price_request:
+    path: /send/request
+    defaults: { _controller: AppBundle:User:sendPriceRequest }

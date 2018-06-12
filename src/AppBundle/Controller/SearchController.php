@@ -16,6 +16,13 @@ class SearchController extends Controller
 
         $q = $request->query->get('q');
 
+        $invalid_characters = array("$", "%", "#", "<", ">", "|", "!");
+        $q = str_replace($invalid_characters, "", $q);
+
+        if(empty($q)){
+            throw $this->createNotFoundException('searc');
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $locale = $request->getLocale();
@@ -32,7 +39,7 @@ class SearchController extends Controller
         }
         $array = array(
             'products' => $products,
-
+            'q' => $q
         );
 
         if(count($wishes)){

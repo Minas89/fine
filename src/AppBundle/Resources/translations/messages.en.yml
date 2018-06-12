@@ -110,3 +110,10 @@ cart:
 
 search:
      not_found: No results for this term. Please try an alternative term.
+
+request_form:
+      telephone: telephone number
+      submit: submit
+
+errors:
+    error_404: Sorry, this page isn't available.

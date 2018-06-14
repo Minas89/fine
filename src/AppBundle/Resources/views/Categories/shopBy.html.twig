@@ -12,10 +12,15 @@
                     {% for category in categories  %}
                         <div class="item topCarousel">
                             <div class="carouselImgDiv">
-                                <a href="{{ path('app_category',{ '_locale' : locale, 'slug' : category.slug }) }}">
-                                    <img src="{% path category.image, 'big' %}" alt="">
+                                <a href="{{ path('app_category',{ '_locale' : locale, 'slug' : category.slug }) }}" style="background-image:url({% path category.image, 'big' %}) ">
+                                    {#<img src="{% path product.image, 'big' %}" alt="">#}
                                 </a>
                             </div>
+                            {#<div class="carouselImgDiv">#}
+                                {#<a href="{{ path('app_category',{ '_locale' : locale, 'slug' : category.slug }) }}">#}
+                                    {#<img src="{% path category.image, 'big' %}" alt="">#}
+                                {#</a>#}
+                            {#</div>#}
 
                             <div class="carouselTitleDiv">
                                 <hr>

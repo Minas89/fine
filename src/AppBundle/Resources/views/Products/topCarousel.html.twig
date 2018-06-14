@@ -10,9 +10,10 @@
             <div class="topOwl owl-carousel owl-theme">
                 {% for product in products  %}
                     <div class="item topCarousel">
+
                         <div class="carouselImgDiv">
-                            <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
-                                <img src="{% path product.image, 'big' %}" alt="">
+                            <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}" style="background-image:url({% path product.image, 'big' %}) ">
+                                {#<img src="{% path product.image, 'big' %}" alt="">#}
                             </a>
                         </div>
 

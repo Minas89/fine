@@ -587,7 +587,18 @@
     /*padding: 25px;*/
     padding: 0 !important;
     position: relative;
+}
 
+.carouselImgDiv{
+
+}
+
+.carouselImgDiv a{
+    display: block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 40%;
 }
 
 .topCarousel img{

@@ -676,12 +676,29 @@
     margin-bottom: 15px;
 }
 
-.newRight a{
+/*.newRight a{
     display: block;
     width: 100%;
-    padding: 15px;
-    background-color: #ffffff;
+    padding: 10%;
     margin-bottom: 35px;
+    background-color: #eee;
+}*/
+
+.newRightProduct{
+    text-align: center;
+    background-color: #eeeeee;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-bottom: 15px;
+}
+
+.newRightProduct img{
+    max-width: 150px!important;
+}
+
+.newRightProductA{
+    color: #000!important;
+    font-size: 18px;
 }
 
 .newArrivalsCatImg h3{
@@ -787,8 +804,8 @@ ul#gridView li.active a, ul#gridView a.forIcons:hover{
     max-width: 250px;
 }
 
-.goldInput{
-    border: 1px solid #c2a661!important;
+input.goldInput, div.goldInput{
+    border: 1px solid #c2a661;
 }
 
 #loginForm button,.registerForm button{
@@ -1267,4 +1284,21 @@ a.backTo:hover{
 .languages{
     position: relative;
     z-index: 10;
+}
+
+#changelanguageUl{
+    background: none!important;
+    width: 25px!important;
+    margin: 0!important;
+    padding: 0 !important;
+    min-width: 25px!important;
+}
+
+#changelanguageUl li{
+    float: none !important;
+    margin-left: 0;
+}
+
+#changelanguageUl li a{
+    padding: 0 !important;
 }

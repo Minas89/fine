@@ -1,3 +1,42 @@
+{% if form_errors(form.title) %}
+    {% set hasErrorTitle = 'has-error' %}
+{% else %}
+    {% set hasErrorTitle = '' %}
+{% endif %}
+
+{% if form_errors(form.firstname) %}
+    {% set hasErrorFirst = 'has-error' %}
+{% else %}
+    {% set hasErrorFirst = '' %}
+{% endif %}
+
+{% if form_errors(form.lastname) %}
+    {% set hasErrorLast = 'has-error' %}
+{% else %}
+    {% set hasErrorLast = '' %}
+{% endif %}
+
+{% if form_errors(form.username) %}
+    {% set hasErrorUsername = 'has-error' %}
+{% else %}
+    {% set hasErrorUsername = '' %}
+{% endif %}
+
+
+{% if form_errors(form.email) %}
+    {% set hasErrorEmail = 'has-error' %}
+{% else %}
+    {% set hasErrorEmail = '' %}
+{% endif %}
+
+
+{% if form_errors(form.plainPassword.first) %}
+    {% set hasErrorPass = 'has-error' %}
+{% else %}
+    {% set hasErrorPass = '' %}
+{% endif %}
+
+
 <div class="row">
     <div class="col-xs-12 col-md-4 col-md-offset-4">
         <div class="text-center">
@@ -6,26 +45,26 @@
             </h2>
         </div>
         <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="registerForm" role="form" novalidate>
-            <div class="form-group">
-                {{ form_row(form.title,{'attr' : { 'class' : 'form-control input-lg goldInput' }}) }}
+            <div class="form-group {{ hasErrorTitle }} has-feedback">
+                {{ form_row(form.title,{'attr' : { 'class' : 'goldInput input-lg form-control' } }) }}
             </div>
-            <div class="form-group">
-                {{ form_row(form.firstname,{'attr' : { 'class' : 'form-control input-lg goldInput' }}) }}
+            <div class="form-group {{ hasErrorFirst }} has-feedback">
+                {{ form_row(form.firstname,{'attr' : { 'class' : 'goldInput form-control input-lg' }}) }}
             </div>
-            <div class="form-group">
-                {{ form_row(form.lastname,{'attr' : { 'class' : 'form-control input-lg goldInput' }}) }}
+            <div class="form-group {{ hasErrorLast }} has-feedback">
+                {{ form_row(form.lastname,{'attr' : { 'class' : 'goldInput form-control input-lg' }}) }}
             </div>
-            <div class="form-group">
-                {{ form_row(form.username,{'attr' : { 'class' : 'form-control input-lg goldInput' }}) }}
+            <div class="form-group {{ hasErrorUsername }} has-feedback">
+                {{ form_row(form.username,{'attr' : { 'class' : 'goldInput form-control input-lg' }}) }}
             </div>
-            <div class="form-group">
-                {{ form_row(form.email,{'attr' : { 'class' : 'form-control input-lg goldInput' }}) }}
+            <div class="form-group {{ hasErrorEmail }} has-feedback">
+                {{ form_row(form.email,{'attr' : { 'class' : 'goldInput form-control input-lg' }}) }}
             </div>
-            <div class="form-group">
-                {{ form_row(form.plainPassword.first,{'attr' : { 'class' : 'form-control input-lg goldInput' }}) }}
+            <div class="form-group {{ hasErrorPass }} has-feedback">
+                {{ form_row(form.plainPassword.first,{'attr' : { 'class' : 'goldInput form-control input-lg' }}) }}
             </div>
-            <div class="form-group">
-                {{ form_row(form.plainPassword.second,{'attr' : { 'class' : 'form-control input-lg goldInput' }}) }}
+            <div class="form-group {{ hasErrorPass }} has-feedback"">
+                {{ form_row(form.plainPassword.second,{'attr' : { 'class' : 'goldInput form-control input-lg' }}) }}
             </div>
 
 

@@ -54,26 +54,61 @@
                     {{ render(controller('AppBundle:Cart:cartCount')) }}
                     {#  cart ICON #}
                     <li>
-                        <div class="languages">
-                            <div {% if app.request.get('_locale') == 'am' %}style="display: block"{% else %}style="display: none"{% endif %} id="am" onclick="setVisible('AM')">
-                                <a href="#">
-                                    <img src="{{ asset('images/AM.png') }}" alt="" width="25">
-                                </a>
-                            </div>
+                        {% set Arm =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'am'}) ) %}
+                        {% set Rus =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'ru'}) ) %}
+                        {% set Eng =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'en'}) ) %}
+                        <div class="btn-group dropup">
+                            {% if app.request.get('_locale') == 'en' %}
+                                <button class="btn dropdown-toggle p0" data-toggle="dropdown">
+                                    <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
+                                </button>
+                                <ul class="dropdown-menu" id="changelanguageUl">
+                                    <li>
+                                        <a href="{{ Rus }}">
+                                            <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ Arm }}">
+                                            <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
+                                        </a>
+                                    </li>
+                                </ul>
+                            {% elseif app.request.get('_locale') == 'ru' %}
+                                <button class="btn dropdown-toggle p0" data-toggle="dropdown">
+                                    <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
+                                </button>
+                                <ul class="dropdown-menu" id="changelanguageUl">
+                                    <li>
+                                        <a href="{{ Eng }}">
+                                            <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ Rus }}">
+                                            <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
+                                        </a>
+                                    </li>
+                                </ul>
+                            {% elseif app.request.get('_locale') == 'am' %}
+                                <button class="btn dropdown-toggle p0" data-toggle="dropdown">
+                                    <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
+                                </button>
+                                <ul class="dropdown-menu" id="changelanguageUl">
+                                    <li>
+                                        <a href="{{ Eng }}">
+                                            <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ Rus }}">
+                                            <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
+                                        </a>
+                                    </li>
+                                </ul>
+                            {% endif %}
 
-                            <div {% if app.request.get('_locale') == 'ru' %}style="display: block"{% else %}style="display: none"{% endif %} id="ru" onclick="setVisible('RU')">
-                                <a href="#">
-                                    <img src="{{ asset('images/RU.png') }}" alt="" width="25">
-                                </a>
-                            </div>
-
-                            <div {% if app.request.get('_locale') == 'en' %}style="display: block"{% else %}style="display: none"{% endif %} id="en" onclick="setVisible('EN')">
-                                <a href="#">
-                                    <img src="{{ asset('images/EN.png') }}" alt="" width="25">
-                                </a>
-                            </div>
                         </div>
-
                     </li>
                 </ul>
             </div>

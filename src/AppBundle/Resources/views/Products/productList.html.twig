@@ -5,7 +5,8 @@
                 <div class="col-md-4">
                     <div class="oneProduct">
                         <div class="divImg text-center">
-                            <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
+                            <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}"
+                               style="background-image:url({% path product.image, 'big' %}) ">
                                 <img src="{% path product.image, 'big' %}" alt="Product">
                             </a>
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

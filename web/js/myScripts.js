@@ -58,11 +58,13 @@ var saveFio = function(){
                 {
                     $('#successMessage').text(res.msg).delay(5000).fadeOut();
                 }
+                $('#emailDiv').removeClass('has-error');
                 $('#accountEmail').addClass('goldInput');
                 $("#validateEmailSpan").removeClass("glyphicon-remove form-control-feedback");
                 $(".fioDiv .help-block").empty();
             }
             if(res.returnCode == 102){
+                $('#emailDiv').addClass('has-error');
                 $('#accountEmail').removeClass('goldInput');
                 $("#validateEmailSpan").addClass("glyphicon-remove form-control-feedback");
                 $('.fioDiv .help-block').text(res.msg);
@@ -72,6 +74,15 @@ var saveFio = function(){
     return false;
 
 };
+
+$('#accountEmail').keyup(function (e) {
+    e.preventDefault();
+    if($('#emailDiv').hasClass('has-error')){
+        $('#emailDiv').removeClass('has-error');
+        $("#validateEmailSpan").removeClass("glyphicon-remove form-control-feedback");
+        $(".fioDiv .help-block").empty();
+    }
+});
 
 var addWish = function(id) {
     $.post("/en/wishlist/add",{id : id},
@@ -128,17 +139,4 @@ var removeWish = function(id,from) {
     return false;
 };
 
-function setVisible(language) {
-    if(language === 'AM'){
-        $('#ru').css('display','block');
-        $('#en').css('display','block');
-    }else if (language === 'RU'){
-        $('#am').css('display','block');
-        $('#en').css('display','block');
-    }else if(language === 'EN'){
-        $('#am').css('display','block');
-        $('#ru').css('display','block');
-    }
-
-}
 

@@ -12,10 +12,10 @@
             <div class="newArrivals owl-carousel owl-theme ">
                 <div class="item topCarousel">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 heightByRight">
                             <div class="newArrivalsCatImg">
                                 <a href="{{ path('app_products', {'category' : first.category.parent.slug, 'slug': first.category.slug}) }}">
-                                    {% if locale == 'en' %}
+                                    {#{% if locale == 'en' %}
                                         <h3>{{ first.category.titleEng }}</h3>
                                     {% endif %}
                                     {% if locale == 'ru' %}
@@ -23,19 +23,35 @@
                                     {% endif %}
                                     {% if locale == 'am' %}
                                         <h3>{{ first.category.titleArm }}</h3>
-                                    {% endif %}
+                                    {% endif %}#}
                                     <img src="{% path first.category.image, "big" %}" alt="{{ first.category.titleEng }}">
                                     <span>{{ "product.viewAll"|trans|upper }}</span>
                                 </a>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 rightForHeight">
                             <div class="row newRight">
                                 {% for product in products|slice(1,4)  %}
                                     <div class="col-sm-6">
-                                        <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
-                                            <img src="{% path product.image, 'big' %}" alt="">
+                                        <div class="newRightProduct">
                                             <p class="text-center">
+                                                <a href="#" class="newRightProductA">
+                                                {% if locale == 'en' %}
+                                                    {{ product.category.titleEng }}
+                                                {% endif %}
+                                                {% if locale == 'ru' %}
+                                                    {{ product.category.titleRus }}
+                                                {% endif %}
+                                                {% if locale == 'am' %}
+                                                    {{ product.category.titleArm }}
+                                                {% endif %}
+                                                </a>
+                                            </p>
+                                            <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
+                                                <img src="{% path product.image, 'big' %}" alt="">
+                                            </a>
+                                            <p class="text-center">
+                                                <a href="#">
                                                 {% if locale == 'en' %}
                                                     {{ product.titleEng }}
                                                 {% endif %}
@@ -45,8 +61,9 @@
                                                 {% if locale == 'am' %}
                                                     {{ product.titleArm }}
                                                 {% endif %}
+                                                </a>
                                             </p>
-                                        </a>
+                                        </div>
                                     </div>
                                 {% endfor %}
                             </div>

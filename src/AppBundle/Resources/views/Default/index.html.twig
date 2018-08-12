@@ -70,6 +70,9 @@
     <script>
         $(document).ready(function(){
             $(".owl-controls").css("display","inline_block");
+            var height = $(".rightForHeight").height();
+            $(".heightByRight").height(height);
+            console.log(height);
         })
     </script>
 {% endblock %}

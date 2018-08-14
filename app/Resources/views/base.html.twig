@@ -1,13 +1,238 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>FineArter</title>
+
+    {% block stylesheet %}
+        <link rel="stylesheet" href="{{ asset('css/style.css?v=1.1.3') }}" media="all">
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
+    {% endblock %}
+</head>
+<body>
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <div class="logoDiv">
+                    <a href="{{ path('app_homepage') }}">
+                        <img src="{{ asset('images/logo_web1.png') }}" alt="Logo" class="img-responsive">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4 pull-right">
+                <ul id="topMenu">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li>
+                            <a href="{{ path('fos_user_profile_show') }}">
+                                {{ app.user.username }}
+                            </a>
+                        </li>
+                        <li><span>|</span></li>
+                        <li>
+                            <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{{ path('fos_user_security_login') }}">Log In</a>
+                        </li>
+                        <li><span>|</span></li>
+                        <li>
+                            <a href="{{ path('fos_user_registration_register') }}">Sign Up</a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a href="{{ path('user_wishes') }}">
+                            {# <i class="glyphicon glyphicon-heart-empty"></i>#}
+                            <img src="{{ asset('images/favor.png') }}" alt="">
+                            {{ render(controller('AppBundle:Wishlist:count')) }}
+                        </a>
+                    </li>
+                    {#  cart ICON #}
+                    {{ render(controller('AppBundle:Cart:cartCount')) }}
+                    {#  cart ICON #}
+                    <li>
+                        {% set Arm =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'am'}) ) %}
+                        {% set Rus =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'ru'}) ) %}
+                        {% set Eng =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'en'}) ) %}
+                        <div class="btn-group dropup">
+                            {% if app.request.get('_locale') == 'en' %}
+                                <button class="btn dropdown-toggle p0" data-toggle="dropdown">
+                                    <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
+                                </button>
+                                <ul class="dropdown-menu" id="changelanguageUl">
+                                    <li>
+                                        <a href="{{ Rus }}">
+                                            <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ Arm }}">
+                                            <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
+                                        </a>
+                                    </li>
+                                </ul>
+                            {% elseif app.request.get('_locale') == 'ru' %}
+                                <button class="btn dropdown-toggle p0" data-toggle="dropdown">
+                                    <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
+                                </button>
+                                <ul class="dropdown-menu" id="changelanguageUl">
+                                    <li>
+                                        <a href="{{ Eng }}">
+                                            <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ Rus }}">
+                                            <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
+                                        </a>
+                                    </li>
+                                </ul>
+                            {% elseif app.request.get('_locale') == 'am' %}
+                                <button class="btn dropdown-toggle p0" data-toggle="dropdown">
+                                    <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
+                                </button>
+                                <ul class="dropdown-menu" id="changelanguageUl">
+                                    <li>
+                                        <a href="{{ Eng }}">
+                                            <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ Rus }}">
+                                            <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
+                                        </a>
+                                    </li>
+                                </ul>
+                            {% endif %}
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-12">
+                <div class="purple"></div>
+                <div class="gold"></div>
+            </div>
+
+            <div class="col-xs-12 col-md-8">
+                {{ render(controller('AppBundle:Default:mainMenu')) }}
+            </div>
+
+            <div class="col-xs-12 col-md-3 formDiv pull-right">
+                <div class="form-group">
+                    <form action="{{ path('search')}}" method="get">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="inputSuccess"
+                                   placeholder="Search within the catalog" name="q" {% if q is defined %}value="{{ q }}" {% endif %}>
+
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    {#<i class="glyphicon glyphicon-search"></i>#}
+                                    <img src="{{ asset('images/search.png') }}" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="content">
+    <div class="container-fluid">
+        {% block breadcrumbs %}{% endblock %}
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 purple">
+
+            </div>
+        </div>
+        <div class="row pt30">
+            <div class="col-xs-12 text-center">
+                <ul class="footerMenu topfootermenu">
+                    <li><a href="{{ path('app_one_text',{'slug': 'about'}) }}">{{ "footer.menu.about"|trans }}</a></li>
+                    <li><span>|</span></li>
+                    <li><a href="{{ path('blog_index') }}">{{ "footer.menu.blog"|trans }}</a></li>
+                    <li><span>|</span></li>
+                    <li><a href="#">{{ "footer.menu.magazine"|trans }}</a></li>
+                    <li><span>|</span></li>
+                    <li><a href="#">{{ "footer.menu.contact us"|trans }}</a></li>
+                </ul>
+                <ul class="footerMenu secondfootermenu">
+                    <li><a href="{{ path('app_one_text',{'slug': 'about'}) }}">{{ "footer.menu.policy"|trans }}</a></li>
+                    <li><span>|</span></li>
+                    <li><a href="{{ path('blog_index') }}">{{ "footer.menu.legal"|trans }}</a></li>
+                    <li><span>|</span></li>
+                    <li><a href="#">{{ "footer.menu.agreement"|trans }}</a></li>
+                    <li><span>|</span></li>
+                    <li><a href="#">{{ "footer.menu.site_map"|trans }}</a></li>
+                </ul>
+                <ul id="socialDiv">
+                    <li>
+                        <a href="#" class="facebookA">
+                            <img src="{{ asset('images/fb.png') }}" alt="Fb">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="instagramA">
+                            <img src="{{ asset('images/insta.png') }}" alt="insta">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="pinterestA">
+                            <img src="{{ asset('images/pin.png') }}" alt="Pin">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="twitterA">
+                            <img src="{{ asset('images/tw.png') }}" alt="Tw">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="twitterA">
+                            <img src="{{ asset('images/g.png') }}" alt="Go">
+                        </a>
+                    </li>
+
+                </ul>
+                <div id="copy">
+                    <p>
+                        FINERATER.COM 2018 &copy. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+{% block javascriptsBottom %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <script>
+        $('ul.nav li.dropdown').hover(function() {
+            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+            $(this).find('.dropdown-menu').css('display','flex');
+        }, function() {
+            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+        });
+    </script>
+    <script src="{{ asset('js/myScripts.js?v=1.0') }}"></script>
+{% endblock %}
+</body>
 </html>

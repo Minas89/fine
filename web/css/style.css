@@ -3,6 +3,12 @@
     src: url("../fonts/MyriadPro-Regular_0.otf");
 }
 
+@media only screen and (max-width: 480px){
+    .left_big_square{
+        width: 20%;
+    }
+}
+
 .top {
     background-color: #a38e44;
     height: 5px;
@@ -1315,30 +1321,27 @@ a.backTo:hover {
 }
 
 .left_big_square {
-    background: transparent url("/web/uploads/media/products/0001/01/502c0701de3fa592863d5960adbb8714513070d7.jpeg") center center no-repeat;
     background-size: cover;
-    height: auto;
-    max-height: 84vh;
+    height: 100%;
+    max-height: 100%;
     width: 50%;
     padding: 10px;
+    /*background-color: blue;*/
 }
 
 .right_big_square {
-    background: transparent url("/web/uploads/media/products/0001/01/502c0701de3fa592863d5960adbb8714513070d7.jpeg") center center no-repeat;
-    background-size: cover;
     height: auto;
     width: 50%;
     display: flex;
     flex-wrap: wrap;
+    /*background-color: red;*/
 }
 
 .right_small_square {
     padding: 10px;
-    /*display: flex;*/
-    /*flex-direction: column;*/
     background-color: gainsboro;
     margin: 10px;
-    height: 22vw;
+    height: 22.84vw;
     width: 22vw;
     position: relative;
 }
@@ -1351,6 +1354,7 @@ a.backTo:hover {
     transform: translate(-50%, -50%);
     position: absolute;
     display: inline-block;
+    background-color: #e1e463;
 }
 .right_small_square span{
     left: 50%;
@@ -1371,6 +1375,7 @@ a.backTo:hover {
     background-image: url("../images/Sam.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    /*margin: 10px;*/
 }
 .left_image span{
     margin: 0 auto;

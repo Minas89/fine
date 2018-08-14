@@ -53,6 +53,7 @@
                     {#  cart ICON #}
                     {{ render(controller('AppBundle:Cart:cartCount')) }}
                     {#  cart ICON #}
+                    {% block language %}
                     <li>
                         {% set Arm =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'am'}) ) %}
                         {% set Rus =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'ru'}) ) %}
@@ -110,6 +111,7 @@
 
                         </div>
                     </li>
+                    {% endblock %}
                 </ul>
             </div>
 

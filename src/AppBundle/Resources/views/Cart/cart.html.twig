@@ -56,7 +56,9 @@
                         <a href="javascript:void(0)" class="pull-right removeLink" onclick="removeFromCart({{ product.id }})">
                             <i class="fa fa-times fa-2x" aria-hidden="true"></i>
                         </a>
+{#
                         <button class="btn btn-gold-white w100">Make an offer</button>
+#}
                     </div>
                 </div>
             {% endfor %}
@@ -65,7 +67,7 @@
         <div class="row  ml0 mr0">
             <div class="col-md-2 pull-right cartTotalDiv">
                 <p class="text-center cartTotal">{{ "cart.total"|trans }}: $ {{ total }} </p>
-                <a href="{{ path('purchase') }}" class="btn btn-gold w100">{{ "product.purchase"|trans }}</a>
+                <a href="{{ path('purchase') }}" class="btn btn-gold w100 {% if total == 0 %} disabled {% endif %}">{{ "product.purchase"|trans }}</a>
             </div>
         </div>
     </div>

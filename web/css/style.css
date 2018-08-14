@@ -1339,7 +1339,7 @@ a.backTo:hover {
 
 .right_small_square {
     padding: 10px;
-    background-color: gainsboro;
+    background-color: #f3f3f3;
     margin: 10px;
     height: 22.84vw;
     width: 22vw;
@@ -1393,17 +1393,24 @@ a.backTo:hover {
     left: 50%;
     transform: translateX( -50%);
     position: absolute;
+    margin-top: 10px!important;
+    font-size: 18px!important;
 }
-
-
-
-
 
 .right_small_image{
     margin: 0 auto;
     margin-top: 50%;
     transform: translateY(-50%);
     position: relative;
+}
+
+.vMore{
+    margin-bottom: 10px;
+    color: #c2a661;
+}
+
+.right_small_square a:hover{
+    color: initial!important;
 }
 
 

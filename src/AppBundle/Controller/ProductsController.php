@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Categories;
 use AppBundle\Entity\Products;
 use AppBundle\Services\Util;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -162,8 +163,19 @@ class ProductsController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        /**
+         * @var Categories $category
+         */
         $category = $em->getRepository('AppBundle:Categories')->findOneBySlug($slug);
-        $products = $em->getRepository('AppBundle:Products')->findBy(array('category' => $category,'new' => 1),array('id' => 'desc'));
+        $childCats = $category->getChildren();
+
+        if(count($childCats)){
+            $products = $em->getRepository('AppBundle:Products')->findNewProductsByMainCategory($category);
+        }else{
+            $products = $em->getRepository('AppBundle:Products')->findBy(array('category' => $category,'new' => 1),array('id' => 'desc'));
+        }
+
+
 
         if($request->query->has('sort')){
             $sort = $request->query->get('sort');

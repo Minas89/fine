@@ -168,7 +168,7 @@
                     {{ product.creator.textArm|raw }}
                 {% endif %}
             </div>
-            <a class="read-more" href="javascript:void(0)">CONTINUE READING + </a>
+            <a class="read-more" href="javascript:readMore()">CONTINUE READING + </a>
         </div>
         <div class="col-sm-9 col-xs-12">
             <h2>{{ "product.details"|trans }}</h2>
@@ -252,19 +252,21 @@
 {% block javascriptsBottom %}
     {{ parent() }}
     <script>
-        $('.read-more').click(function(){
-            $('.creatorText').removeClass('h144');
-            $('.read-more').addClass('read-less');
-            $('.read-more').text('READ LESS');
-            $('.read-less').removeClass('read-more');
-        });
+        function readMore(){
+            $('.read-more').click(function(){
+                $('.creatorText').removeClass('h144');
+                $('.read-more').addClass('read-less');
+                $('.read-more').text('READ LESS');
+                $('.read-less').removeClass('read-more');
+            });
 
-        $('.read-less').click(function(){
-            $('.creatorText').addClass('h144');
-            $('.read-less').addClass('read-more');
-            /* $('.read-more').removeClass('read-less');*/
-        });
-
+            $('.read-less').click(function(){
+                $('.creatorText').addClass('h144');
+                $('.read-less').addClass('read-more');
+                $('.read-more').removeClass('read-less');
+                $('.read-more').text('CONTINUE READING + ');
+            });
+        }
 
         function check() {
             if($('input[name=m]').is(':checked')){

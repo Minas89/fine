@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity\Repository;
 
+use AppBundle\Entity\Categories;
 use Doctrine\ORM\EntityRepository;
 use AppBundle\Services\Util;
 /**
@@ -112,5 +113,47 @@ class ProductsRepository extends EntityRepository
         ")->setParameter('q','%'.$q.'%');
 
         return $query->getResult();
+    }
+
+    public function findNewProductsByMainCategory(Categories $category)
+    {
+        $em = $this->getEntityManager();
+
+        $childs = $category->getChildren();
+
+        $idsArray = array();
+        foreach ($childs as $child){
+            $idsArray[] = $child->getId();
+        }
+
+        $ids = implode(',',$idsArray);
+
+        $qb = $em->createQuery(
+            "SELECT p FROM AppBundle:Products p
+                  WHERE p.category IN ($ids) and p.new = :new"
+        )->setParameter('new',1);
+
+        return $qb->getResult();
+    }
+
+    public function findProductsByMainCategory(Categories $category)
+    {
+        $em = $this->getEntityManager();
+
+        $childs = $category->getChildren();
+
+        $idsArray = array();
+        foreach ($childs as $child){
+            $idsArray[] = $child->getId();
+        }
+
+        $ids = implode(',',$idsArray);
+
+        $qb = $em->createQuery(
+            "SELECT p FROM AppBundle:Products p
+                  WHERE p.category IN ($ids)"
+        );
+
+        return $qb->getResult();
     }
 }

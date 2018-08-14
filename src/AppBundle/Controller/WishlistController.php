@@ -78,16 +78,16 @@ class WishlistController extends Controller
         $user = $this->getUser();
 
         if(!$user){
-            return new Response("<span class='f20' id='wishCount'></span>");
+            return new Response("<span id='wishCount'></span>");
         }
 
         $wishes = $user->getWishes();
 
         $wishesCount = count($wishes);
         if($wishesCount == 0){
-            $responce = "<span class='f20' id='wishCount'></span>";;
+            $responce = "<span id='wishCount'></span>";;
         }else{
-            $responce = "<span class='f20' id='wishCount'>(".$wishesCount.")</span>";
+            $responce = "<span id='wishCount'>(".$wishesCount.")</span>";
         }
         return new Response($responce);
     }

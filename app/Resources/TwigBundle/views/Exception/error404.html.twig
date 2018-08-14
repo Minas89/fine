@@ -9,56 +9,21 @@
 {% block language %}
     <li>
         <div class="btn-group dropup">
-            {% if app.request.get('_locale') == 'en' %}
-                <button class="btn dropdown-toggle p0" data-toggle="dropdown">
-                    <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
-                </button>
-                <ul class="dropdown-menu" id="changelanguageUl">
-                    <li>
-                        <a href="">
-                            <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
-                        </a>
-                    </li>
-                </ul>
-            {% elseif app.request.get('_locale') == 'ru' %}
-                <button class="btn dropdown-toggle p0" data-toggle="dropdown">
-                    <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
-                </button>
-                <ul class="dropdown-menu" id="changelanguageUl">
-                    <li>
-                        <a href="">
-                            <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
-                        </a>
-                    </li>
-                </ul>
-            {% elseif app.request.get('_locale') == 'am' %}
-                <button class="btn dropdown-toggle p0" data-toggle="dropdown">
-                    <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
-                </button>
-                <ul class="dropdown-menu" id="changelanguageUl">
-                    <li>
-                        <a href="">
-                            <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
-                        </a>
-                    </li>
-                </ul>
-            {% endif %}
-
+            <button class="btn dropdown-toggle p0" data-toggle="dropdown">
+                <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
+            </button>
+            <ul class="dropdown-menu" id="changelanguageUl">
+                <li>
+                    <a href="">
+                        <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
+                    </a>
+                </li>
+            </ul>
         </div>
     </li>
 {% endblock %}

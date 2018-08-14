@@ -12,16 +12,27 @@
             <div class="newArrivals owl-carousel owl-theme ">
                 <div class="item topCarousel arrivals_item">
                     <div class="left_big_square">
-                        <img src="{% path first.category.image, "big" %}" alt="first.category.titleEng" class="left_image">
-                        <span>{{ "product.viewAll"|trans|upper }}</span>
-
+                        <img src="{% path first.category.image, "big" %}" alt="first.category.titleEng"
+                             class="left_image">
                     </div>
                     <div class="right_big_square">
                         {% for product in products|slice(0,4) %}
 
-                        <div class="right_small_square">
-                            <img src="{% path product.image, 'big' %}" alt="">
-                        </div>
+                            <div class="right_small_square">
+                                <p class="text-center right_small_text">
+                                    {% if locale == 'en' %}
+                                        {{ product.titleEng }}
+                                    {% endif %}
+                                    {% if locale == 'ru' %}
+                                        {{ product.titleRus }}
+                                    {% endif %}
+                                    {% if locale == 'am' %}
+                                        {{ product.titleArm }}
+                                    {% endif %}
+                                </p>
+                                    <img src="{% path product.image, 'big' %}" alt="">
+                                <span>{{ "product.viewAll"|trans|upper }}</span>
+                            </div>
 
                         {% endfor %}
 
@@ -30,15 +41,26 @@
                 </div>
                 <div class="item topCarousel arrivals_item">
                     <div class="left_big_square">
-                        <img src="{% path first.category.image, "big" %}" alt="first.category.titleEng" class="left_image">
-                        <span>{{ "product.viewAll"|trans|upper }}</span>
-
+                        <img src="{% path first.category.image, "big" %}" alt="first.category.titleEng"
+                             class="left_image">
                     </div>
                     <div class="right_big_square">
                         {% for product in products|slice(6,4) %}
 
                             <div class="right_small_square">
+                                <p class="text-center right_small_text">
+                                    {% if locale == 'en' %}
+                                        {{ product.titleEng }}
+                                    {% endif %}
+                                    {% if locale == 'ru' %}
+                                        {{ product.titleRus }}
+                                    {% endif %}
+                                    {% if locale == 'am' %}
+                                        {{ product.titleArm }}
+                                    {% endif %}
+                                </p>
                                 <img src="{% path product.image, 'big' %}" alt="">
+                                <span>{{ "product.viewAll"|trans|upper }}</span>
                             </div>
 
                         {% endfor %}
@@ -107,47 +129,47 @@
                 {#</div>#}
                 {#</div>#}
                 {#<div class="item topCarousel">#}
-                    {#<div class="row">#}
-                        {#<div class="col-sm-6">#}
-                            {#<div class="newArrivalsCatImg">#}
-                                {#<a href="{{ path('app_products', {'category' : first.category.parent.slug, 'slug': first.category.slug}) }}">#}
-                                    {#{% if locale == 'en' %}#}
-                                        {#<h3>{{ second.category.titleEng }}</h3>#}
-                                    {#{% endif %}#}
-                                    {#{% if locale == 'ru' %}#}
-                                        {#<h3>{{ second.category.titleRus }}</h3>#}
-                                    {#{% endif %}#}
-                                    {#{% if locale == 'am' %}#}
-                                        {#<h3>{{ second.category.titleArm }}</h3>#}
-                                    {#{% endif %}#}
-                                    {#<img src="{% path first.category.image, "big" %}" alt="first.category.titleEng">#}
-                                    {#<span>{{ "product.viewAll"|trans|upper }}</span>#}
-                                {#</a>#}
-                            {#</div>#}
-                        {#</div>#}
-                        {#<div class="col-sm-6">#}
-                            {#<div class="row newRight">#}
-                                {#{% for product in products|slice(6,4) %}#}
-                                    {#<div class="col-sm-6">#}
-                                        {#<a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">#}
-                                            {#<img src="{% path product.image, 'big' %}" alt="">#}
-                                            {#<p class="text-center">#}
-                                                {#{% if locale == 'en' %}#}
-                                                    {#{{ product.titleEng }}#}
-                                                {#{% endif %}#}
-                                                {#{% if locale == 'ru' %}#}
-                                                    {#{{ product.titleRus }}#}
-                                                {#{% endif %}#}
-                                                {#{% if locale == 'am' %}#}
-                                                    {#{{ product.titleArm }}#}
-                                                {#{% endif %}#}
-                                            {#</p>#}
-                                        {#</a>#}
-                                    {#</div>#}
-                                {#{% endfor %}#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
+                {#<div class="row">#}
+                {#<div class="col-sm-6">#}
+                {#<div class="newArrivalsCatImg">#}
+                {#<a href="{{ path('app_products', {'category' : first.category.parent.slug, 'slug': first.category.slug}) }}">#}
+                {#{% if locale == 'en' %}#}
+                {#<h3>{{ second.category.titleEng }}</h3>#}
+                {#{% endif %}#}
+                {#{% if locale == 'ru' %}#}
+                {#<h3>{{ second.category.titleRus }}</h3>#}
+                {#{% endif %}#}
+                {#{% if locale == 'am' %}#}
+                {#<h3>{{ second.category.titleArm }}</h3>#}
+                {#{% endif %}#}
+                {#<img src="{% path first.category.image, "big" %}" alt="first.category.titleEng">#}
+                {#<span>{{ "product.viewAll"|trans|upper }}</span>#}
+                {#</a>#}
+                {#</div>#}
+                {#</div>#}
+                {#<div class="col-sm-6">#}
+                {#<div class="row newRight">#}
+                {#{% for product in products|slice(6,4) %}#}
+                {#<div class="col-sm-6">#}
+                {#<a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">#}
+                {#<img src="{% path product.image, 'big' %}" alt="">#}
+                {#<p class="text-center">#}
+                {#{% if locale == 'en' %}#}
+                {#{{ product.titleEng }}#}
+                {#{% endif %}#}
+                {#{% if locale == 'ru' %}#}
+                {#{{ product.titleRus }}#}
+                {#{% endif %}#}
+                {#{% if locale == 'am' %}#}
+                {#{{ product.titleArm }}#}
+                {#{% endif %}#}
+                {#</p>#}
+                {#</a>#}
+                {#</div>#}
+                {#{% endfor %}#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
                 {#</div>#}
                 {# <div class="item topCarousel">
                      <div class="row">

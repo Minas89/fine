@@ -4,12 +4,15 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Banners;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Titles;
 
 class BannersController extends Controller
 {
     public function bigBannerAction()
     {
         $em = $this->getDoctrine()->getManager();
+
+        $title = $em->getRepository('AppBundle:Titles')->findOneBy(['link' => Titles::BIG_BANNER],['id' => 'DESC']);
 
         $bigBanner = $em->getRepository('AppBundle:Banners')->findOneBy(
             array('type' => Banners::BIG_IMG_FOR_INDEX,'active' => 1),
@@ -19,6 +22,7 @@ class BannersController extends Controller
 
         return $this->render('AppBundle:Banners:indexBanners.html.twig',array(
             'bigBanner' => $bigBanner,
+            'title' => $title
         ));
     }
 

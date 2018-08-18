@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Categories;
 use AppBundle\Entity\Products;
+use AppBundle\Entity\Titles;
 use AppBundle\Services\Util;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -142,9 +143,11 @@ class ProductsController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $products = $em->getRepository('AppBundle:Products')->findBy(array('top' => 1),array('id' => 'desc'),Products::TOP_CAROUSEL_LIMIT);
+        $title = $em->getRepository('AppBundle:Titles')->findOneBy(['link' => Titles::TOP],['id' => 'DESC']);
 
         return $this->render('AppBundle:Products:topCarousel.html.twig',array(
-            'products' => $products
+            'products' => $products,
+            'title' => $title
         ));
     }
 
@@ -153,9 +156,12 @@ class ProductsController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $products = $em->getRepository('AppBundle:Products')->findBy(array('new' => 1),array('id' => 'desc'),Products::newArrivals);
+        $title = $em->getRepository('AppBundle:Titles')->findOneBy(['link' => Titles::NEW_ARRIVALS],['id' => 'DESC']);
+
 
         return $this->render('AppBundle:Products:newArrivals.html.twig',array(
-            'products' => $products
+            'products' => $products,
+            'title' => $title,
         ));
     }
 

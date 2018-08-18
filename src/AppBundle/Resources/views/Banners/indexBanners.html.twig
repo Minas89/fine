@@ -1,10 +1,19 @@
 {% if bigBanner %}
+    {% set locale = app.request.get('_locale') %}
     <div id="bigBanner">
         <div class="row">
             <div class="col-xs-12">
                 <div class="text-center">
                     <h2 class="module-header">
-                        {{ "product.big_banner_index"|trans }}
+                        {% if locale == 'en' %}
+                            {{ title.titleEng }}
+                        {% endif %}
+                        {% if locale == 'ru' %}
+                            {{ title.titleRus }}
+                        {% endif %}
+                        {% if locale == 'am' %}
+                            {{ title.titleArm }}
+                        {% endif %}
                     </h2>
                 </div>
 

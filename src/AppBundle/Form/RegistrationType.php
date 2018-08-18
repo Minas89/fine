@@ -38,7 +38,7 @@ class RegistrationType extends AbstractType
                     array('message' =>'register_form.mandatory_field', )
                 )),
             ))
-            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'validators'))
+            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('plainPassword', 'repeated', array(
                 'type' => 'password',

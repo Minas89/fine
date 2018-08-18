@@ -5,7 +5,15 @@
             <div class="col-xs-12">
                 <div class="text-center">
                     <h2 class="module-header">
-                        Shop By Category
+                        {% if locale == 'en' %}
+                            {{ title.titleEng }}
+                        {% endif %}
+                        {% if locale == 'ru' %}
+                            {{ title.titleRus }}
+                        {% endif %}
+                        {% if locale == 'am' %}
+                            {{ title.titleArm }}
+                        {% endif %}
                     </h2>
                 </div>
                 <div class="shopBy owl-carousel owl-theme">

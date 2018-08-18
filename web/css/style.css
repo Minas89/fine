@@ -18,6 +18,13 @@
     padding-left: 25px !important;
     padding-right: 25px !important;
 }*/
+input{
+    border-radius: 0 !important;
+}
+
+button{
+    border-radius: 0 !important;
+}
 
 .black222 {
     background-color: #222;
@@ -178,7 +185,9 @@
 
 #catMenu li a, #moreMenu li a {
     font-size: 12px !important;
+    text-decoration: none !important;
 }
+
 
 .oneCategory {
     border: 1px solid #e8dfcd;
@@ -442,7 +451,7 @@
 
 .btn-gold {
     background-color: #c2a661;
-    border: 2px solid #c2a661;
+    border: 1px solid #c2a661;
     color: #fff;
     width: 80%;
     border-radius: 0 !important;
@@ -450,7 +459,7 @@
 
 .btn-gold:hover {
     background-color: #ffffff;
-    border: 2px solid #c2a661;
+    border: 1px solid #c2a661;
     color: #c2a661 !important;
     width: 80%;
     border-radius: 0 !important;
@@ -458,16 +467,16 @@
 
 .btn-gold-white {
     background-color: #fff;
-    border: 2px solid #c2a661 !important;
-    color: #c2a661;
+    border: 1px solid #c2a661 !important;
+    color: #000;
     width: 80%;
     border-radius: 0 !important;
-
+    font-weight: bold!important;
 }
 
 .btn-gold-white:hover {
     background-color: #c2a661;
-    border: 2px solid #c2a661;
+    border: 1px solid #c2a661;
     color: #fff !important;
     width: 80%;
     border-radius: 0 !important;
@@ -604,7 +613,8 @@
 }
 
 .carouselImgDiv {
-
+    padding: 15px;
+    border: 1px solid #ccc;
 }
 
 .carouselImgDiv a {
@@ -612,7 +622,7 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
-    padding: 40%;
+    padding: 50%;
 }
 
 .topCarousel img {
@@ -625,6 +635,7 @@
     padding-top: 50px;
     margin: 0;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .module-header:after {
@@ -819,10 +830,6 @@ ul#gridView li.active a, ul#gridView a.forIcons:hover {
 
 input.goldInput, div.goldInput {
     border: 1px solid #c2a661;
-}
-
-#loginForm button, .registerForm button {
-    border-radius: 4px !important;
 }
 
 h2.accountInfo {
@@ -1299,7 +1306,8 @@ a.backTo:hover {
 }
 
 #changelanguageUl {
-    background: none !important;
+    background: transparent !important;
+    border-color: transparent;
     width: 25px !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -1313,6 +1321,8 @@ a.backTo:hover {
 
 #changelanguageUl li a {
     padding: 0 !important;
+    margin-bottom: 3px;
+    background-color: transparent!important;
 }
 
 .arrivals_item {
@@ -1413,10 +1423,76 @@ a.backTo:hover {
     color: initial!important;
 }
 
+#inputSearch:focus, #searchBtn:focus{
+    border: none!important;
+    border-color: #cccccc!important;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+}
+
+#searchBtn{
+    border: none !important;
+}
+
+#searchBtn:active, #searchBtn:focus, button {
+    outline: 0 !important;
+}
+
+#inputSearch{
+    border: none!important;
+}
+
+.blg{
+    border-left: 1px solid #c2a661;
+}
+
+.registerForm label, .registerForm button{
+    text-transform: uppercase;
+    font-size: 14px!important;
+}
+
+.registerForm input{
+    border-radius: 0!important;
+}
+
+.form-control:focus{
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+    border:1px solid #c2a661!important;
+}
 
 
+#fos_user_registration_form_title_0{
+    margin-left: 0!important;
+}
 
+.errorDiv ul{
+    list-style-type: none !important;
+    padding: 0 !important;
+}
 
+.errorDiv ul li{
+    color: #F15A2A;
+    margin-top: 1px;
+}
+
+.registerForm .has-error .form-control{
+   border-color: #F15A2A!important;
+}
+
+.registerForm .forTitle{
+    margin-bottom: 5px !important;
+}
+
+.registerForm .forTitle .errorDiv{
+    margin-top: -3px;
+}
+
+.mandatory{
+    color: #F15A2A;
+    position: absolute;
+    margin-left: 1px;
+}
 
 
 

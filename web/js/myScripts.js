@@ -139,4 +139,19 @@ var removeWish = function(id,from) {
     return false;
 };
 
+$("#searchBtn").click(function () {
+    var myval = $("#inputSearch").val();
+
+    if(myval.length === 0){
+        return false;
+    }
+});
+
+$('ul.nav li.dropdown').hover(function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+    $(this).find('.dropdown-menu').css('display','flex');
+}, function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(50);
+});
+
 

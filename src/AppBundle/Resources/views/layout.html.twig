@@ -126,13 +126,13 @@
 
             <div class="col-xs-12 col-md-3 formDiv pull-right">
                 <div class="form-group">
-                    <form action="{{ path('search')}}" method="get">
+                    <form action="{{ path('search')}}" id="searchForm" method="get">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="inputSuccess"
+                            <input type="text" class="form-control" id="inputSearch" autocomplete="off"
                                    placeholder="Search within the catalog" name="q" {% if q is defined %}value="{{ q }}" {% endif %}>
 
                             <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
+                                <button class="btn btn-default" type="submit" id="searchBtn">
                                     {#<i class="glyphicon glyphicon-search"></i>#}
                                     <img src="{{ asset('images/search.png') }}" alt="">
                                 </button>
@@ -227,12 +227,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <script>
-        $('ul.nav li.dropdown').hover(function() {
-            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-            $(this).find('.dropdown-menu').css('display','flex');
-        }, function() {
-            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-        });
+
     </script>
     <script src="{{ asset('js/myScripts.js?v=1.0') }}"></script>
 {% endblock %}

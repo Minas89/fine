@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Categories;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Titles;
 
 class CategoriesController extends Controller
 {
@@ -29,9 +30,12 @@ class CategoriesController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $categories = $em->getRepository('AppBundle:Categories')->findBy(array('shopBy' => 1),array('id' => 'desc'),Categories::SHOP_BY_LIMIT);
+        $title = $em->getRepository('AppBundle:Titles')->findOneBy(['link' => Titles::SH_B_CAT],['id' => 'DESC']);
+
 
         return $this->render('AppBundle:Categories:shopBy.html.twig',array(
-            'categories' => $categories
+            'categories' => $categories,
+            'title' => $title
         ));
     }
 }

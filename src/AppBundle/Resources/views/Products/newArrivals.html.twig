@@ -4,7 +4,15 @@
             {% set locale = app.request.get('_locale') %}
             <div class="text-center">
                 <h2 class="module-header">
-                    {{ "product.newArrivals"|trans }}
+                    {% if locale == 'en' %}
+                        {{ title.titleEng }}
+                    {% endif %}
+                    {% if locale == 'ru' %}
+                        {{ title.titleRus }}
+                    {% endif %}
+                    {% if locale == 'am' %}
+                        {{ title.titleArm }}
+                    {% endif %}
                 </h2>
             </div>
             {% set first = products|slice(0,5)|first %}

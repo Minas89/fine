@@ -34,10 +34,11 @@
             {% endif %}
             <li>
                 {% if category.children|length > 0 %}
-                <a href="{{ path('app_category', {'slug': child.slug}) }}">
-                    {% else %}
-                    <a href="{{ path('app_products', {'category': category.parent.slug, 'slug': category.slug}) }}">
-                        {% endif %}
+                    {% set url = path('app_category', {'slug': child.slug}) %}
+                {% else %}
+                    {% set url = path('app_products', {'category': category.parent.slug, 'slug': category.slug}) %}
+                {% endif %}
+                <a href="{{ url }}">
                     {% if locale == 'en' %}
                         {{ category.titleEng }}
                     {% elseif locale == 'ru' %}
@@ -126,7 +127,7 @@
                         <p>{{ "product.in_cart"|trans }}</p>
                     {% else %}
                         <div class="buttons">
-                            <a href="javascript:void(0)" onclick="addToCart({{ product.id }})" class="btn btn-gold btn-lg mt15">
+                            <a href="javascript:void(0)" onclick="addToCart({{ product.id }})" class="btn btn-gold-white btn-lg mt15">
                                 {{ "product.purchase"|trans }}
                             </a>
                         </div>
@@ -229,7 +230,7 @@
                                     </div>
                                     <input type="hidden" name="productId" value="{{ product.id }}">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-gold w100">{{ "request_form.submit"|trans|upper }}</button>
+                                        <button type="submit" class="btn btn-gold-white w100">{{ "request_form.submit"|trans|upper }}</button>
                                     </div>
                                 </form>
                             </div>

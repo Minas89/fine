@@ -3,33 +3,31 @@
 {% block breadcrumbs %}
     {% set locale = app.request.get('_locale') %}
     <div class="row">
-
-            <ol class="breadcrumb" id="myBreadcrumb">
-                <li><a href="{{ path('app_homepage') }}">Home</a></li>
-                {% if category.parent %}
-                    <li>
-                        <a href="{{ path('app_category', {'slug': category.parent.slug}) }}">
-                            {% if locale == 'en' %}
-                                {{ category.parent.titleEng }}
-                            {% elseif locale == 'ru' %}
-                                {{ category.parent.titleRus }}
-                            {% elseif locale == 'am' %}
-                                {{ category.parent.titleArm }}
-                            {% endif %}
-                        </a>
-                    </li>
-                {% endif %}
-                <li class="active">
-                    {% if locale == 'en' %}
-                        {{ category.titleEng }}
-                    {% elseif locale == 'ru' %}
-                        {{ category.titleRus }}
-                    {% elseif locale == 'am' %}
-                        {{ category.titleArm }}
-                    {% endif %}
+        <ol class="breadcrumb" id="myBreadcrumb">
+            <li><a href="{{ path('app_homepage') }}">Home</a></li>
+            {% if category.parent %}
+                <li>
+                    <a href="{{ path('app_category', {'slug': category.parent.slug}) }}">
+                        {% if locale == 'en' %}
+                            {{ category.parent.titleEng }}
+                        {% elseif locale == 'ru' %}
+                            {{ category.parent.titleRus }}
+                        {% elseif locale == 'am' %}
+                            {{ category.parent.titleArm }}
+                        {% endif %}
+                    </a>
                 </li>
-            </ol>
-
+            {% endif %}
+            <li class="active">
+                {% if locale == 'en' %}
+                    {{ category.titleEng }}
+                {% elseif locale == 'ru' %}
+                    {{ category.titleRus }}
+                {% elseif locale == 'am' %}
+                    {{ category.titleArm }}
+                {% endif %}
+            </li>
+        </ol>
     </div>
 
 {% endblock %}
@@ -41,11 +39,11 @@
                 <div class="col-xs-12">
                     <h2 class="mainCat">
                         {% if locale == 'en' %}
-                            {{ category.titleEng }}
+                            {{ category.titleEng|upper }}
                         {% elseif locale == 'ru' %}
-                            {{ category.titleRus }}
+                            {{ category.titleRus|upper }}
                         {% elseif locale == 'am' %}
-                            {{ category.titleArm }}
+                            {{ category.titleArm|upper }}
                         {% endif %}
                     </h2>
                 </div>
@@ -53,28 +51,32 @@
                     <div class="row">
                         {% for child in category.children  %}
                             <div class="col-md-3 col-xs-6">
-                                <div class="oneCategory">
+                                <div class="carouselImgDiv">
                                     {% if child.children|length > 0 %}
-                                        <a href="{{ path('app_category', {'slug': child.slug}) }}">
+                                        {% set url = path('app_category', {'slug': child.slug}) %}
                                     {% else %}
-                                        <a href="{{ path('app_products', {'category': category.slug, 'slug': child.slug}) }}">
+                                        {% set url = path('app_products', {'category': category.slug, 'slug': child.slug}) %}
                                     {% endif %}
-                                            {# <img src="..." alt="...">#}
-                                            <div class="categoryTitle">
-                                                {% if locale == 'en' %}
-                                                    {{ child.titleEng }}
-                                                {% elseif locale == 'ru' %}
-                                                    {{ child.titleRus }}
-                                                {% elseif locale == 'am' %}
-                                                    {{ child.titleArm }}
-                                                {% endif %}
-                                            </div>
-
-                                            <img src="{% path child.image,"big" %}" class="img-responsive" alt="">
-                                            <span>SHOP</span>
-                                        </a>
-                                    </div>
+                                    <a href="{{ url }}" style="background-image:url({% path child.image, 'big' %})"></a>
                                 </div>
+
+                                <div class="carouselTitleDiv">
+                                    <hr class="myHR">
+                                    <p class="text-center">
+                                        <a href="{{ url }}">
+                                            {% if locale == 'en' %}
+                                                {{ child.titleEng }}
+                                            {% endif %}
+                                            {% if locale == 'ru' %}
+                                                {{ child.titleRus }}
+                                            {% endif %}
+                                            {% if locale == 'am' %}
+                                                {{ child.titleArm }}
+                                            {% endif %}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
                         {% endfor %}
                     </div>
                 </div>

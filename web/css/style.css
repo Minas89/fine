@@ -1,12 +1,16 @@
 @font-face {
     font-family: myFirstFont;
-    src: url("../fonts/MyriadPro-Regular_0.otf");
+    src: url("../fonts/MYRIADPRO-LIGHT.OTF");
 }
 
 @media only screen and (max-width: 480px){
     .left_big_square{
         width: 20%;
     }
+}
+
+body{
+    font-family: myFirstFont!important;
 }
 
 .top {
@@ -235,12 +239,14 @@ button{
 }
 
 .mainCat {
-    font-family: Miller Display Light, Georgia, "serif";
-    letter-spacing: 1px;
+    /*font-family: Miller Display Light, Georgia, "serif";
+    letter-spacing: 1px;*/
     margin: 0;
     float: left;
     font-size: 28px;
     padding: 10px 0;
+    margin-bottom: 10px;
+    text-transform: uppercase;
 }
 
 #myBreadcrumb {
@@ -647,14 +653,14 @@ button{
     background: #c2a661;
 }
 
-.topCarousel a {
+.topCarousel a, .carouselTitleDiv a {
     /*display: block;
     width: 100%;*/
     text-decoration: none !important;
     color: grey;
 }
 
-.topCarousel a:hover {
+.topCarousel a:hover, .carouselTitleDiv a:hover {
     color: #c2a661;
 }
 
@@ -673,10 +679,14 @@ button{
     color: #222;
 }
 
-/*.carouselTitleDiv{
-    position: absolute;
-    bottom: 0;
-}*/
+.carouselImgDiv:hover{
+    border-color: #000;
+}
+
+.carouselTitleDiv{
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
 /*
 .newArrivals .owl-stage, .newArrivals .owl-stage .owl-item{
     width: 100% !important;
@@ -873,6 +883,11 @@ h2.accountInfo {
     margin-bottom: 35px;
     font-size: 16px;
     font-weight: 700;
+    text-transform: uppercase;
+}
+
+.fioDiv label{
+    text-transform: uppercase;
 }
 
 #fos_user_registration_form_title input[type="radio"] {
@@ -1494,10 +1509,11 @@ a.backTo:hover {
     margin-left: 1px;
 }
 
-
-
-
-
+.myHR{
+    color: #ccc;
+    background-color: #ccc;
+    border-top: 1px solid #ccc
+}
 
 
 

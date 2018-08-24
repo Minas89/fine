@@ -914,11 +914,15 @@ h2.accountInfo {
 }
 
 #filtersDiv {
-    background: #fbfbfb;
-    border: 1px solid #f3f3f3;
+    background: #fff;
+    /*border: 1px solid #ccc;*/
     min-height: 200px;
     padding: 30px 20px;
 }
+
+/*#filtersDiv:hover{
+    border: 1px solid #000;
+}*/
 
 .filterTitle {
     font-size: 14px;
@@ -1263,7 +1267,7 @@ a.backTo:hover {
 }
 
 .logoDiv {
-    width: 150px !important;
+    width: 180px !important;
     margin: 15px auto;
 }
 
@@ -1515,5 +1519,17 @@ a.backTo:hover {
     border-top: 1px solid #ccc
 }
 
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
+    background-color: #fff!important;
+}
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    background-color: #fff!important;
+}
 
+.ccc{
+    border-bottom: 1px solid #ccc;
+}

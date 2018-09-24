@@ -1533,3 +1533,7 @@ input:-webkit-autofill:active {
 .ccc{
     border-bottom: 1px solid #ccc;
 }
+
+.centered{
+    margin: 0 auto;
+}

@@ -20,7 +20,13 @@
     </div>
     <div class="accordionFilter row">
         <div class="col-xs-12">
-            {% if app.request.get('_route') == 'app_products' %}
+            {% if app.request.get('minPrice') or app.request.get('maxPrice') %}
+                {% set prF = true %}
+            {% endif %}
+            {% if app.request.get('minWidth') or app.request.get('maxWidth') or app.request.get('minHeight') or app.request.get('maxHeight') %}
+                {% set dimF = true %}
+            {% endif %}
+            {#{% if app.request.get('_route') == 'app_products' %}
             <div class="accordion-container">
                 <a href="#" class="accordion-toggle filterLabel">{{ "filters.category"|trans|upper }}
                     <span class="pull-right arrow">
@@ -80,25 +86,25 @@
                         </div>
                     </div>
             </div>
-            {% endif %}
+            {% endif %}#}
             <div class="accordion-container">
                 <a href="#" class="accordion-toggle filterLabel">{{ "filters.price"|trans|upper }}
                     <span class="pull-right arrow">
                     <i class="fa fa-angle-right fa-2x"></i>
                 </span>
                 </a>
-                <div class="accordion-content"  style="display: none;">
+                <div class="accordion-content" {% if prF is defined %}style="display: block;" {% else %}style="display: none;"{% endif %}>
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="form-group">
                                 <label for="minPrice">from</label>
                                 <input type="number" class="form-control goldInput" name="minPrice" id="minPrice"
-                                  placeholder="min price">
+                                  placeholder="min price" value="{{ app.request.get('minPrice') }}">
                             </div>
                             <div class="form-group">
                                 <label for="maxPrice">to</label>
                                 <input type="number" class="form-control goldInput" name="maxPrice" id="maxPrice"
-                                       placeholder="max price">
+                                       placeholder="max price" value="{{ app.request.get('maxPrice') }}">
                             </div>
                         </div>
                     </div>
@@ -110,22 +116,24 @@
                         <i class="fa fa-angle-right fa-2x"></i>
                     </span>
                 </a>
-                <div class="accordion-content" style="display: none;">
+                <div class="accordion-content" {% if dimF is defined %}style="display: block;" {% else %}style="display: none;"{% endif %}>
                     <div class="row">
                         <div class="col-xs-12">
                             <form action="">
                                 <div class="form-group">
                                     <h5>{{ "filters.width"|trans|upper }}</h5>
-                                    <input type="number" name="widthMin" class="goldInput form-control" style="width: 43%; float: left" placeholder="min" id="minWidth">
+                                    <input type="number" name="widthMin" class="goldInput form-control"
+                                           style="width: 43%; float: left" placeholder="min" id="minWidth" value="{{ app.request.get('minWidth') }}">
                                     <div style="float: left; margin-left: 10px;margin-right: 10px; margin-top: 5px;">to</div>
-                                    <input type="number" name="widthMin" class="goldInput form-control" style="width: 43%; float: left" placeholder="max" id="maxWidth">
+                                    <input type="number" name="widthMax" class="goldInput form-control"
+                                           style="width: 43%; float: left" placeholder="max" id="maxWidth" value="{{ app.request.get('maxWidth') }}">
                                      <br><br>
                                     <h5>{{ "filters.height"|trans|upper }}</h5>
                                     <input type="number" name="minHeight" class="goldInput form-control"
-                                           style="width: 43%; float: left" placeholder="min" id="minHeight">
+                                           style="width: 43%; float: left" placeholder="min" id="minHeight" value="{{ app.request.get('minHeight') }}">
                                     <div style="float: left; margin-left: 10px;margin-right: 10px; margin-top: 5px;">to</div>
                                     <input type="number" name="maxHeight" class="goldInput form-control"
-                                           style="width: 43%; float: left" placeholder="max" id="maxHeight">
+                                           style="width: 43%; float: left" placeholder="max" id="maxHeight" value="{{ app.request.get('maxHeight') }}">
                                 </div>
                             </form>
                         </div>

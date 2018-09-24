@@ -34,9 +34,12 @@ class ProductsRepository extends EntityRepository
         $maxWidth = null,
         $minHeight = null,
         $maxHeight = null,
+        $colorArray = null,
         $creator = null
     )
     {
+        $em = $this->getEntityManager();
+
         $qb = $this->createQueryBuilder('p');
 
         if(!is_null($creator)){
@@ -75,6 +78,23 @@ class ProductsRepository extends EntityRepository
             $where .= ' AND p.height <= :maxHeight';
             $parametersArray['maxHeight'] =  $maxHeight;
         }
+
+        /*if(!is_null($colorArray)){
+            $ids = '';
+            foreach ($colorArray as $color){
+                $color = $em->getRepository('AppBundle:Colors')->findOneByTitleEng($color);
+                if(empty($ids)){
+                    $ids .= $color->getId();
+                }else{
+                    $ids .= ','.$color->getId();
+                }
+            }
+
+            $ids = rtrim($ids,',');
+
+            $where  .= " AND p.colors IN($ids)";
+
+        }*/
 
 
 

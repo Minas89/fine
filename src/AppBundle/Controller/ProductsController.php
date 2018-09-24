@@ -56,18 +56,7 @@ class ProductsController extends Controller
         $maxWidth = $request->query->get('maxWidth');
         $minHeight = $request->query->get('minHeight');
         $maxHeight = $request->query->get('maxHeight');
-
-
-        $products = $em->getRepository('AppBundle:Products')->findFiltered(
-            $lastcategory,
-            $lowPrice,
-            $highPrice,
-            $minWidth,
-            $maxWidth,
-            $minHeight,
-            $maxHeight
-        );
-
+        $colorArray = array();
         if($request->query->has('color'))
         {
             $color = $request->query->get('color');
@@ -76,24 +65,19 @@ class ProductsController extends Controller
             $color = null;
         }
 
-        $colorIds = array();
-        if(!is_null($color))
-        {
-          foreach($colorArray as $color)
-          {
-              $color = $em->getRepository('AppBundle:Colors')->findOneByTitleEng($color);
-              $colorIds[] = $color->getId();
-              $productsArray = $em->getRepository('AppBundle:Products')->findProductByColors($colorIds);
-              $ids = '';
-              $products = array();
-              foreach($productsArray as $product)
-              {
-                  $id = (int)$product['product_id'];
-                  $products[] = $em->getRepository('AppBundle:Products')->find($id);
-              }
+        $products = $em->getRepository('AppBundle:Products')->findFiltered(
+            $lastcategory,
+            $lowPrice,
+            $highPrice,
+            $minWidth,
+            $maxWidth,
+            $minHeight,
+            $maxHeight,
+            $colorArray
+        );
 
-          }
-        }
+
+
         $wishes = array();
         if($this->isGranted('IS_AUTHENTICATED_REMEMBERED'))
         {

@@ -129,7 +129,7 @@
                     <form action="{{ path('search')}}" method="get">
                         <div class="input-group">
                             <input type="text" class="form-control" id="inputSuccess"
-                                   placeholder="Search within the catalog" name="q" {% if q is defined %}value="{{ q }}" {% endif %}>
+                                   placeholder="Search within the catalog..." name="q" {% if q is defined %}value="{{ q }}" {% endif %}>
 
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit">
@@ -228,10 +228,10 @@
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <script>
         $('ul.nav li.dropdown').hover(function() {
-            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
             $(this).find('.dropdown-menu').css('display','flex');
         }, function() {
-            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(200);
         });
     </script>
     <script src="{{ asset('js/myScripts.js?v=1.0') }}"></script>

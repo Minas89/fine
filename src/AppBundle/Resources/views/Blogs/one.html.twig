@@ -28,21 +28,26 @@
     {% set locale = app.request.get('_locale') %}
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h1 class="blogTitle text-center">
-                {% if locale == 'en' %}
-                    {% if locale == 'en' %}
-                        {{ blog.titleEng }}
-                    {% endif %}
-                    {% if locale == 'ru' %}
-                        {{ blog.titleRus }}
-                    {% endif %}
-                    {% if locale == 'en' %}
-                        {{ blog.titleArm }}
-                    {% endif %}
-                {% endif %}
-            </h1>
 
+            <div class="col-xs-12">
+                <div class="text-center">
+                    <h2 class="module-header">
+                        {% if locale == 'en' %}
+                            {% if locale == 'en' %}
+                                {{ blog.titleEng }}
+                            {% endif %}
+                            {% if locale == 'ru' %}
+                                {{ blog.titleRus }}
+                            {% endif %}
+                            {% if locale == 'en' %}
+                                {{ blog.titleArm }}
+                            {% endif %}
+                        {% endif %}
+                    </h2>
+                </div>
+            </div>
+
+        <div class="col-md-8 col-md-offset-2">
             <div class="blogText">
                 {% if locale == 'en' %}
                     {% if locale == 'en' %}

@@ -13,6 +13,15 @@
 {% endblock %}
 
 {% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center">
+                <h2 class="module-header">
+                    Blog
+                </h2>
+            </div>
+        </div>
+    </div>
     {% if blogs %}
         {% set locale = app.request.get('_locale') %}
         {% for blog in blogs  %}

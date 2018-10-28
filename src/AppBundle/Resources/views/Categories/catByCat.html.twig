@@ -37,15 +37,17 @@
         {% if category.children|length > 0 %}
             <div class="row">
                 <div class="col-xs-12">
-                    <h2 class="mainCat">
-                        {% if locale == 'en' %}
-                            {{ category.titleEng|upper }}
-                        {% elseif locale == 'ru' %}
-                            {{ category.titleRus|upper }}
-                        {% elseif locale == 'am' %}
-                            {{ category.titleArm|upper }}
-                        {% endif %}
-                    </h2>
+                    <div class="text-center">
+                        <h2 class="module-header">
+                            {% if locale == 'en' %}
+                                {{ category.titleEng|upper }}
+                            {% elseif locale == 'ru' %}
+                                {{ category.titleRus|upper }}
+                            {% elseif locale == 'am' %}
+                                {{ category.titleArm|upper }}
+                            {% endif %}
+                        </h2>
+                    </div>
                 </div>
                 <div class="col-xs-12">
                     <div class="row">

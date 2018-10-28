@@ -2,14 +2,17 @@
     <div class="col-xs-12 col-sm-4 col-sm-offset-4">
         <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
             <div  class="form-group">
-                {% if invalid_username is defined %}
-                    <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
-                {% endif %}
-                <label for="username">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
+
+                <label for="username">Please enter the email address on your FINEARTER account and we'll email you a link to reset your password</label>
                 <input type="text" id="username" name="username" required="required" class="form-control goldInput input-lg" />
+                {% if invalid_username is defined %}
+                <div class="errorDiv mt15 pl0">
+                    <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
+                </div>
+                {% endif %}
             </div>
             <div>
-                <button type="submit" class="btn btn-gold-white w100 btn-lg">{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}</button>
+                <button type="submit" class="btn btn-gold-white w100 btn-lg">Send</button>
             </div>
         </form>
     </div>

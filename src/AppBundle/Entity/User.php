@@ -53,6 +53,16 @@ class User extends BaseUser
      */
     protected $wishes;
 
+    /**
+     * @ORM\Column(type="date", name="date_of_birth")
+     */
+    protected $dateOfBirth;
+
+    /**
+     * @ORM\Column(type="string", name="gender")
+     */
+    protected $gender;
+
     public function __construct()
     {
         parent::__construct();
@@ -249,5 +259,51 @@ class User extends BaseUser
     public function getWishes()
     {
         return $this->wishes;
+    }
+
+    /**
+     * Set dateOfBirth
+     *
+     * @param \DateTime $dateOfBirth
+     * @return User
+     */
+    public function setDateOfBirth($dateOfBirth)
+    {
+        $this->dateOfBirth = $dateOfBirth;
+
+        return $this;
+    }
+
+    /**
+     * Get dateOfBirth
+     *
+     * @return \DateTime 
+     */
+    public function getDateOfBirth()
+    {
+        return $this->dateOfBirth;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     * @return User
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string 
+     */
+    public function getGender()
+    {
+        return $this->gender;
     }
 }

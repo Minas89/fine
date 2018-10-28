@@ -137,6 +137,7 @@
 
 .hinh{
     box-sizing: inherit;
+    max-height: 90%;
 }
 
 .w320{

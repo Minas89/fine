@@ -37,15 +37,18 @@
     {#{% set sort =  app.request.query.get("sort") %}#}
     <div class="row">
         <div class="col-xs-12">
-            <h2 class="mainCat">
-                {% if locale == 'en' %}
-                    {{ category.titleEng }}
-                {% elseif locale == 'ru' %}
-                    {{ category.titleRus }}
-                {% elseif locale == 'am' %}
-                    {{ category.titleArm }}
-                {% endif %}
-            </h2>
+            <div class="text-center">
+                <h2 class="module-header">
+                    {% if locale == 'en' %}
+                        {{ category.titleEng }}
+                    {% elseif locale == 'ru' %}
+                        {{ category.titleRus }}
+                    {% elseif locale == 'am' %}
+                        {{ category.titleArm }}
+                    {% endif %}
+                </h2>
+            </div>
+            
             <div class="pull-right sorting">
                 <form action="" method="get" class="pull-left" id="rightFilterForm">
                     <label for="sortProducts"><span class="sortBy">{{ "product.sortBy"|trans }}</span></label>

@@ -2,12 +2,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>FineArter</title>
+    <title>{% block title %}FINEARTER{% endblock %}</title>
 
     {% block stylesheet %}
         <link rel="stylesheet" href="{{ asset('css/style.css?v=1.1.4') }}" media="all">
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
+        <link rel="icon" type="image/png" href="{{ asset('images/fav1.png') }}" />
     {% endblock %}
 </head>
 <body>
@@ -22,7 +23,8 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-md-4 pull-right">
+            <div class="topMenuDiv col-xs-12 col-md-4 pull-right">
+                <div class="pull-right">
                 <ul id="topMenu">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <li>
@@ -53,66 +55,72 @@
                     {#  cart ICON #}
                     {{ render(controller('AppBundle:Cart:cartCount')) }}
                     {#  cart ICON #}
-                    {% block language %}
-                    <li>
-                        {% set Arm =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'am'}) ) %}
-                        {% set Rus =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'ru'}) ) %}
-                        {% set Eng =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'en'}) ) %}
-                        <div class="btn-group dropup">
-                            {% if app.request.get('_locale') == 'en' %}
-                                <button class="btn dropdown-toggle p0" data-toggle="dropdown">
-                                    <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
-                                </button>
-                                <ul class="dropdown-menu" id="changelanguageUl">
-                                    <li>
-                                        <a href="{{ Rus }}">
-                                            <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ Arm }}">
-                                            <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
-                                        </a>
-                                    </li>
-                                </ul>
-                            {% elseif app.request.get('_locale') == 'ru' %}
-                                <button class="btn dropdown-toggle p0" data-toggle="dropdown">
-                                    <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
-                                </button>
-                                <ul class="dropdown-menu" id="changelanguageUl">
-                                    <li>
-                                        <a href="{{ Eng }}">
-                                            <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ Rus }}">
-                                            <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
-                                        </a>
-                                    </li>
-                                </ul>
-                            {% elseif app.request.get('_locale') == 'am' %}
-                                <button class="btn dropdown-toggle p0" data-toggle="dropdown">
-                                    <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
-                                </button>
-                                <ul class="dropdown-menu" id="changelanguageUl">
-                                    <li>
-                                        <a href="{{ Eng }}">
-                                            <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ Rus }}">
-                                            <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
-                                        </a>
-                                    </li>
-                                </ul>
-                            {% endif %}
-
-                        </div>
-                    </li>
-                    {% endblock %}
                 </ul>
+                <hr>
+
+                {% block language %}
+                    {% set Arm =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'am'}) ) %}
+                    {% set Rus =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'ru'}) ) %}
+                    {% set Eng =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'en'}) ) %}
+                    {#<div class="btn-group dropup">
+                        {% if app.request.get('_locale') == 'en' %}
+                            <button class="btn dropdown-toggle p0" data-toggle="dropdown">
+                                <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
+                            </button>
+                            <ul class="dropdown-menu" id="changelanguageUl">
+                                <li>
+                                    <a href="{{ Rus }}">
+                                        <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ Arm }}">
+                                        <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
+                                    </a>
+                                </li>
+                            </ul>
+                        {% elseif app.request.get('_locale') == 'ru' %}
+                            <button class="btn dropdown-toggle p0" data-toggle="dropdown">
+                                <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
+                            </button>
+                            <ul class="dropdown-menu" id="changelanguageUl">
+                                <li>
+                                    <a href="{{ Eng }}">
+                                        <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ Rus }}">
+                                        <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
+                                    </a>
+                                </li>
+                            </ul>
+                        {% elseif app.request.get('_locale') == 'am' %}
+                            <button class="btn dropdown-toggle p0" data-toggle="dropdown">
+                                <img src="{{ asset('images/AM.png') }}" alt="AM" width="25">
+                            </button>
+                            <ul class="dropdown-menu" id="changelanguageUl">
+                                <li>
+                                    <a href="{{ Eng }}">
+                                        <img src="{{ asset('images/EN.png') }}" alt="EN" width="25">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ Rus }}">
+                                        <img src="{{ asset('images/RU.png') }}" alt="RU" width="25">
+                                    </a>
+                                </li>
+                            </ul>
+                        {% endif %}
+
+                    </div>#}
+                    <ul class="lagunageUl">
+                        <li><a href="{{ Eng }}">EN</a></li>
+                        <li><a href="{{ Rus }}">RU</a></li>
+                        <li><a href="{{ Arm }}">AM</a></li>
+                    </ul>
+                {% endblock %}
+            </div>
             </div>
 
             <div class="col-xs-12">
@@ -129,7 +137,7 @@
                     <form action="{{ path('search')}}" id="searchForm" method="get">
                         <div class="input-group">
                             <input type="text" class="form-control" id="inputSearch" autocomplete="off"
-                                   placeholder="Search within the catalog" name="q" {% if q is defined %}value="{{ q }}" {% endif %}>
+                                   placeholder="Search within the catalog..." name="q" {% if q is defined %}value="{{ q }}" {% endif %}>
 
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit" id="searchBtn">

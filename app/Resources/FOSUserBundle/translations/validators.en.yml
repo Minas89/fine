@@ -23,3 +23,5 @@ fos_user:
         blank: Please enter a name
         short: "[-Inf,Inf]The name is too short"
         long: "[-Inf,Inf]The name is too long"
+
+This value should be true. : This is a mandatory field.

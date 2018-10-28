@@ -1,6 +1,7 @@
 @font-face {
     font-family: myFirstFont;
-    src: url("../fonts/MYRIADPRO-LIGHT.OTF");
+    /*src: url("../fonts/MYRIADPRO-LIGHT.OTF");*/
+    src: url("../fonts/MYRIADPRO-BLACK.OTF");
 }
 
 @media only screen and (max-width: 480px){
@@ -114,7 +115,7 @@ button{
 }
 
 #topMenu .shopBag {
-    max-height: 21px !important;
+    max-height: 23px !important;
     width: auto;
 }
 
@@ -135,6 +136,7 @@ button{
 
 #mainMenu {
     font-family: "myFirstFont";
+    padding-left: 2px;
 }
 
 #mainMenu li a {
@@ -148,7 +150,7 @@ button{
 }
 
 #mainMenu li a:hover {
-    color: #7D6682 !important;
+    color: #c2a661 !important;
     background-color: transparent;
 !important;
 }
@@ -166,7 +168,7 @@ button{
 }
 
 .dropdown-menu li a {
-    color: #848484 !important;
+    color: #000 !important;
     /*font-family: "Proxima Nova Light", "Helvetica Neue", "helvetica", "arial", "sans-serif";*/
     display: block;
     font-size: 14px !important;
@@ -183,7 +185,7 @@ button{
 }
 
 #catMenu, #moreMenu {
-    padding-left: 10px;
+    padding-left: 0;
     list-style-type: none;
 }
 
@@ -251,7 +253,7 @@ button{
 
 #myBreadcrumb {
     padding: 8px 15px;
-    margin-top: 20px;
+    margin-top: -5px;
     margin-bottom: 0;
     list-style: none;
     background-color: #fff;
@@ -637,11 +639,16 @@ button{
 
 .module-header {
     font-size: 28px;
-    padding: 35px 0;
-    padding-top: 50px;
-    margin: 0;
+    /*padding: 35px 0;
+    padding-top: 30px;*/
+    margin-top: 20px;
+    margin-bottom: 50px;
     text-align: center;
     text-transform: uppercase;
+}
+
+input[type='radio']:checked:after {
+    background-color: #fff!important;
 }
 
 .module-header:after {
@@ -657,7 +664,7 @@ button{
     /*display: block;
     width: 100%;*/
     text-decoration: none !important;
-    color: grey;
+    color: #000;
 }
 
 .topCarousel a:hover, .carouselTitleDiv a:hover {
@@ -838,7 +845,7 @@ ul#gridView li.active a, ul#gridView a.forIcons:hover {
     max-width: 250px;
 }
 
-input.goldInput, div.goldInput {
+input.goldInput, div.goldInput, select.goldInput {
     border: 1px solid #c2a661;
 }
 
@@ -1267,8 +1274,8 @@ a.backTo:hover {
 }
 
 .logoDiv {
-    width: 180px !important;
-    margin: 15px auto;
+    width: 210px !important;
+    margin: 33px auto;
 }
 
 .purple {
@@ -1447,6 +1454,7 @@ a.backTo:hover {
     border-color: #cccccc!important;
     -webkit-box-shadow: none!important;
     box-shadow: none!important;
+
 }
 
 #searchBtn{
@@ -1459,6 +1467,7 @@ a.backTo:hover {
 
 #inputSearch{
     border: none!important;
+    padding-top: 10px;
 }
 
 .blg{
@@ -1489,6 +1498,9 @@ a.backTo:hover {
     list-style-type: none !important;
     padding: 0 !important;
 }
+.errorDiv{
+    color: #F15A2A;
+}
 
 .errorDiv ul li{
     color: #F15A2A;
@@ -1516,7 +1528,8 @@ a.backTo:hover {
 .myHR{
     color: #ccc;
     background-color: #ccc;
-    border-top: 1px solid #ccc
+    border-top: 1px solid #ccc;
+    width: 90%;
 }
 
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
@@ -1536,4 +1549,72 @@ input:-webkit-autofill:active {
 
 .centered{
     margin: 0 auto;
+}
+
+.position-r {
+    position: relative !important;
+}
+
+.position-a{
+    position: absolute!important;
+}
+
+.topMenuDiv{
+    margin-top: -95px;
+}
+
+.lagunageUl{
+    list-style-type: none;
+    float: right;
+}
+
+.lagunageUl li{
+    float: left;
+    margin-left: 12px;
+}
+
+.lagunageUl li a{
+    color: #000;
+}
+
+.lagunageUl li.active a{
+    color: #c2a661;
+}
+
+.has-error .help-block{
+    color: #F15A2A!important;
+}
+
+.h46{
+    height: 46px !important;
+}
+
+.mr10{
+    margin-right: 10px !important;
+}
+
+.fs16{
+    font-size: 16px!important;
+}
+
+.terms{
+    padding-top: 3px;
+}
+
+.terms a:hover{
+    text-decoration: none;
+}
+
+.mt15{
+    margin-top: 15px;
+}
+
+a.forgot{
+    color:#000;
+    text-decoration: none;
+}
+
+a.forgot:hover{
+    text-decoration: none !important;
+    color: #c2a661;
 }

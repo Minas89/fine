@@ -3,3 +3,7 @@
 {% block content %}
     {% include "FOSUserBundle:Registration:register_content.html.twig" %}
 {% endblock content %}
+
+{% block javascriptsBottom %}
+    {{ parent() }}
+{% endblock %}

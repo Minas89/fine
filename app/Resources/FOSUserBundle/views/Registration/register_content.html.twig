@@ -1,7 +1,7 @@
 {% if form_errors(form.title) %}
-    {% set hasErrorTitle = 'has-error' %}
+    {% set hasErrorTitle = true %}
 {% else %}
-    {% set hasErrorTitle = '' %}
+    {% set hasErrorTitle = false %}
 {% endif %}
 
 {% if form_errors(form.firstname) %}
@@ -22,6 +22,13 @@
     {% set hasErrorUsername = '' %}
 {% endif %}
 
+{% if form_errors(form.username) %}
+    {% set hasErrorPhone = 'has-error' %}
+{% else %}
+    {% set hasErrorPhone = '' %}
+{% endif %}
+
+
 
 {% if form_errors(form.email) %}
     {% set hasErrorEmail = 'has-error' %}
@@ -36,58 +43,113 @@
     {% set hasErrorPass = '' %}
 {% endif %}
 
+<div class="row">
+
+    <ol class="breadcrumb" id="myBreadcrumb">
+        <li><a href="{{ path('app_homepage') }}">Home</a></li>
+        <li class="active">
+
+            Sign Up
+
+        </li>
+    </ol>
+
+</div>
 
 <div class="row">
-    <div class="col-xs-12 col-md-4 col-md-offset-4">
-        <div class="text-center">
-            <h2 class="module-header">
-                {{ "user.register"|trans }}
-            </h2>
-        </div>
-        <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="registerForm" role="form" novalidate>
-            <div class="form-group forTitle {{ hasErrorTitle }} has-feedback">
+    <div class="text-center">
+        <h2 class="module-header">
+            {{ "user.register"|trans }}
+        </h2>
+    </div>
+    <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="registerForm" role="form" novalidate>
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="row">
+
+
+       
+            <div class="form-group col-md-6 forTitle  has-feedback">
                 {{ form_label(form.title) }}<span class="mandatory">*</span>
                 {{ form_widget(form.title,{'attr' : { 'class' : 'pl0' } }) }}
+
                 <div class="errorDiv pl0">{{ form_errors(form.title) }}</div>
             </div>
-            <div class="form-group {{ hasErrorFirst }} has-feedback">
+            <div class="form-group col-md-6 {{ hasErrorFirst }} has-feedback">
                 {{ form_label(form.firstname) }}<span class="mandatory">*</span>
                 {{ form_widget(form.firstname,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
                 <div class="errorDiv pl0">{{ form_errors(form.firstname) }}</div>
             </div>
-            <div class="form-group {{ hasErrorLast }} has-feedback">
+            <div class="form-group col-md-6 {{ hasErrorLast }} has-feedback">
                 {{ form_label(form.lastname) }}<span class="mandatory">*</span>
                 {{ form_widget(form.lastname,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
                 <div class="errorDiv pl0">{{ form_errors(form.lastname) }}</div>
             </div>
-            <div class="form-group {{ hasErrorUsername }} has-feedback">
+            <div class="form-group col-md-6 {{ hasErrorUsername }} has-feedback">
                 {{ form_label(form.username) }}<span class="mandatory">*</span>
                 {{ form_widget(form.username,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
                 <div class="errorDiv pl0">{{ form_errors(form.username) }}</div> 
             </div>
-            <div class="form-group {{ hasErrorEmail }} has-feedback">
+            <div class="form-group col-md-6 {{ hasErrorEmail }} has-feedback">
                 {{ form_label(form.email) }}<span class="mandatory">*</span>
                 {{ form_widget(form.email,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
                 <div class="errorDiv pl0">{{ form_errors(form.email) }}</div>
             </div>
-            <div class="form-group {{ hasErrorPass }} has-feedback">
+            <div class="form-group col-md-6 {{ hasErrorPhone }} has-feedback">
+                {{ form_label(form.phone) }}<span class="mandatory">*</span>
+                {{ form_widget(form.phone,{'attr' : { 'class' : 'goldInput form-control input-lg phone', 'autocomplete' : 'off' }}) }}
+                <div class="errorDiv pl0">{{ form_errors(form.phone) }}</div>
+            </div>
+            <div class="form-group col-md-6 has-feedback">
+                {{ form_label(form.dateOfBirth) }}<span class="mandatory">*</span>
+                {{ form_widget(form.dateOfBirth,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
+                <div class="errorDiv pl0">{{ form_errors(form.dateOfBirth) }}</div>
+            </div>
+
+            <div class="form-group col-md-6 has-feedback">
+                {{ form_label(form.gender) }}<span class="mandatory">*</span>
+                {{ form_widget(form.gender,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
+                <div class="errorDiv pl0">{{ form_errors(form.gender) }}</div>
+            </div>
+            <div class="form-group col-md-6 {{ hasErrorPass }} has-feedback">
                 {{ form_label(form.plainPassword.first) }}<span class="mandatory">*</span>
                 {{ form_widget(form.plainPassword.first,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
                 <div class="errorDiv pl0">{{ form_errors(form.plainPassword.first) }}</div>
+                <p class="help-block">6-20 case sensitive characters, at least one numeral and one letter.</p>
             </div>
-            <div class="form-group {{ hasErrorPass }} has-feedback">
+
+            <div class="form-group col-md-6 {{ hasErrorPass }} has-feedback">
                 {{ form_label(form.plainPassword.second) }}<span class="mandatory">*</span>
                 {{ form_widget(form.plainPassword.second,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
                 <div class="errorDiv pl0">{{ form_errors(form.plainPassword.second) }}</div>
             </div>
-
-
-            {{ form_rest(form) }}
-            <div>
-                <button type="submit" class="btn btn-gold-white w100 btn-lg">{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}</button>
+            <div class="form-group col-md-12 has-feedback">
+                {{ form_widget(form.emailNots) }}
+                <div class="terms">
+                    I would like to see the latest listings, exclusive promotions and more via email.
+                </div>
+                <div class="errorDiv pl0">{{ form_errors(form.emailNots) }}</div>
             </div>
-        </form>
+            <div class="form-group col-md-12 has-feedback">
+            {{ form_widget(form.termsAccepted) }}
+                <div class="terms">
+                I have read and accepted FINEARTER <a href="{{ path('app_one_text', {'slug': 'about'}) }}" target="_blank">User Agreement</a>
+                    and <a href="{{ path('app_one_text', {'slug': 'about'}) }}" target="_blank">Privacy Policy.</a>
+                    </div>
+                <div class="errorDiv pl0">{{ form_errors(form.termsAccepted) }}</div>
+            </div>
+            {{ form_rest(form) }}
+
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-gold-white w100 h46 btn-lg">{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}</button>
+                <div class="mt15">
+                    Already have an account? <a href="{{ path('fos_user_security_login') }}">Log In</a>
+                </div>
+            </div>
+
+        </div>
+       
     </div>
+    </form>
 </div>
 
 

@@ -1,5 +1,26 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block content %}
-{% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+    {% set locale = app.request.get('_locale') %}
+    <div class="row">
+
+        <ol class="breadcrumb" id="myBreadcrumb">
+            <li><a href="{{ path('app_homepage') }}">Home</a></li>
+            <li class="active">
+
+               Forgot password
+
+            </li>
+        </ol>
+
+    </div>
+    <div class="text-center">
+        <h2 class="module-header">
+            Forgot password
+        </h2>
+    </div>
+    <div class="row">
+        {% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+    </div>
+
 {% endblock content %}

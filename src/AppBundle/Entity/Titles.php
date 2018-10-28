@@ -141,4 +141,14 @@ class Titles
     {
         return $this->link;
     }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }

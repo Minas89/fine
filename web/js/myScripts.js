@@ -148,10 +148,26 @@ $("#searchBtn").click(function () {
 });
 
 $('ul.nav li.dropdown').hover(function() {
-    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+    $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(100);
     $(this).find('.dropdown-menu').css('display','flex');
 }, function() {
-    $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(50);
+    $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(100);
+});
+
+
+$('.phone').click(function () {
+    var phone = $('.phone').val();
+    if(phone.length == 0){
+        $(this).val('+');
+    }
+
+}).keyup(function (e) {
+    var phone = $('.phone').val();
+    if(e.keyCode == 8){
+        if(phone.length == 0){
+            $(this).val('+');
+        }
+    }
 });
 
 

@@ -54,7 +54,7 @@ class User extends BaseUser
     protected $wishes;
 
     /**
-     * @ORM\Column(type="date", name="date_of_birth")
+     * @ORM\Column(type="date", name="date_of_birth", nullable=true)
      */
     protected $dateOfBirth;
 

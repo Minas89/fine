@@ -5,7 +5,7 @@
     <title>{% block title %}FINEARTER{% endblock %}</title>
 
     {% block stylesheet %}
-        <link rel="stylesheet" href="{{ asset('css/style.css?v=1.1.4') }}" media="all">
+        <link rel="stylesheet" href="{{ asset('css/style.css?v=1.1.5') }}" media="all">
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
         <link rel="icon" type="image/png" href="{{ asset('images/fav1.png') }}" />
@@ -25,38 +25,41 @@
 
             <div class="topMenuDiv col-xs-12 col-md-4 pull-right">
                 <div class="pull-right">
-                <ul id="topMenu">
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <li>
-                            <a href="{{ path('fos_user_profile_show') }}">
-                                {{ app.user.username }}
-                            </a>
-                        </li>
-                        <li><span>|</span></li>
-                        <li>
-                            <a href="{{ path('fos_user_security_logout') }}">Logout</a>
-                        </li>
-                    {% else %}
-                        <li>
-                            <a href="{{ path('fos_user_security_login') }}">Log In</a>
-                        </li>
-                        <li><span>|</span></li>
-                        <li>
-                            <a href="{{ path('fos_user_registration_register') }}">Sign Up</a>
-                        </li>
-                    {% endif %}
-                    <li>
-                        <a href="{{ path('user_wishes') }}">
-                           {# <i class="glyphicon glyphicon-heart-empty"></i>#}
-                            <img src="{{ asset('images/favor.png') }}" alt="">
-                            {{ render(controller('AppBundle:Wishlist:count')) }}
-                        </a>
-                    </li>
-                    {#  cart ICON #}
-                    {{ render(controller('AppBundle:Cart:cartCount')) }}
-                    {#  cart ICON #}
-                </ul>
-                <hr>
+                    <div>
+                        <ul id="topMenu">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <li>
+                                    <a href="{{ path('fos_user_profile_show') }}">
+                                        {{ app.user.username }}
+                                    </a>
+                                </li>
+                                <li><span>|</span></li>
+                                <li>
+                                    <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="{{ path('fos_user_security_login') }}">Log In</a>
+                                </li>
+                                <li><span>|</span></li>
+                                <li>
+                                    <a href="{{ path('fos_user_registration_register') }}">Sign Up</a>
+                                </li>
+                            {% endif %}
+                            <li>
+                                <a href="{{ path('user_wishes') }}">
+                                    {# <i class="glyphicon glyphicon-heart-empty"></i>#}
+                                    <img src="{{ asset('images/favor.png') }}" alt="">
+                                </a>
+                                {{ render(controller('AppBundle:Wishlist:count')) }}
+                            </li>
+                            {#  cart ICON #}
+                            {{ render(controller('AppBundle:Cart:cartCount')) }}
+                            {#  cart ICON #}
+                        </ul>
+                    </div>
+
+
 
                 {% block language %}
                     {% set Arm =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'am'}) ) %}
@@ -140,7 +143,7 @@
                                    placeholder="Search within the catalog..." name="q" {% if q is defined %}value="{{ q }}" {% endif %}>
 
                             <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit" id="searchBtn">
+                                <button class="btn" type="submit" id="searchBtn">
                                     {#<i class="glyphicon glyphicon-search"></i>#}
                                     <img src="{{ asset('images/search.png') }}" alt="">
                                 </button>

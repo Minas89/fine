@@ -2,8 +2,8 @@
     <a href="{{ path('cart') }}">
         {#<i class="fa fa-shopping-bag" id="cartIcon"></i>#}
         <img src="{{ asset('images/shoppingbag.png') }}" alt="bag" class="shopBag">
-        {% if products != 0 %}
-            <span>({{ products }})</span>
-        {% endif %}
     </a>
+    {% if products != 0 %}
+        <span id="cartCount">({{ products }})</span>
+    {% endif %}
 </li>

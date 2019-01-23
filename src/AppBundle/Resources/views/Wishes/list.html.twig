@@ -45,7 +45,10 @@
                                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                             <a href="javascript:void(0)" onclick="removeWish({{ product.id }},'wish')" id="awish{{ product.id }}">
                                                 <span class="pull-right wishlist">
+                                                    <img src="https://img.icons8.com/ios/50/000000/delete-sign.png" id="wish{{ product.id }}" width="30">
+{#
                                                     <i class="fa fa-remove" aria-hidden="true" id="wish{{ product.id }}"></i>
+#}
                                                 </span>
                                             </a>
                                         {% endif %}
@@ -74,7 +77,7 @@
                                     </span>
                                 </div>
                             </div>
-                        {% elseif view == 'list' %}
+                        {#{% elseif view == 'list' %}
                             <div class="col-md-12">
                                 <div class="listOneProduct">
                                     <div class="row">
@@ -135,7 +138,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>#}
                         {% endif %}
                     {% endfor %}
                 </div>

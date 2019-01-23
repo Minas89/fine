@@ -107,7 +107,10 @@ button{
     list-style-type: none;
     float: right;
     font-size: 16px;
-    height: 25px;
+    height: 32px;
+    padding-left: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #bbb
 }
 
 #topMenu img {
@@ -1261,6 +1264,16 @@ a.backTo:hover {
     margin-right: 0;
 }
 
+#wishCount, #cartCount{
+    display: block;
+    font-size: 23px;
+    float: right;
+    margin-left: 4px;
+    font-weight: 400!important;
+    margin-top: -3px;
+}
+
+
 .product-title-list {
     margin-bottom: 30px;
 }
@@ -1458,20 +1471,36 @@ a.backTo:hover {
 }
 
 #searchBtn{
-    border: none !important;
+    border-color:#fff !important;
+    background: transparent;
+    color: #F2F2F2;
+    -webkit-transition: background .2s ease-in-out, border .2s ease-in-out;
+    -moz-transition: background .2s ease-in-out, border .2s ease-in-out;
+    -o-transition: background .2s ease-in-out, border .2s ease-in-out;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+
+
 }
 
 #searchBtn:active, #searchBtn:focus, button {
-    outline: 0 !important;
+    outline: 0 none !important;
 }
 
 #inputSearch{
     border: none!important;
     padding-top: 10px;
+    border: none!important;
+    border-color: #cccccc!important;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
 }
 
 .blg{
     border-left: 1px solid #c2a661;
+}
+
+.brg{
+    border-right: 1px solid #c2a661;
 }
 
 .registerForm label, .registerForm button{
@@ -1617,4 +1646,8 @@ a.forgot{
 a.forgot:hover{
     text-decoration: none !important;
     color: #c2a661;
+}
+
+.btn-primary-outline{
+
 }

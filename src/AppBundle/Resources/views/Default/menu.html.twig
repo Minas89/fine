@@ -14,7 +14,6 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pl0" id="bs-example-navbar-collapse-1">
-            {#{{ knp_menu_render('AppBundle:Builder:mainMenu') }}#}
             <ul class="nav navbar-nav" id="mainMenu">
                 {% for category in mainCategories  %}
                     {% if category.children|length > 0 %}
@@ -25,40 +24,42 @@
                             <a href="{{ path('app_category', {'slug': category.slug}) }}" class="dropdown-toggle">{{ category.titleEng }}</a>
                             {% if class ==  'dropdown' %}
                                 <div class="row dropdown-menu w320">
-                                    <div class="col-sm-6 white hinh">
-                                        <div>
-                                            <h5>{{ "menu.shopBy"|trans|upper }}</h5>
+                                    <div style="padding: 10px 0">
+                                        <div class="col-sm-6 white hinh brg">
+                                            <div>
+                                                <h5>{{ "menu.shopBy"|trans|upper }}</h5>
+                                            </div>
+                                            <ul id="catMenu">
+                                                <li><a href="{{ path('app_new_products', {'slug': category.slug}) }}">{{ "menu.new"|trans }} {{ category.titleEng }}</a></li>
+                                                <li><a href="{{ path('app_category', {'slug': category.slug}) }}">{{ "menu.all"|trans }} {{ category.titleEng }}</a></li>
+                                                {% for child in category.children  %}
+                                                    <li><a href="{{ path('app_category', {'slug': child.slug }) }}">{{ child.titleEng }}</a></li>
+                                                {% endfor %}
+                                            </ul>
                                         </div>
-                                        <ul id="catMenu">
-                                            <li><a href="{{ path('app_new_products', {'slug': category.slug}) }}">{{ "menu.new"|trans }} {{ category.titleEng }}</a></li>
-                                            <li><a href="{{ path('app_category', {'slug': category.slug}) }}">{{ "menu.all"|trans }} {{ category.titleEng }}</a></li>
-                                            {% for child in category.children  %}
-                                                <li><a href="{{ path('app_category', {'slug': child.slug }) }}">{{ child.titleEng }}</a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-6 hinh blg">
-                                        <div>
-                                            <h5>{{ "menu.moreWays"|trans|upper }}</h5>
+                                        <div class="col-sm-6 hinh">
+                                            <div>
+                                                <h5>{{ "menu.moreWays"|trans|upper }}</h5>
+                                            </div>
+                                            <ul id="moreMenu">
+                                                <li>
+                                                    <a href="{{ path('app_creators', {'slug': category.slug}) }}">
+                                                        {% if category.type is constant('AppBundle\\Entity\\Categories::ArtistType') %}
+                                                            {{ "menu.shopByArtist"|trans }}
+                                                        {% endif %}
+                                                        {% if category.type is constant('AppBundle\\Entity\\Categories::CreatorType') %}
+                                                            {{ "menu.shopByCreator"|trans }}
+                                                        {% endif %}
+                                                        {% if category.type is constant('AppBundle\\Entity\\Categories::DesignerType') %}
+                                                            {{ "menu.shopByDesigner"|trans }}
+                                                        {% endif %}
+                                                    </a>
+                                                    <a href="#">
+                                                        {{ "menu.shopByStyle"|trans }}
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <ul id="moreMenu">
-                                            <li>
-                                                <a href="{{ path('app_creators', {'slug': category.slug}) }}">
-                                                    {% if category.type is constant('AppBundle\\Entity\\Categories::ArtistType') %}
-                                                        {{ "menu.shopByArtist"|trans }}
-                                                    {% endif %}
-                                                    {% if category.type is constant('AppBundle\\Entity\\Categories::CreatorType') %}
-                                                        {{ "menu.shopByCreator"|trans }}
-                                                    {% endif %}
-                                                    {% if category.type is constant('AppBundle\\Entity\\Categories::DesignerType') %}
-                                                        {{ "menu.shopByDesigner"|trans }}
-                                                    {% endif %}
-                                                </a>
-                                                <a href="#">
-                                                    {{ "menu.shopByStyle"|trans }}
-                                                </a>
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
                             {% endif %}

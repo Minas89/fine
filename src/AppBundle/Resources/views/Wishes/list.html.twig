@@ -42,7 +42,7 @@
                                         <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}">
                                             <img src="{% path product.image, 'big' %}" alt="Product">
                                         </a>
-                                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
                                             <a href="javascript:void(0)" onclick="removeWish({{ product.id }},'wish')" id="awish{{ product.id }}">
                                                 <span class="pull-right wishlist">
                                                     <img src="https://img.icons8.com/ios/50/000000/delete-sign.png" id="wish{{ product.id }}" width="30">
@@ -51,7 +51,7 @@
 #}
                                                 </span>
                                             </a>
-                                        {% endif %}
+
                                     </div>
 
                                     <div class="product-title">

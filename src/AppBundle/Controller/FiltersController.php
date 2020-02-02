@@ -7,7 +7,7 @@ use AppBundle\Services\Util;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class FiltersController extends Controller
+class FiltersController extends BaseController
 {
     public function indexAction($category, $slug, $products)
     {

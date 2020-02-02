@@ -4,7 +4,7 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class TextsController extends Controller
+class TextsController extends BaseController
 {
     public function textAction($slug)
     {

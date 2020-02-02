@@ -3,37 +3,46 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Wishlist;
+use AppBundle\Entity\WishlistItem;
 use AppBundle\Services\Util;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class WishlistController extends Controller
+class WishlistController extends BaseController
 {
     public function addAction(Request $request)
     {
-        $user = $this->getUser();
-
-        if(!$user)
-        {
-            throw $this->createAccessDeniedException('not user');
-        }
 
         $em = $this->getDoctrine()->getManager();
         $id = $request->request->get('id');
         $product = $em->getRepository('AppBundle:Products')->find($id);
+        $user = $this->getUser();
+
 
         if(!$product)
         {
             throw $this->createNotFoundException('product');
         }
 
-        $wishlist = new Wishlist();
+        /**
+         * @var Wishlist $wishlist
+         */
+        $wishlist = $em->getRepository('AppBundle:Wishlist')->checkUserWishlistExist($user,$this->getSessId());
 
-        $wishlist->setUser($user);
-        $wishlist->setProduct($product);
 
-        $em->persist($wishlist);
+        if(!$wishlist){
+            $wishlist = new Wishlist();
+            $wishlist->setUser($user);
+            $wishlist->setSessId($this->getSessId());
+            $em->persist($wishlist);
+        }
+        $em->flush();
+
+        $wishlistItem = new WishlistItem();
+        $wishlistItem->setProduct($product);
+        $wishlistItem->setWishlist($wishlist);
+        $em->persist($wishlistItem);
         $em->flush();
 
         $result = array('returnCode' => 101);
@@ -47,11 +56,6 @@ class WishlistController extends Controller
     {
         $user = $this->getUser();
 
-        if(!$user)
-        {
-            throw $this->createAccessDeniedException('not user');
-        }
-
         $em = $this->getDoctrine()->getManager();
         $id = $request->request->get('id');
         $product = $em->getRepository('AppBundle:Products')->find($id);
@@ -60,10 +64,12 @@ class WishlistController extends Controller
         {
             throw $this->createNotFoundException('product');
         }
+        $wishItemRepo = $em->getRepository('AppBundle:WishlistItem');
+        $wishItem = $wishItemRepo->getByUserOrSessId($user,$this->getSessId(),$product);
 
-        $wish = $em->getRepository('AppBundle:Wishlist')->findOneBy(array('user' => $user,'product' => $product));
-
-        $em->remove($wish);
+        if(count($wishItem)){
+            $em->remove($wishItem[0]);
+        }
         $em->flush();
 
         $result = array('returnCode' => 101);
@@ -75,17 +81,10 @@ class WishlistController extends Controller
 
     public function countAction()
     {
-        $user = $this->getUser();
-
-        if(!$user){
-            return new Response("<span id='wishCount'></span>");
-        }
-
-        $wishes = $user->getWishes();
-
-        $wishesCount = count($wishes);
+        if($this->getUserWishes()) $wishesCount = count($this->getUserWishes());
+        else $wishesCount = 0;
         if($wishesCount == 0){
-            $responce = "<span id='wishCount'></span>";;
+            $responce = "<span id='wishCount'></span>";
         }else{
             $responce = "<span id='wishCount'>(".$wishesCount.")</span>";
         }
@@ -94,25 +93,10 @@ class WishlistController extends Controller
 
     public function listAction()
     {
-        $user = $this->getUser();
-
-        if(!$user){
-            throw $this->createNotFoundException('user');
-        }
-
-
-        $wishes = $user->getWishes();
-
-        $wishesArray = array();
-
-        foreach($wishes as $wish){
-            $wishesArray[] = $wish->getProduct();
-        }
-
-       // Util::printArray($wishesArray);
+        $wishes =  $this->getUserWishes();
 
         return $this->render('AppBundle:Wishes:list.html.twig',array(
-            'wishes' => $wishesArray
+            'wishes' => $wishes
         ));
     }
 }

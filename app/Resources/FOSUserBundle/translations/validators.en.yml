@@ -7,7 +7,8 @@ fos_user:
     email:
         already_used: The email is already used
         blank: This is a mandatory field.
-        short: "[-Inf,Inf]The email is too short"
+       # short: "[-Inf,Inf]The email is too short"
+        short: ""
         long: "[-Inf,Inf]The email is too long"
         invalid: Incorrect email address.
     password:

@@ -18,7 +18,7 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname',TextType::class,array(
+           /* ->add('firstname',TextType::class,array(
                 'constraints' => array(new NotBlank(
                     array('message' =>'register_form.mandatory_field', )
                 )),
@@ -43,7 +43,7 @@ class RegistrationType extends AbstractType
                 'constraints' => array(new NotBlank(
                     array('message' =>'register_form.mandatory_field', )
                 )),
-            ))
+            ))*/
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('plainPassword', 'repeated', array(
@@ -62,7 +62,7 @@ class RegistrationType extends AbstractType
                 )),
 
             ))
-            ->add('termsAccepted', CheckboxType::class, array(
+            /*->add('termsAccepted', CheckboxType::class, array(
                 'mapped' => false,
                 'label' => false,
                 'attr' => ['class' => 'pull-left mr10 fs16'],
@@ -85,7 +85,7 @@ class RegistrationType extends AbstractType
                     'm' => 'Male',
                     'u' => 'Prefer not to naswer'
                 ),
-            ))
+            ))*/
         ;
     }
 

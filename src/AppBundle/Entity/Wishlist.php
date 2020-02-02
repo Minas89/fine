@@ -10,7 +10,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @package AppBundle\Entity
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\WishlistRepository")
  * @ORM\Table(name="wishlist_users")
- * @UniqueEntity(fields={"product","user"})
+ * @UniqueEntity(fields={"user","sess_id"})
+ * @ORM\HasLifecycleCallbacks()
  */
 class Wishlist
 {
@@ -22,10 +23,14 @@ class Wishlist
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Products")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\Column(type="string", name="sess_id", nullable=true, unique=true)
      */
-    protected $product;
+    protected $sessId;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\WishlistItem", mappedBy="wishlist")
+     */
+    protected $items;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="wishes")
@@ -76,28 +81,6 @@ class Wishlist
         return $this->created;
     }
 
-    /**
-     * Set product
-     *
-     * @param \AppBundle\Entity\Products $product
-     * @return Wishlist
-     */
-    public function setProduct(\AppBundle\Entity\Products $product = null)
-    {
-        $this->product = $product;
-
-        return $this;
-    }
-
-    /**
-     * Get product
-     *
-     * @return \AppBundle\Entity\Products 
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
 
     /**
      * Set user
@@ -122,4 +105,60 @@ class Wishlist
         return $this->user;
     }
 
+
+    /**
+     * Set sessId
+     *
+     * @param string $sessId
+     * @return Wishlist
+     */
+    public function setSessId($sessId)
+    {
+        $this->sessId = $sessId;
+
+        return $this;
+    }
+
+    /**
+     * Get sessId
+     *
+     * @return string 
+     */
+    public function getSessId()
+    {
+        return $this->sessId;
+    }
+
+    /**
+     * Add items
+     *
+     * @param \AppBundle\Entity\WishlistItem $items
+     * @return Wishlist
+     */
+    public function addItem(\AppBundle\Entity\WishlistItem $items)
+    {
+        $this->items[] = $items;
+
+        return $this;
+    }
+
+    /**
+     * Remove items
+     *
+     * @param \AppBundle\Entity\WishlistItem $items
+     */
+    public function removeItem(\AppBundle\Entity\WishlistItem $items)
+    {
+        $this->items->removeElement($items);
+    }
+
+    /**
+     * Get items
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
 }

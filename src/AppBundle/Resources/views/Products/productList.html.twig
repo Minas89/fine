@@ -24,7 +24,7 @@
                                     {{ product.titleArm }}
                                 {% endif %}
                             </a>
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
                                 {% if wishes is defined and product in wishes %}
                                     <a href="javascript:void(0)" onclick="removeWish({{ product.id }})" id="awish{{ product.id }}" class="p0">
                                         <span class="pull-right wishlist">
@@ -38,7 +38,6 @@
                                         </span>
                                     </a>
                                 {% endif %}
-                            {% endif %}
                             {% if product.price is not null %}
                             <span class="product-price">
                                 <span class="product-price-item">

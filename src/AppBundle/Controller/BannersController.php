@@ -6,7 +6,7 @@ use AppBundle\Entity\Banners;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Titles;
 
-class BannersController extends Controller
+class BannersController extends BaseController
 {
     public function bigBannerAction()
     {

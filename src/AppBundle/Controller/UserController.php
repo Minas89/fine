@@ -228,4 +228,10 @@ class UserController extends Controller
 
         return true;
     }
+
+    public function registerStep2Action()
+    {
+        return $this->render('FOSUserBundle:Registration:register2.html.twig');
+    }
+
 }

@@ -193,7 +193,7 @@ button{
 }
 
 #catMenu li a, #moreMenu li a {
-    font-size: 12px !important;
+    font-size: 14px !important;
     text-decoration: none !important;
 }
 
@@ -261,17 +261,23 @@ button{
     list-style: none;
     background-color: #fff;
     border-radius: 0px;
+    margin-left: 3px;
 }
 
 #myBreadcrumb a {
     color: #888;
     transition: color .25s linear;
-    font-size: 13px;
+    font-size: 14.5px;
     text-decoration: none;
 }
 
 #myBreadcrumb li.active {
     color: #222 !important;
+}
+
+#myBreadcrumb > li + li:before {
+    padding: 0 5px;
+    content: "|\00a0";
 }
 
 .flex {
@@ -1506,6 +1512,7 @@ a.backTo:hover {
 .registerForm label, .registerForm button{
     text-transform: uppercase;
     font-size: 14px!important;
+    padding-top: 15px;
 }
 
 .registerForm input{
@@ -1550,7 +1557,7 @@ a.backTo:hover {
 
 .mandatory{
     color: #F15A2A;
-    position: absolute;
+    /*position: absolute;*/
     margin-left: 1px;
 }
 
@@ -1558,7 +1565,7 @@ a.backTo:hover {
     color: #ccc;
     background-color: #ccc;
     border-top: 1px solid #ccc;
-    width: 90%;
+    width: 50%;
 }
 
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
@@ -1634,9 +1641,6 @@ input:-webkit-autofill:active {
     text-decoration: none;
 }
 
-.mt15{
-    margin-top: 15px;
-}
 
 a.forgot{
     color:#000;
@@ -1646,8 +1650,4 @@ a.forgot{
 a.forgot:hover{
     text-decoration: none !important;
     color: #c2a661;
-}
-
-.btn-primary-outline{
-
 }

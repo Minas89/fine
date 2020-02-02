@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use AppBundle\Entity\Orders;
 use AppBundle\Entity\OrderItems;
 
-class CartController extends Controller
+class CartController extends BaseController
 {
 
     public function indexAction()

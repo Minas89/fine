@@ -15,3 +15,8 @@ delete_address:
    path: /remove/address
    defaults: { _controller: AppBundle:User:removeAddress}
    methods: [POST]
+
+
+register_step_2:
+  path: /register/step2
+  defaults: { _controller: AppBundle:User:registerStep2 }

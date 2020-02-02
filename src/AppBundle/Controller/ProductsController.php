@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 
-class ProductsController extends Controller
+class ProductsController extends BaseController
 {
     public function byCatAction($category,$slug,Request $request)
     {
@@ -78,15 +78,9 @@ class ProductsController extends Controller
 
 
 
-        $wishes = array();
-        if($this->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-        {
-            $wishesObjects = $em->getRepository('AppBundle:Wishlist')->findByUser($this->getUser());
-            foreach($wishesObjects as $one)
-            {
-                $wishes[] = $one->getProduct();
-            }
-        }
+        $wishes = $this->getUserWishes();
+
+
 
         return $this->render('AppBundle:Products:byCat.html.twig',array(
             'category' => $maincategory,

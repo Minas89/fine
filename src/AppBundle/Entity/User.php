@@ -59,7 +59,7 @@ class User extends BaseUser
     protected $dateOfBirth;
 
     /**
-     * @ORM\Column(type="string", name="gender")
+     * @ORM\Column(type="string", name="gender", nullable=true)
      */
     protected $gender;
 

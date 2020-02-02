@@ -44,7 +44,7 @@ filters:
 
 user:
     login_welcome: Welcome to Site
-    register: Register
+    register: SIGN UP
     accountInfo: Account Information
 
 titles:

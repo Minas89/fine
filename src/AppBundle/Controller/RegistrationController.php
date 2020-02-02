@@ -12,6 +12,8 @@
 namespace AppBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -27,7 +29,7 @@ use FOS\UserBundle\Model\UserInterface;
  */
 class RegistrationController extends ContainerAware
 {
-    public function registerAction()
+    public function registerAction(Request $request)
     {
         $form = $this->container->get('fos_user.registration.form');
         $formHandler = $this->container->get('fos_user.registration.form.handler');
@@ -44,12 +46,15 @@ class RegistrationController extends ContainerAware
             } else {
                 $authUser = true;
                 //$route = 'fos_user_registration_confirmed';
-                $route = 'app_homepage';
+                //$route = 'app_homepage';
+                $route = 'register_step_2';
             }
 
             $this->setFlash('fos_user_success', 'registration.flash.user_created');
             $url = $this->container->get('router')->generate($route);
             $response = new RedirectResponse($url);
+            //.$response =
+            //.$response =
 
             if ($authUser) {
                 $this->authenticateUser($user, $response);
@@ -58,10 +63,22 @@ class RegistrationController extends ContainerAware
             return $response;
         }
 
+        if($request->isMethod(Request::METHOD_POST)){
+            $secondPass = $form["plainPassword"]['second']->getData();
+            if(empty($secondPass)){
+                $form["plainPassword"]['second']->addError(new FormError('This is a mandatory field.'));
+
+            }
+        }
+
+
+       // dump($secondPass);die;
+
         return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
             'form' => $form->createView(),
         ));
     }
+
 
     /**
      * Tell the user to check his email provider

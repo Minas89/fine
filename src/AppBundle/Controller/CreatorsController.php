@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class CreatorsController extends Controller
+class CreatorsController extends BaseController
 {
     public function allByCatAction($slug)
     {

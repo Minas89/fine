@@ -6,7 +6,7 @@ use AppBundle\Services\Util;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class SearchController extends Controller
+class SearchController extends BaseController
 {
     public function searchAction(Request $request)
     {

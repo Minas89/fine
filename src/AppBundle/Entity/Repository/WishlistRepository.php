@@ -12,4 +12,32 @@ use Doctrine\ORM\EntityRepository;
  */
 class WishlistRepository extends EntityRepository
 {
+    public function checkUserWishlistExist($user,$csessId)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb
+            ->select('w')
+            ->from('AppBundle:Wishlist','w');
+
+        $params = [];
+
+        if($user){
+            $qb->where('w.user = :user');
+            $params['user'] = $user;
+        }else{
+            $qb->where('w.sessId = :sessId');
+            $params['sessId'] =  $csessId;
+        }
+
+        $qb->setParameters($params);
+
+        try{
+            return $qb->getQuery()->getSingleResult();
+        }catch (\Exception $exception)
+        {
+            echo $exception->getMessage();
+            return null;
+        }
+    }
 }

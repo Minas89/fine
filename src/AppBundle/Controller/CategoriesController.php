@@ -6,7 +6,7 @@ use AppBundle\Entity\Categories;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Titles;
 
-class CategoriesController extends Controller
+class CategoriesController extends BaseController
 {
     public function catByCatAction($slug)
     {

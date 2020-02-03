@@ -62,6 +62,12 @@ class RegistrationType extends AbstractType
                 )),
 
             ))
+            ->add('termsAccepted', CheckboxType::class, array(
+                    'mapped' => false,
+                    'label' => false,
+                    'attr' => ['class' => 'pull-left mr10 fs16'],
+                    'constraints' => new IsTrue(),)
+            )
             /*->add('termsAccepted', CheckboxType::class, array(
                 'mapped' => false,
                 'label' => false,

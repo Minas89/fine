@@ -89,6 +89,7 @@ fos_user:
     registration:
                 form:
                    type: register
+                   handler: app.form.handler.registration
 
 
     #group:

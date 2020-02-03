@@ -3,9 +3,14 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Address;
+use AppBundle\Entity\User;
+use AppBundle\Form\RegisterType2;
+use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class UserController extends Controller
 {
@@ -229,9 +234,61 @@ class UserController extends Controller
         return true;
     }
 
-    public function registerStep2Action()
+    public function registerStep2Action(Request $request)
     {
-        return $this->render('FOSUserBundle:Registration:register2.html.twig');
+        $form = $this->createForm(new RegisterType2());
+
+        $form->handleRequest($request);
+
+        if($request->isMethod(Request::METHOD_POST)){
+            if($form->isValid()){
+                $data = $form->getData();
+                $formHandler = $this->container->get('fos_user.registration.form.handler');
+                $session = new Session();
+                $userSession = $session->get('user');
+
+                $user = new User();
+                $user->setUsername($userSession->getUsername());
+                $user->setEmail($userSession->getEmail());
+                $user->setPlainPassword($userSession->getSalt());
+                $user->setTitle($data['title']);
+                $user->setGender($data['gender']);
+                $user->setFirstname($data['firstname']);
+                $user->setLastname($data['lastname']);
+                $user->setPhone($userSession->getPhone());
+                $user->setDateOfBirth($data['dateOfBirth']);
+                $user->setEnabled(true);
+
+                $em = $this->getDoctrine()->getManager();
+
+                $em->persist($user);
+                $em->flush();
+
+                $this->addFlash('fos_user_success', 'registration.flash.user_created');
+                $route = 'app_homepage';
+                $url = $this->container->get('router')->generate($route);
+                $response = new RedirectResponse($url);
+                $this->authenticateUser($user,$response);
+                $session->remove('user');
+                return $response;
+            }
+        }
+        return $this->render('AppBundle:User:register2.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+
+    protected function authenticateUser(UserInterface $user, Response $response)
+    {
+        try {
+            $this->container->get('fos_user.security.login_manager')->loginUser(
+                $this->container->getParameter('fos_user.firewall_name'),
+                $user,
+                $response);
+        } catch (AccountStatusException $ex) {
+            // We simply do not authenticate users which do not pass the user
+            // checker (not enabled, expired, etc.).
+        }
     }
 
 }

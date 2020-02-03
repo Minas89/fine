@@ -1,0 +1,107 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block content %}
+
+{% if form_errors(form.title) %}
+    {% set hasErrorTitle = true %}
+{% else %}
+    {% set hasErrorTitle = false %}
+{% endif %}
+
+{% if form_errors(form.firstname) %}
+    {% set hasErrorFirst = 'has-error' %}
+{% else %}
+    {% set hasErrorFirst = '' %}
+{% endif %}
+
+{% if form_errors(form.lastname) %}
+    {% set hasErrorLast = 'has-error' %}
+{% else %}
+    {% set hasErrorLast = '' %}
+{% endif %}
+
+    <div class="row">
+
+        <ol class="breadcrumb" id="myBreadcrumb">
+            <li><a href="{{ path('app_homepage') }}">Home</a></li>
+            <li class="active">
+                Sign Up
+            </li>
+        </ol>
+
+    </div>
+
+    <div class="row">
+        <div class="text-center">
+            <h2 class="module-header mb0">
+                {{ "user.register"|trans }}
+            </h2>
+            <p class="step mt15">STEP 2 OF 2 </p>
+
+        </div>
+        <form action="" {{ form_enctype(form) }} method="POST" class="registerForm" role="form" novalidate>
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p>Complete registration below to gain full access and get personalized email updates.</p>
+                        <p>ALL FIELDS ARE MANDATORY</p>
+                    </div>
+
+
+                     <div class="form-group col-md-12 forTitle  has-feedback">
+                         {{ form_label(form.title) }}<span class="mandatory">*</span>
+                         {{ form_widget(form.title,{'attr' : { 'class' : 'pl0' } }) }}
+
+                         <div class="errorDiv pl0">{{ form_errors(form.title) }}</div>
+                     </div>
+                     <div class="form-group col-md-12 {{ hasErrorFirst }} has-feedback">
+                         {{ form_label(form.firstname) }}<span class="mandatory">*</span>
+                         {{ form_widget(form.firstname,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
+                         <div class="errorDiv pl0">{{ form_errors(form.firstname) }}</div>
+                     </div>
+                     <div class="form-group col-md-12 {{ hasErrorLast }} has-feedback">
+                         {{ form_label(form.lastname) }}<span class="mandatory">*</span>
+                         {{ form_widget(form.lastname,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
+                         <div class="errorDiv pl0">{{ form_errors(form.lastname) }}</div>
+                     </div>
+
+                      <div class="form-group col-md-12 has-feedback">
+                           {{ form_label(form.dateOfBirth) }}<span class="mandatory">*</span>
+                           {{ form_widget(form.dateOfBirth,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
+                           <div class="errorDiv pl0">{{ form_errors(form.dateOfBirth) }}</div>
+                       </div>
+
+                       <div class="form-group col-md-12 has-feedback">
+                           {{ form_label(form.gender) }}<span class="mandatory">*</span>
+                           {{ form_widget(form.gender,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
+                           <div class="errorDiv pl0">{{ form_errors(form.gender) }}</div>
+                       </div>
+
+
+                     <div class="form-group col-md-12 has-feedback">
+                         {{ form_widget(form.emailNots) }}
+                         <div class="terms">
+                             I would like to see the latest listings, exclusive promotions and more via email.
+                         </div>
+                         <div class="errorDiv pl0">{{ form_errors(form.emailNots) }}</div>
+                     </div>
+
+                    {{ form_row(form._token) }}
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-gold-white w100 h46 btn-lg">{{ 'registration.register'|trans({}, 'FOSUserBundle') }}</button>
+                        <div class="mt15">
+                            Already have an account? <a href="{{ path('fos_user_security_login') }}">Log In</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+
+{% endblock content %}
+
+

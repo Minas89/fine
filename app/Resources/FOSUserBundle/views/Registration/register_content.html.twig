@@ -129,11 +129,15 @@
                 {{ form_widget(form.plainPassword.second,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
                 <div class="errorDiv pl0">{{ form_errors(form.plainPassword.second) }}</div>
             </div>
-            <div class="col-xs-12 text-center">
-                <p>I have read and accepted FINEARTER
-                    <a href="{{ path('app_one_text', {'slug': 'about'}) }}" target="_blank">User Agreement</a> and
-                    <a href="{{ path('app_one_text', {'slug': 'about'}) }}" target="_blank">Privacy Policy</a>.</p>
+            <div class="form-group col-md-12 has-feedback">
+                {{ form_widget(form.termsAccepted) }}
+                <div class="terms">
+                    I have read and accepted FINEARTER <a href="{{ path('app_one_text', {'slug': 'about'}) }}" target="_blank">User Agreement</a>
+                    and <a href="{{ path('app_one_text', {'slug': 'about'}) }}" target="_blank">Privacy Policy.</a>
+                </div>
+                <div class="errorDiv pl0">{{ form_errors(form.termsAccepted) }}</div>
             </div>
+
 
            {# <div class="form-group col-md-12 has-feedback">
                 {{ form_widget(form.emailNots) }}

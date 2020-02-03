@@ -16,6 +16,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Exception\AccountStatusException;
@@ -37,9 +38,13 @@ class RegistrationController extends ContainerAware
 
         $process = $formHandler->process($confirmationEnabled);
         if ($process) {
+
             $user = $form->getData();
 
-            $authUser = false;
+            $session = new Session();
+            $session->set('user',$user);
+
+           /* $authUser = false;
             if ($confirmationEnabled) {
                 $this->container->get('session')->set('fos_user_send_confirmation_email/email', $user->getEmail());
                 $route = 'fos_user_registration_check_email';
@@ -48,17 +53,17 @@ class RegistrationController extends ContainerAware
                 //$route = 'fos_user_registration_confirmed';
                 //$route = 'app_homepage';
                 $route = 'register_step_2';
-            }
-
+            }*/
+            $route = 'register_step_2';
             $this->setFlash('fos_user_success', 'registration.flash.user_created');
             $url = $this->container->get('router')->generate($route);
             $response = new RedirectResponse($url);
             //.$response =
             //.$response =
 
-            if ($authUser) {
+          /*  if ($authUser) {
                 $this->authenticateUser($user, $response);
-            }
+            }*/
 
             return $response;
         }

@@ -1272,7 +1272,7 @@ a.backTo:hover {
 
 #wishCount, #cartCount{
     display: block;
-    font-size: 23px;
+   /* font-size: 23px;*/
     float: right;
     margin-left: 4px;
     font-weight: 400!important;

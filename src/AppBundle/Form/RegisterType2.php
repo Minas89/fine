@@ -51,7 +51,8 @@ class RegisterType2 extends AbstractType
                     'mapped' => false,
                     'label' => false,
                     'attr' => ['class' => 'pull-left mr10 fs16'],
-                    'constraints' => new IsFalse(),)
+                    //'constraints' => new IsFalse(),
+                    )
             )
 
             ->add('dateOfBirth',BirthdayType::class,array(

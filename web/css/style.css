@@ -1651,3 +1651,7 @@ a.forgot:hover{
     text-decoration: none !important;
     color: #c2a661;
 }
+
+.forTitle input, .forTitle label{
+    margin-right: 3px;
+}

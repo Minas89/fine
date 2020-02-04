@@ -40,9 +40,15 @@ class RegistrationController extends ContainerAware
         if ($process) {
 
             $user = $form->getData();
+            $password = $user->getPlainPassword();
+            $phone = $user->getPhone();
+
+          // dump($user);die;
 
             $session = new Session();
-            $session->set('user',$user);
+            $session->set('userReg',$user);
+            $session->set('password',$password);
+            $session->set('phone',$phone);
 
            /* $authUser = false;
             if ($confirmationEnabled) {

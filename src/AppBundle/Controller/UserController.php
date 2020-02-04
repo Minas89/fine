@@ -236,6 +236,7 @@ class UserController extends Controller
 
     public function registerStep2Action(Request $request)
     {
+
         $form = $this->createForm(new RegisterType2());
 
         $form->handleRequest($request);
@@ -243,19 +244,18 @@ class UserController extends Controller
         if($request->isMethod(Request::METHOD_POST)){
             if($form->isValid()){
                 $data = $form->getData();
-                $formHandler = $this->container->get('fos_user.registration.form.handler');
                 $session = new Session();
-                $userSession = $session->get('user');
+                $userSession = $session->get('userReg');
 
                 $user = new User();
                 $user->setUsername($userSession->getUsername());
                 $user->setEmail($userSession->getEmail());
-                $user->setPlainPassword($userSession->getSalt());
+                $user->setPlainPassword($session->get('password'));
                 $user->setTitle($data['title']);
                 $user->setGender($data['gender']);
                 $user->setFirstname($data['firstname']);
                 $user->setLastname($data['lastname']);
-                $user->setPhone($userSession->getPhone());
+                $user->setPhone($session->get('phone'));
                 $user->setDateOfBirth($data['dateOfBirth']);
                 $user->setEnabled(true);
 
@@ -263,13 +263,14 @@ class UserController extends Controller
 
                 $em->persist($user);
                 $em->flush();
+                $session->clear();
 
                 $this->addFlash('fos_user_success', 'registration.flash.user_created');
                 $route = 'app_homepage';
                 $url = $this->container->get('router')->generate($route);
                 $response = new RedirectResponse($url);
                 $this->authenticateUser($user,$response);
-                $session->remove('user');
+               
                 return $response;
             }
         }

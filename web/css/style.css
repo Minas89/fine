@@ -1655,3 +1655,126 @@ a.forgot:hover{
 .forTitle input, .forTitle label{
     margin-right: 3px;
 }
+
+.right-menu {
+    width: 42%;
+}
+
+.step-tabs {
+    margin-bottom: 32px;
+}
+
+.step-tabs ul {
+    display: flex;
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+.step-tabs ul li {
+    border-right: .063rem solid #fff;
+    text-align: center;
+}
+
+.step-tabs .cart-step .text {
+    font-size: .875rem;
+    font-weight: bold;
+    color: #181818;
+    letter-spacing: 0;
+    display: block;
+    border-bottom: 2px solid #181818;
+    line-height: 1;
+    padding: 0 15px 8px 15px;
+    height: 100%;
+}
+
+.step-tabs .confirmation-step .text {
+    font-size: .875rem;
+    font-weight: bold;
+    letter-spacing: 0;
+    display: block;
+    border-bottom: 2px solid #181818;
+    line-height: 1;
+    padding: 0 15px 8px 15px;
+    height: 100%;
+    color: #776a61;
+    border-color: #c0b7af;
+}
+.item-nav{
+    min-height: 14px;
+}
+.item-nav .price{
+    font-size: 14px;
+    margin: 0 0 .625rem .5rem;
+}
+.color .label {
+    font-size: .875rem;
+    color: #776a61;
+}
+.color .value {
+    font-size: 14px;
+}
+.lastAvailable{
+    background-color:#e5e6ea;
+    padding: 8px;
+}
+.nextPageButton{
+    background-color: #181818;
+    border-color: #444;
+    color: #fff;
+}
+.nextPageButton .text{
+    font-size: 12px;
+}
+
+.d-flex{
+    display: flex !important;
+}
+
+.px-4 {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+.mt-5{
+    margin-top: 3rem!important;
+}
+
+.ml-5{
+    margin-left: 3rem!important;
+}
+
+.p-3 {
+    padding: 1rem!important;
+}
+
+.pr-0, .px-0 {
+    padding-right: 0!important;
+}
+.flex-column {
+    -ms-flex-direction: column!important;
+    flex-direction: column!important;
+}
+
+.col-lg-9 {
+    -ms-flex: 0 0 75%;
+    flex: 0 0 75%;
+    max-width: 75%;
+}
+
+.col-lg-3{
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.w-100{
+    width: 100% !important;
+}
+
+.ml-auto, .mx-auto {
+    margin-left: auto!important;
+}
+
+.px-4 {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}

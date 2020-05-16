@@ -31,11 +31,14 @@ class SearchController extends BaseController
         $wishes = array();
         if($this->isGranted('IS_AUTHENTICATED_REMEMBERED'))
         {
-            $wishesObjects = $em->getRepository('AppBundle:Wishlist')->findByUser($this->getUser());
-            foreach($wishesObjects as $one)
-            {
-                $wishes[] = $one->getProduct();
+            $wisheslist = $em->getRepository('AppBundle:Wishlist')->findOneByUser($this->getUser());
+            if($wisheslist){
+                foreach($wisheslist->getItems() as $one)
+                {
+                    $wishes[] = $one->getProduct();
+                }
             }
+
         }
         $array = array(
             'products' => $products,

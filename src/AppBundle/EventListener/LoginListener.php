@@ -37,7 +37,7 @@ class LoginListener {
 
                     foreach ($wishItems as $item)
                     {
-                        $checkIfItemInWishlist = $this->em->getRepository('AppBundle:WishlistItems')->findOneBy(['wishlist' => $wishCheck,'example' => $item->getExample()]);
+                        $checkIfItemInWishlist = $this->em->getRepository('AppBundle:WishlistItem')->findOneBy(['wishlist' => $wishCheck]);
                         if(!$checkIfItemInWishlist){
                             $item->setWishlist($wishCheck);
                             $this->em->persist($item);

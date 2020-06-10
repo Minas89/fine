@@ -51,7 +51,6 @@
                      <div class="form-group col-md-12 forTitle  has-feedback">
                          {{ form_label(form.title) }}<span class="mandatory">*</span>
                          {{ form_widget(form.title,{'attr' : { 'class' : 'pl0' } }) }}
-
                          <div class="errorDiv pl0">{{ form_errors(form.title) }}</div>
                      </div>
                      <div class="form-group col-md-12 {{ hasErrorFirst }} has-feedback">
@@ -67,15 +66,27 @@
 
                       <div class="form-group col-md-12 has-feedback">
                            {{ form_label(form.dateOfBirth) }}<span class="mandatory">*</span>
-                           {{ form_widget(form.dateOfBirth,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
-                           <div class="errorDiv pl0">{{ form_errors(form.dateOfBirth) }}</div>
-                       </div>
+                          <div class="row">
+                              <div class="col-md-4">
+                                  {{ form_widget(form.dateOfBirth.day,{'attr':{'class':'form-control goldInput input-lg','placeholder':'aa'}}) }}
+                              </div>
+                              <div class="col-md-4">
+                                  {{ form_widget(form.dateOfBirth.month,{'attr':{'class':'form-control goldInput input-lg'}}) }}
 
-                       <div class="form-group col-md-12 has-feedback">
-                           {{ form_label(form.gender) }}<span class="mandatory">*</span>
-                           {{ form_widget(form.gender,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
-                           <div class="errorDiv pl0">{{ form_errors(form.gender) }}</div>
-                       </div>
+                              </div>
+                              <div class="col-md-4">
+                                  {{ form_widget(form.dateOfBirth.year,{'attr':{'class':'form-control goldInput input-lg'}}) }}
+                              </div>
+                          </div>
+                          <div class="errorDiv pl0">{{ form_errors(form.dateOfBirth) }}</div>
+
+                      </div>
+
+                    <div class="form-group col-md-12 forTitle  has-feedback">
+                        {{ form_label(form.gender) }}<span class="mandatory">*</span>
+                        {{ form_widget(form.gender,{'attr' : { 'class' : 'pl0' } }) }}
+                        <div class="errorDiv pl0">{{ form_errors(form.gender) }}</div>
+                    </div>
 
 
                      <div class="form-group col-md-12 has-feedback">

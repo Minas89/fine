@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -56,7 +57,11 @@ class RegisterType2 extends AbstractType
             )
 
             ->add('dateOfBirth',BirthdayType::class,array(
-
+                'widget'=> 'choice',
+                'placeholder' => array(
+                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                ),
+                //'input' => "array"
             ))
             ->add('gender',ChoiceType::class,array(
                 'choices' => array(
@@ -64,13 +69,22 @@ class RegisterType2 extends AbstractType
                     'm' => 'Male',
                     'u' => 'Prefer not to naswer'
                 ),
+                'multiple' => false,
+                'expanded' => true,
+                'required' => true,
+               // 'choices_as_values' => true,
+                'constraints' => array(new NotBlank(
+                    array('message' =>'register_form.mandatory_field', )
+                )),
             ))
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-
+        $resolver->setDefaults([
+            'data_class' => User::class
+        ]);
     }
 
     public function getBlockPrefix()

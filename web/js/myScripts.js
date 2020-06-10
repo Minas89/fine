@@ -87,7 +87,7 @@ $('#accountEmail').keyup(function (e) {
 var addWish = function(id) {
     $.post("/en/wishlist/add",{id : id},
         function(res){
-            if(res.returnCode == 101){
+            if(res.returnCode === 101){
                 $('#wish' + id).toggleClass('fa-heart-o');
                 $('#wish' + id).toggleClass('fa-heart');
                 document.getElementById( "awish" + id ).setAttribute( "onClick", "removeWish(" + id + ")" );
@@ -111,8 +111,8 @@ var addWish = function(id) {
 var removeWish = function(id,from) {
     $.post("/en/wishlist/remove",{id : id},
         function(res){
-            if(res.returnCode == 101){
-                if(from != "wish"){
+            if(res.returnCode === 101){
+                if(from !== "wish"){
                     $('#wish' + id).toggleClass('fa-heart-o');
                     $('#wish' + id).toggleClass('fa-heart');
                 }
@@ -155,8 +155,8 @@ $('ul.nav li.dropdown').hover(function() {
 
 $('.phone').click(function () {
     var phone = $('.phone').val();
-    if(phone.length == 0){
-        $(this).val('+');
+    if(phone.length === 0){
+        $(this).val("+");
     }
 
 }).keyup(function (e) {
@@ -166,6 +166,7 @@ $('.phone').click(function () {
             $(this).val('+');
         }
     }
+
 });
 
 

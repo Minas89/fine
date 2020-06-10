@@ -1668,8 +1668,12 @@ a.forgot:hover{
     color: #c2a661;
 }
 
-.forTitle input, .forTitle label{
-    margin-right: 3px;
+.forTitle input {
+    margin-right: 4px;
+}
+
+.forTitle label{
+    margin-right: 8px;
 }
 
 .right-menu {
@@ -1860,4 +1864,20 @@ a.forgot:hover{
 .text-black:hover{
     color: #a38e44;
     text-decoration: none;
+}
+
+.text-gold{
+    color:#a38e44;
+}
+
+.text-gold:hover{
+    color: #000;
+}
+
+.registerForm input[type="radio"]:checked~input[type="radio"]::before {
+    background-color: green;
+}
+
+.has-feedback .form-control {
+    padding-right: 22.5px;
 }

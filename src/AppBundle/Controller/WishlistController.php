@@ -83,11 +83,7 @@ class WishlistController extends BaseController
     {
         if($this->getUserWishes()) $wishesCount = count($this->getUserWishes());
         else $wishesCount = 0;
-        if($wishesCount == 0){
-            $responce = "<span id='wishCount'></span>";
-        }else{
-            $responce = "<span id='wishCount'>(".$wishesCount.")</span>";
-        }
+        $responce = "<span id='wishCount'>(".$wishesCount.")</span>";
         return new Response($responce);
     }
 

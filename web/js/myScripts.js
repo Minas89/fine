@@ -123,11 +123,9 @@ var removeWish = function(id,from) {
                 str = str.substring(0, str.length - 1); // "12345.0"
                 count = parseInt(str);
                 count = count - 1;
-                if(count === 0){
-                    $("#wishCount").html("(" + count +")").css('display','none');
-                }else{
-                    $("#wishCount").html("(" + count +")").css('display','inline-block');
-                }
+
+                $("#wishCount").html("(" + count +")").css('display','inline-block');
+
 
 
                 if(from == "wish"){
@@ -148,10 +146,10 @@ $("#searchBtn").click(function () {
 });
 
 $('ul.nav li.dropdown').hover(function() {
-    $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(100);
+    $(this).find('.dropdown-menu').stop(true, true).delay(1).fadeIn(1);
     $(this).find('.dropdown-menu').css('display','flex');
 }, function() {
-    $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(100);
+    $(this).find('.dropdown-menu').stop(true, true).delay(1).fadeOut(1);
 });
 
 

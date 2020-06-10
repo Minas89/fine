@@ -4,6 +4,12 @@
     src: url("../fonts/MYRIADPRO-BLACK.OTF");
 }
 
+@font-face {
+    font-family: myUnboldFont;
+    /*src: url("../fonts/MYRIADPRO-LIGHT.OTF");*/
+    src: url("../fonts/MyriadPro-Regular_0.otf");
+}
+
 @media only screen and (max-width: 480px){
     .left_big_square{
         width: 20%;
@@ -120,6 +126,7 @@ button{
 #topMenu .shopBag {
     max-height: 23px !important;
     width: auto;
+    margin-top: -1px;
 }
 
 #topMenu li {
@@ -269,10 +276,12 @@ button{
     transition: color .25s linear;
     font-size: 14.5px;
     text-decoration: none;
+    text-transform: capitalize;
 }
 
 #myBreadcrumb li.active {
     color: #222 !important;
+    text-transform: capitalize;
 }
 
 #myBreadcrumb > li + li:before {
@@ -702,6 +711,7 @@ input[type='radio']:checked:after {
 .carouselTitleDiv{
     margin-bottom: 20px;
     text-transform: uppercase;
+    padding: 0 15px;
 }
 /*
 .newArrivals .owl-stage, .newArrivals .owl-stage .owl-item{
@@ -1279,7 +1289,7 @@ a.backTo:hover {
     font-size: 20px;
     line-height: 1;
     margin-top: 2px;
-
+    font-family: myUnboldFont;
 }
 
 

@@ -1,7 +1,9 @@
 <div class="row">
+    {% set locale = app.request.get('_locale') %}
+    {% set route = app.request.get('_route') %}
     <div class="products">
         {% for product in products  %}
-            {% if view == 'grid' %}
+            {#{% if view == 'grid' %}#}
                 <div class="col-md-4">
                     {% set url = path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) %}
                     <div class="carouselImgDiv">
@@ -12,7 +14,21 @@
 
                     <div class="carouselTitleDiv">
                         <hr class="myHR">
-                        <p class="text-center">
+
+                            <a href="#">
+                                {% if product.creator %}
+                                    {% if locale == 'en' %}
+                                        {{ product.creator.titleEng }}
+                                    {% endif %}
+                                    {% if locale == 'ru' %}
+                                        {{ product.creator.titleRus }}
+                                    {% endif %}
+                                    {% if locale == 'am' %}
+                                        {{ product.creator.titleArm }}
+                                    {% endif %}
+                                {% endif %}
+                            </a><br>
+
                             <a href="{{ url }}">
                                 {% if locale == 'en' %}
                                     {{ product.titleEng }}
@@ -23,32 +39,45 @@
                                 {% if locale == 'am' %}
                                     {{ product.titleArm }}
                                 {% endif %}
-                            </a>
+                            </a><br>
 
-                                {% if wishes is defined and product in wishes %}
-                                    <a href="javascript:void(0)" onclick="removeWish({{ product.id }})" id="awish{{ product.id }}" class="p0">
-                                        <span class="pull-right wishlist">
-                                            <i class="fa fa-heart" aria-hidden="true" id="wish{{ product.id }}"></i>
-                                        </span>
-                                    </a>
-                                {% else %}
-                                    <a href="javascript:void(0)" onclick="addWish({{ product.id }})" id="awish{{ product.id }}" class="p0">
-                                        <span class="pull-right wishlist">
-                                            <i class="fa fa-heart-o" aria-hidden="true" id="wish{{ product.id }}"></i>
-                                        </span>
-                                    </a>
-                                {% endif %}
-                            {% if product.price is not null %}
-                            <span class="product-price">
-                                <span class="product-price-item">
-                                    ${{ product.price }}
-                                </span>
+                        {% if product.price is not null %}
+
+                            <span class="product-price-item">
+                                ${{ product.price }}
                             </span>
-                            {% endif %}
-                        </p>
+
+                        {% endif %}
+
+                        <span class="productActionIcon">
+                             {% if route == 'user_wishes' %}
+                                 <a href="javascript:void(0)" onclick="removeWish({{ product.id }},'wish')" id="awish{{ product.id }}">
+                                <span class="pull-right wishlist">
+                                    <img src="https://img.icons8.com/ios/50/000000/delete-sign.png" id="wish{{ product.id }}" width="18">
+                                </span>
+                            </a>
+                        {% else %}
+                                 {% if wishes is defined and product in wishes %}
+                                     <a href="javascript:void(0)" onclick="removeWish({{ product.id }})" id="awish{{ product.id }}" class="p0">
+                                <span class="pull-right wishlist">
+                                    <i class="fa fa-heart" aria-hidden="true" id="wish{{ product.id }}"></i>
+                                </span>
+                                </a>
+                            {% else %}
+                                     <a href="javascript:void(0)" onclick="addWish({{ product.id }})" id="awish{{ product.id }}" class="p0">
+                                <span class="pull-right wishlist">
+                                    <i class="fa fa-heart-o" aria-hidden="true" id="wish{{ product.id }}"></i>
+                                </span>
+                                </a>
+                                 {% endif %}
+                             {% endif %}
+
+                        </span>
+
+
                     </div>
                 </div>
-            {% elseif view == 'list' %}
+           {# {% elseif view == 'list' %}
                 <div class="col-md-12">
                     <div class="listOneProduct">
                         <div class="row">
@@ -95,8 +124,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endif %}
+                </div>#}
+          {#  {% endif %}#}
         {% endfor %}
     </div>
 </div>

@@ -8,6 +8,7 @@ use AppBundle\Services\Util;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class WishlistController extends BaseController
 {
@@ -87,12 +88,16 @@ class WishlistController extends BaseController
         return new Response($responce);
     }
 
-    public function listAction()
+    public function listAction(Request $request)
     {
         $wishes =  $this->getUserWishes();
+        $referer = $request->headers->get('referer');
+       // $session = new Session();
+       // $session->set('referer',$referer);
 
         return $this->render('AppBundle:Wishes:list.html.twig',array(
-            'wishes' => $wishes
+            'products' => $wishes,
+            'referer' => $referer
         ));
     }
 }

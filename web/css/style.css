@@ -338,14 +338,9 @@ button{
         border: 1px solid #ddd;*/
 }
 
-.product-price {
-    padding: 30px 0 0;
-}
-
 .product-price-item {
     display: block;
     color: #222;
-    padding-left: 15px;
     margin-bottom: 30px;
 }
 
@@ -712,7 +707,15 @@ input[type='radio']:checked:after {
     margin-bottom: 20px;
     text-transform: uppercase;
     padding: 0 15px;
+    position: relative;
 }
+
+.productActionIcon{
+    position: absolute;
+    top: 20px;
+    right: 15px;
+}
+
 /*
 .newArrivals .owl-stage, .newArrivals .owl-stage .owl-item{
     width: 100% !important;
@@ -1848,4 +1851,13 @@ a.forgot:hover{
 
 .bg-transparent{
     background-color: transparent!important;
+}
+
+.text-black{
+    color: #000;
+}
+
+.text-black:hover{
+    color: #a38e44;
+    text-decoration: none;
 }

@@ -804,7 +804,7 @@ input[type='radio']:checked:after {
 }
 
 .sorting {
-    margin-right: 30px;
+    margin-bottom: 15px;
 }
 
 #sortProducts {
@@ -1880,4 +1880,8 @@ a.forgot:hover{
 
 .has-feedback .form-control {
     padding-right: 22.5px;
+}
+
+.text-danger{
+    color: #F15A2A!important;
 }

@@ -804,7 +804,7 @@ input[type='radio']:checked:after {
 }
 
 .sorting {
-    margin-right: 30px;
+    margin-bottom: 15px;
 }
 
 #sortProducts {
@@ -1659,15 +1659,13 @@ input:-webkit-autofill:active {
 
 
 a.forgot{
-    text-decoration: none;
-}
-
-a:hover{
+    color:#000;
     text-decoration: none;
 }
 
 a.forgot:hover{
     text-decoration: none !important;
+    color: #c2a661;
 }
 
 .forTitle input {
@@ -1904,3 +1902,7 @@ label{
     text-transform: uppercase;
 }
 
+
+.text-danger{
+    color: #F15A2A!important;
+}

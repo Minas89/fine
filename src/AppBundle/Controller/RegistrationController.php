@@ -73,12 +73,15 @@ class RegistrationController extends ContainerAware
 
             return $response;
         }
-
+        $firstPass = $form["plainPassword"]['first']->getData();
+        $secondPass = $form["plainPassword"]['second']->getData();
         if($request->isMethod(Request::METHOD_POST)){
-            $secondPass = $form["plainPassword"]['second']->getData();
+
             if(empty($secondPass)){
                 $form["plainPassword"]['second']->addError(new FormError('This is a mandatory field.'));
 
+            }elseif ($firstPass !== $secondPass){
+                $form["plainPassword"]['second']->addError(new FormError('The entered passwords don\'t match.'));
             }
         }
 

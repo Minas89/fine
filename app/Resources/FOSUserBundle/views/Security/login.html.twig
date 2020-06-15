@@ -1,9 +1,7 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block content %}
-{% if error %}
-    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
-{% endif %}
+
     {% set locale = app.request.get('_locale') %}
     <div class="row">
 
@@ -19,9 +17,16 @@
     </div>
     <div class="row">
         <div class="text-center">
-            <h2 class="module-header">
-                Please, enter your username and password to log in.
+            <h2 class="module-header mb15">
+                WELCOME
             </h2>
+        </div>
+        <div class="col-md-12 text-center">
+            <p>Please, enter your username and password to log in.</p>
+            <p>ALL FIELDS ARE MANDATORY</p>
+            {% if error %}
+                <p class="text-danger">{{ error|trans({}, 'FOSUserBundle') }}</p>
+            {% endif %}
         </div>
         <div class="col-xs-12 col-md-4 col-md-offset-4">
             <form action="{{ path("fos_user_security_check") }}" method="post" role="form" id="loginForm">
@@ -47,9 +52,9 @@
 
 
                 <div class="form-group">
-                   <button type="submit" class="btn btn-gold-white w100 btn-lg" name="_submit">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
+                   <button type="submit" class="btn btn-gold-white w100 btn-lg" name="_submit">LOG IN</button>
                     <div class="mt15">
-                        Don't have an account? <a class="grey" href="{{ path('fos_user_registration_register') }}">Sign up</a>
+                        Don't have an account? <a class="text-gold" href="{{ path('fos_user_registration_register') }}">Sign up</a>
                     </div>
                 </div>
             </form>

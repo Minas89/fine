@@ -99,7 +99,12 @@
                 {{ form_widget(form.email,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
                 <div class="errorDiv pl0">{{ form_errors(form.email) }}</div>
             </div>
-            <div class="form-group col-md-12  {{ hasErrorPhone }} has-feedback">
+
+            <div class="form-group col-md-12  {{ hasErrorPhone }} has-feedback" style="position: relative">
+                <span style="position: absolute;top: 55px; left:32px; display:none;" class="plus">
+                    <i class="fa fa-plus"></i>
+                </span>
+
                 {{ form_label(form.phone) }}<span class="mandatory">*</span>
                 {{ form_widget(form.phone,{'attr' : { 'class' : 'goldInput form-control input-lg phone', 'autocomplete' : 'off' }}) }}
                 <div class="errorDiv pl0">{{ form_errors(form.phone) }}</div>

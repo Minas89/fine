@@ -55,7 +55,7 @@ class RegistrationType extends AbstractType
                 'second_options' => array('label' => 'form.password_confirmation'),
                 'invalid_message' => 'fos_user.password.mismatch',
             ))
-            ->add('phone',TextType::class,array(
+            ->add('phone',IntegerType::class,array(
                 'attr' => [
                     'class' => 'form-control phone',
                     //"onkeypress" => "return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"

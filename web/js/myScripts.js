@@ -154,18 +154,8 @@ $('ul.nav li.dropdown').hover(function() {
 
 
 $('.phone').click(function () {
-    var phone = $('.phone').val();
-    if(phone.length === 0){
-        $(this).val("+");
-    }
-
-}).keyup(function (e) {
-    var phone = $('.phone').val();
-    if(e.keyCode == 8){
-        if(phone.length == 0){
-            $(this).val('+');
-        }
-    }
+    var plus = $('.plus');
+    plus.css('display','block')
 
 });
 

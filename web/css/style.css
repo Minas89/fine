@@ -1659,13 +1659,15 @@ input:-webkit-autofill:active {
 
 
 a.forgot{
-    color:#000;
+    text-decoration: none;
+}
+
+a:hover{
     text-decoration: none;
 }
 
 a.forgot:hover{
     text-decoration: none !important;
-    color: #c2a661;
 }
 
 .forTitle input {
@@ -1881,3 +1883,24 @@ a.forgot:hover{
 .has-feedback .form-control {
     padding-right: 22.5px;
 }
+
+.phone{
+    padding-left: 32px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+label{
+    text-transform: uppercase;
+}
+

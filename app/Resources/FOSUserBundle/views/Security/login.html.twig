@@ -38,14 +38,13 @@
                     <input type="password" id="password" name="_password" required="required"
                            class="form-control input-lg goldInput" autocomplete="new-password" />
                 </div>
+                <a href="{{ path('fos_user_resetting_request') }}" class=" pull-right forgot text-gold">Forgot password?</a><br>
 
                 <div class="form-group">
                     <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
-                    <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
-
-                        <a href="{{ path('fos_user_resetting_request') }}" class="pull-right forgot">Forgot password?</a>
-
+                    <label for="remember_me" style="text-transform: none">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
                 </div>
+
 
                 <div class="form-group">
                    <button type="submit" class="btn btn-gold-white w100 btn-lg" name="_submit">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>

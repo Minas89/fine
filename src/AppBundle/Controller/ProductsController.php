@@ -109,10 +109,14 @@ class ProductsController extends BaseController
             $cart = false;
         }
 
+        $wishes = $this->getUserWishes();
+
+
         return $this->render('AppBundle:Products:single.html.twig',array(
             'category' => $maincategory,
             'product' => $product,
-            'cart' => $cart
+            'cart' => $cart,
+            'wishes' => $wishes
         ));
     }
 

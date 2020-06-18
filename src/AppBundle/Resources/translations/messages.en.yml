@@ -25,6 +25,8 @@ product:
    ref_number: Reference Number
    in_cart: Product is in the cart
    purchase: PURCHASE
+   add_wishlist: Add to Wish List
+   remove_wishlist: Remove from Wish list
    wishlist: My Wishlist
    search_results: Search Results
    price_request: REQUEST PRICE

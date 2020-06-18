@@ -126,10 +126,21 @@
                     {% if cart[product.id] is  defined %}
                         <p>{{ "product.in_cart"|trans }}</p>
                     {% else %}
-                        <div class="buttons">
+                        <div class="buttons registerForm">
                             <a href="javascript:void(0)" onclick="addToCart({{ product.id }})" class="btn btn-gold-white btn-lg mt15">
                                 {{ "product.purchase"|trans }}
                             </a>
+                        {% if wishes is defined and product in wishes %}
+                            <a href="javascript:void(0)" onclick="removeWish({{ product.id }})" id="awish{{ product.id }}"
+                               class="btn btn-gold-white btn-lg mt15 uppercase">
+                                {{ "product.remove_wishlist"|trans }}
+                            </a>
+                            {% else %}
+                                <a href="javascript:void(0)" onclick="addWish({{ product.id }})" id="awish{{ product.id }}"
+                                   class="btn btn-gold-white btn-lg mt15 uppercase">
+                                    {{ "product.add_wishlist"|trans }}
+                                </a>
+                            {% endif %}
                         </div>
                     {% endif %}
                 {% else %}

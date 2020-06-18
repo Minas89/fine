@@ -808,16 +808,16 @@ input[type='radio']:checked:after {
 }
 
 #sortProducts {
-    height: 30px;
-    background-color: #eee;
-    padding-right: 30px;
-    cursor: hand;
+   /*// height: 30px;
+    //background-color: #eee;
+    /padding-right: 30px;
+    //cursor: hand;*/
 }
 
 #sortProducts:hover {
     background-color: #fff;
     cursor: hand;
-    color: #c2a661;
+   /* color: #c2a661;*/
 }
 
 #sortProducts option {
@@ -825,7 +825,11 @@ input[type='radio']:checked:after {
     display: block;
     white-space: pre;
     min-height: 1.2em;
-    padding: 0 2px 1px;
+    padding: 20px 2px 1px;
+}
+
+#sortProducts option:hover {
+    background-color: #B8B8B8;
 }
 
 a.forIcons {
@@ -1654,8 +1658,9 @@ input:-webkit-autofill:active {
 }
 
 .terms a:hover{
-    text-decoration: none;
+    text-decoration: none!important;
 }
+
 
 
 a.forgot{
@@ -1871,7 +1876,8 @@ a.forgot:hover{
 }
 
 .text-gold:hover{
-    color: #000;
+    color: #000!important;
+    text-decoration: none!important;
 }
 
 .registerForm input[type="radio"]:checked~input[type="radio"]::before {
@@ -1905,4 +1911,8 @@ label{
 
 .text-danger{
     color: #F15A2A!important;
+}
+
+.uppercase{
+    text-transform: uppercase!important;
 }

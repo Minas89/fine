@@ -528,7 +528,9 @@ button{
 
 .detailDiv p {
     font-size: 14px;
+    /*
     color: #888;
+    */
 }
 
 .creatorTitles {
@@ -1529,7 +1531,7 @@ a.backTo:hover {
     border-right: 1px solid #c2a661;
 }
 
-.registerForm label, .registerForm button{
+.registerForm label, .registerForm button, .registerForm a{
     text-transform: uppercase;
     font-size: 14px!important;
     padding-top: 15px;
@@ -1871,9 +1873,16 @@ a.forgot:hover{
     text-decoration: none;
 }
 
-.text-gold{
+.text-gold,.text-gold:visited,.text-gold:active,.text-gold:focus{
+    color:#a38e44;
+    text-decoration: none !important;
+}
+
+.text-gold:visited{
     color:#a38e44;
 }
+
+
 
 .text-gold:hover{
     color: #000!important;
@@ -1915,4 +1924,9 @@ label{
 
 .uppercase{
     text-transform: uppercase!important;
+}
+
+.productInfo a{
+    display: block;
+    font-size: 16px;
 }

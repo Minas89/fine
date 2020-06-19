@@ -3,6 +3,7 @@
 namespace AppBundle\Entity\Repository;
 
 use AppBundle\Entity\Categories;
+use AppBundle\Entity\Products;
 use Doctrine\ORM\EntityRepository;
 use AppBundle\Services\Util;
 /**
@@ -173,6 +174,48 @@ class ProductsRepository extends EntityRepository
             "SELECT p FROM AppBundle:Products p
                   WHERE p.category IN ($ids)"
         );
+
+        return $qb->getResult();
+    }
+
+    public function getAlsoLike(Products $products)
+    {
+        $em = $this->getEntityManager();
+
+        $category = $products->getCategory();
+
+        $qb = $em->createQuery(
+            "SELECT p FROM AppBundle:Products p
+                  WHERE p.category = :category AND p.id != :id"
+        )->setParameters([
+            'category'=> $category,
+            'id' => $products->getId()
+        ])->setMaxResults(4);
+
+        return $qb->getResult();
+    }
+
+    public function getAdditionalExamples(Products $products,$limit)
+    {
+        $em = $this->getEntityManager();
+
+        $childs = $products->getCategory()->getParent()->getChildren();
+        $ids = '';
+
+        if(count($childs)){
+            $idsArray = array();
+            foreach ($childs as $child){
+                $idsArray[] = $child->getId();
+            }
+
+            $ids = implode(',',$idsArray);
+
+        }
+
+        $qb = $em->createQuery(
+            "SELECT p FROM AppBundle:Products p
+                  WHERE p.category IN ($ids)"
+        )->setMaxResults($limit);
 
         return $qb->getResult();
     }

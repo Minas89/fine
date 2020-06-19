@@ -102,6 +102,10 @@ var addWish = function(id) {
 
                 count = count + 1;
                 $("#wishCount").html("(" + count +")").css('display','inline-block');
+                $(".singleWishAdd").attr( "onClick", "removeWish(" + id + ")" )
+                    .text('Remove from Wish list').addClass('singleWishRemove').removeClass('singleWishAdd')
+            ;
+
             }
         },"json");
 
@@ -125,7 +129,9 @@ var removeWish = function(id,from) {
                 count = count - 1;
 
                 $("#wishCount").html("(" + count +")").css('display','inline-block');
-
+                $(".singleWishRemove").text('Add to Wish List').addClass('singleWishAdd').removeClass('singleWishRemove')
+            .attr( "onClick", "addWish(" + id + ")" );
+                ;
 
 
                 if(from == "wish"){
@@ -160,3 +166,10 @@ $('.phone').click(function () {
 });
 
 
+$('.collapse').on('shown.bs.collapse', function() {
+    $(this).prev().children('span').children('i').addClass('fa-minus').removeClass('fa-plus');
+});
+
+$('.collapse').on('hidden.bs.collapse', function() {
+    $(this).prev().children('span').children('i').addClass('fa-plus').removeClass('fa-minus');
+});

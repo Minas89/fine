@@ -55,7 +55,7 @@
 {% block content %}
     {% set locale = app.request.get('_locale') %}
     <div class="row mt15 singleProductTop">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="singleProductLeft">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
@@ -87,74 +87,134 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="singleProductRight">
-                <h1>
-                    <div class="creator">
-                        {% if locale == 'en' %}
-                            {{ product.creator.titleEng }}
-                        {% endif %}
-                        {% if locale == 'ru' %}
-                            {{ product.creator.titleRus }}
-                        {% endif %}
-                        {% if locale == 'am' %}
-                            {{ product.creator.titleArm }}
-                        {% endif %}
-                    </div>
-                    <div id="DIV_3">
-                        <div id="DIV_4">
-                            {% if locale == 'en' %}
-                                {{ product.titleEng }}
-                            {% endif %}
-                            {% if locale == 'ru' %}
-                                {{ product.titleRus }}
-                            {% endif %}
-                            {% if locale == 'am' %}
-                                {{ product.titleArm }}
-                            {% endif %}
-                        </div>
-                        <div id="DIV_5">
-                            <span id="SPAN_6">{{ product.year }}</span>
-                        </div>
-                    </div>
-                </h1>
-                {% if product.price is not null %}
-                    <div class="price">
-                        <span>${{ product.price }}</span>
-                    </div>
 
+                <p>{% if locale == 'en' %}
+                    {{ product.creator.titleEng }}
+                {% endif %}
+                {% if locale == 'ru' %}
+                    {{ product.creator.titleRus }}
+                {% endif %}
+                {% if locale == 'am' %}
+                    {{ product.creator.titleArm }}
+                {% endif %}
+                </p>
+                <p>
+                    {% if locale == 'en' %}
+                        {{ product.titleEng }}
+                    {% endif %}
+                    {% if locale == 'ru' %}
+                        {{ product.titleRus }}
+                    {% endif %}
+                    {% if locale == 'am' %}
+                        {{ product.titleArm }}
+                    {% endif %}
+                </p>
+               <p> {{ product.year }}</p>
+
+
+                {% if product.price is not null %}
+                        <p>${{ product.price }}</p>
+                {% endif %}
                     {% if cart[product.id] is  defined %}
                         <p>{{ "product.in_cart"|trans }}</p>
                     {% else %}
                         <div class="buttons registerForm">
-                            <a href="javascript:void(0)" onclick="addToCart({{ product.id }})" class="btn btn-gold-white btn-lg mt15">
+                            <a href="javascript:void(0)" onclick="addToCart({{ product.id }})" class="btn btn-gold-white btn-lg mt15 w100 h46">
                                 {{ "product.purchase"|trans }}
                             </a>
                         {% if wishes is defined and product in wishes %}
                             <a href="javascript:void(0)" onclick="removeWish({{ product.id }})" id="awish{{ product.id }}"
-                               class="btn btn-gold-white btn-lg mt15 uppercase">
+                               class="btn btn-gold-white btn-lg mt15 uppercase singleWishRemove w100 h46">
                                 {{ "product.remove_wishlist"|trans }}
                             </a>
                             {% else %}
                                 <a href="javascript:void(0)" onclick="addWish({{ product.id }})" id="awish{{ product.id }}"
-                                   class="btn btn-gold-white btn-lg mt15 uppercase">
+                                   class="btn btn-gold-white btn-lg mt15 uppercase singleWishAdd w100 h46">
                                     {{ "product.add_wishlist"|trans }}
                                 </a>
                             {% endif %}
                         </div>
                     {% endif %}
-                {% else %}
+
+                {% if product.price is null %}
                     <div class="buttons">
-                        <button  data-toggle="modal" data-target="#priceRequest" class="btn btn-gold btn-lg mt15">{{ "product.price_request"|trans|upper }}</button>
+                        <button  data-toggle="modal" data-target="#priceRequest" class="btn btn-gold btn-lg mt15 h46 w100">{{ "product.price_request"|trans|upper }}</button>
                         <a href="#" class="btn btn-gold btn-lg mt15">{{ "product.contact_seller"|trans|upper }}</a>
                     </div>
+
                 {% endif %}
+
+
+                <div class="productInfo">
+                    <hr class="myhr w100">
+                    <a href="#details" class="text-gold" data-toggle="collapse">
+                        Details <span class="pull-right"><i class="fa fa-plus"></i></span></a>
+
+                    <div id="details" class="collapse pt30">
+                        <p>{{ "product.ref_number"|trans }}: {{ product.refId }}</p>
+                        {% for detail in product.details  %}
+                            <div class="detailDiv">
+
+                                {% if locale == 'en' %}
+                                    <p>{{ detail.titleEng }}: {{ detail.valueEng }}</p>
+                                {% endif %}
+                                {% if locale == 'ru' %}
+                                    <p>{{ detail.titleRus }}: {{ detail.valueRus }}</p>
+                                {% endif %}
+                                {% if locale == 'am' %}
+                                    <p>{{ detail.titleRus }}: {{ detail.valueRus }}</p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <hr class="myhr w100">
+                    <a href="#shipping" class="text-gold" data-toggle="collapse">
+                        Shipping & Returns <span class="pull-right"><i class="fa fa-plus"></i></span></a>
+
+                    <div id="shipping" class="collapse pt30">
+                        Standard Shipping <br>
+                        Delivery in 5-8 working days <br>
+                        Express Shipping
+                        Delivery in 2-4 working days
+                        Next Day Shipping
+                        Delivery guaranteed next working day
+                        Saturday Shipping
+                        Delivery guaranteed on Saturday morning
+                        Delivery times begin one business day after the order is placed. This is due to the time difference between North America and Italy, where most of our items are shipped from.
+
+                        You will receive an email containing your Tracking Number once your package has been shipped from our U.S. distribution center. Visit My Order to check the most up-to-date status of your order.
+                        Easy returns
+                        You have 20 days from delivery to follow our quick and easy return or exchange procedure. You can find more information in Returns and Refunds.
+                        We have decided to prolong the returns period to 60 days for all orders made between March 1st and June 14th, 2020, to give you more time to decide if you want to keep or return your purchases.
+                        Normal conditions of return will apply to orders made after June 15th.
+                        Please consult our Return Policy for more information.
+                    </div>
+                    <hr class="myhr w100">
+                    <a href="#about" class="text-gold" data-toggle="collapse">
+                        About <span class="pull-right"><i class="fa fa-plus"></i></span></a>
+                    <div id="about" class="collapse p30">
+                        {% if locale == 'en' %}
+                            {{ product.textEng|raw }}
+                        {% endif %}
+                        {% if locale == 'ru' %}
+                            {{ product.textRus|raw }}
+                        {% endif %}
+                        {% if locale == 'am' %}
+                            {{ product.textArm|raw }}
+                        {% endif %}
+                    </div>
+                    <hr class="myhr w100">
+
+                </div>
 
             </div>
         </div>
     </div>
+    {{ render(controller("AppBundle:Products:alsoLike",{'product':product})) }}
 
-    <div class="row productInfoDiv">
+   {# <div class="row productInfoDiv">
         <div class="col-sm-9 col-xs-12">
             <h2>{{ "product.about"|trans }}</h2>
             <h3>
@@ -182,36 +242,9 @@
             </div>
             <a class="read-more" href="javascript:readMore()">CONTINUE READING + </a>
         </div>
-        <div class="col-sm-9 col-xs-12">
-            <h2>{{ "product.details"|trans }}</h2>
-            <div class="row">
-                <div class="col-md-4 col-xs-6">
-                    <div class="detailDiv">
-                        <h4>{{ "product.ref_number"|trans }}</h4>
-                        <p>{{ product.refId }}</p>
-                    </div>
-                </div>
-                {% for detail in product.details  %}
-                    <div class="col-md-4 col-xs-6">
-                        <div class="detailDiv">
-                            {% if locale == 'en' %}
-                                <h4>{{ detail.titleEng }}</h4>
-                                <p>{{ detail.valueEng }}</p>
-                            {% endif %}
-                            {% if locale == 'ru' %}
-                                <h4>{{ detail.titleRus }}</h4>
-                                <p>{{ detail.valueRus }}</p>
-                            {% endif %}
-                            {% if locale == 'am' %}
-                                <h4>{{ detail.titleRus }}</h4>
-                                <p>{{ detail.valueRus }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+
         </div>
-    </div>
+    </div>#}
 
     {# Price Request modal #}
     <div id="priceRequest" class="modal fade" role="dialog">

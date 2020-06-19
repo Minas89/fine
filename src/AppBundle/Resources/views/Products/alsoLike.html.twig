@@ -1,0 +1,16 @@
+{% if products|length > 0 %}
+    {% set locale = app.request.get('_locale') %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center">
+                <h2 class="module-header">
+                    YOU MAY ALSO LIKE
+                </h2>
+            </div>
+
+
+            {% include "AppBundle:Products:productList.html.twig" with {'view': 'like'} %}
+        </div>
+    </div>
+
+{% endif %}

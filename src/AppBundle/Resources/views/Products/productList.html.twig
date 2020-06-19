@@ -1,10 +1,15 @@
 <div class="row">
     {% set locale = app.request.get('_locale') %}
     {% set route = app.request.get('_route') %}
+    {% if view is defined and view == 'like' %}
+        {% set class = 'col-md-3' %}
+    {% else %}
+        {% set class = 'col-md-4' %}
+    {% endif %}
     <div class="products">
         {% for product in products  %}
             {#{% if view == 'grid' %}#}
-                <div class="col-md-4">
+                <div class="{{ class }}">
                     {% set url = path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) %}
                     <div class="carouselImgDiv">
                         <a href="{{ url }}"
@@ -77,55 +82,6 @@
 
                     </div>
                 </div>
-           {# {% elseif view == 'list' %}
-                <div class="col-md-12">
-                    <div class="listOneProduct">
-                        <div class="row">
-                            <div class="col-md-4">
-                                {% set url = path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) %}
-                                <div class="carouselImgDiv">
-                                    <a href="{{ url }}"
-                                       style="background-image:url({% path product.image, 'big' %}) ">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-title-list">
-                                    <div class="product-name">
-                                        {% if locale == 'en' %}
-                                            {{ product.creator.titleEng }}<br>
-                                            {{ product.titleEng }}
-                                        {% elseif locale == 'ru' %}
-                                            {{ product.creator.titleRus }}<br>
-                                            {{ product.titleRus }}
-                                        {% elseif locale == 'am' %}
-                                            {{ product.creator.titleArm }}<br>
-                                            {{ product.titleArm }}
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                {% if product.price is not null %}
-                                    <span class="product-price">
-                                        <span class="product-price-item p0">
-                                            ${{ product.price }}
-                                        </span>
-                                    </span>
-                                {% endif %}
-
-                            </div>
-                            <div class="col-md-4">
-                                <div class="buttons text-center">
-                                    <a href="{{ path('app_single_product', {'category': product.category.slug, 'slug': product.slug}) }}"
-                                       class="btn btn-gold-white btn-lg mt15">{{ "product.viewDeatils"|trans|upper }}</a>
-                                    {% if product.price is null %}
-                                        <a href="#" class="btn btn-gold-white btn-lg mt15">{{ "product.makeOffer"|trans|upper }}</a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>#}
-          {#  {% endif %}#}
         {% endfor %}
     </div>
 </div>

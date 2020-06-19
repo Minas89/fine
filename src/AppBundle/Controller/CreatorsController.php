@@ -72,15 +72,7 @@ class CreatorsController extends BaseController
 
         //$products = $em->getRepository('AppBundle:Products')->findBy(array('creator'=> $creator),array($criteria => $order));
 
-        $wishes = array();
-        if($this->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-        {
-            $wishesObjects = $em->getRepository('AppBundle:Wishlist')->findByUser($this->getUser());
-            foreach($wishesObjects as $one)
-            {
-                $wishes[] = $one->getProduct();
-            }
-        }
+        $wishes = $this->getUserWishes();
 
         /*$products = $em->getRepository('AppBundle:Products')->findByCreator($creator);*/
 

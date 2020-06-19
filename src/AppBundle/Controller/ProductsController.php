@@ -194,4 +194,25 @@ class ProductsController extends BaseController
         ));
     }
 
+    public function alsoLikeAction(Products $product)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $products = $em->getRepository('AppBundle:Products')->getAlsoLike($product);
+
+
+        if($products){
+            // Util::dumpArray($similarProducts);
+            if(count($products) < 4){
+                $limit = 4 - count($products);
+                $additionals = $em->getRepository('AppBundle:Products')
+                    ->getAdditionalExamples($product,$limit);
+            }
+        }
+
+        return $this->render('AppBundle:Products:alsoLike.html.twig',[
+            'products' => $products
+        ]);
+    }
+
 }

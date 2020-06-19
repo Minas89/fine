@@ -1531,11 +1531,12 @@ a.backTo:hover {
     border-right: 1px solid #c2a661;
 }
 
-.registerForm label, .registerForm button, .registerForm a{
+.registerForm label, .registerForm button, .registerForm a.btn{
     text-transform: uppercase;
     font-size: 14px!important;
     padding-top: 15px;
 }
+
 
 .registerForm input{
     border-radius: 0!important;

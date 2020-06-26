@@ -61,7 +61,9 @@ class RegisterType2 extends AbstractType
                 'placeholder' => array(
                     'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
                 ),
-                //'input' => "array"
+                'constraints' => array(new NotBlank(
+                    array('message' =>'register_form.mandatory_field', )
+                )),
             ))
             ->add('gender',ChoiceType::class,array(
                 'choices' => array(

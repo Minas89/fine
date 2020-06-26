@@ -11,6 +11,9 @@
         <link rel="stylesheet" href="{{ asset('selectLib/css/bootstrap-select.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css?v=1.1.6') }}" media="all">
     {% endblock %}
+
+    {% block topJavascripts %}
+    {% endblock %}
 </head>
 <body>
 <header>
@@ -190,8 +193,8 @@
     <script>
 
     </script>
-    <script src="{{ asset('js/myScripts.js?v=1.0') }}"></script>
-    <script src="{{ asset('selectLib/js/bootstrap-select.js') }}"></script>
+    <script src="{{ asset('js/myScripts.js?v=1.2') }}"></script>
+    <script src="{{ asset('selectLib/js/bootstrap-select.min.js') }}"></script>
 {% endblock %}
 </body>
 </html>

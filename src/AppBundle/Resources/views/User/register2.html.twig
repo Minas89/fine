@@ -64,18 +64,18 @@
                          <div class="errorDiv pl0">{{ form_errors(form.lastname) }}</div>
                      </div>
 
-                      <div class="form-group col-md-12 has-feedback">
+                      <div class="form-group col-md-12 has-feedback birthdayDiv">
                            {{ form_label(form.dateOfBirth) }}<span class="mandatory">*</span>
                           <div class="row">
                               <div class="col-md-4">
-                                  {{ form_widget(form.dateOfBirth.day,{'attr':{'class':'form-control goldInput input-lg','placeholder':'aa'}}) }}
+                                  {{ form_widget(form.dateOfBirth.day,{'attr':{'class':'selectpicker form-control goldInput input-lg'}}) }}
                               </div>
                               <div class="col-md-4">
-                                  {{ form_widget(form.dateOfBirth.month,{'attr':{'class':'form-control goldInput input-lg'}}) }}
+                                  {{ form_widget(form.dateOfBirth.month,{'attr':{'class':'selectpicker form-control goldInput input-lg'}}) }}
 
                               </div>
                               <div class="col-md-4">
-                                  {{ form_widget(form.dateOfBirth.year,{'attr':{'class':'form-control goldInput input-lg'}}) }}
+                                  {{ form_widget(form.dateOfBirth.year,{'attr':{'class':'selectpicker form-control goldInput input-lg'}}) }}
                               </div>
                           </div>
                           <div class="errorDiv pl0">{{ form_errors(form.dateOfBirth) }}</div>

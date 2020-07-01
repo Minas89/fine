@@ -1873,8 +1873,9 @@ a.forgot:hover{
     background-color: transparent!important;
 }
 
-.text-black{
+.text-black,.text-black:visited,.text-black:active,.text-black:focus{
     color: #000;
+    text-decoration: none !important;
 }
 
 .text-black:hover{
@@ -1966,4 +1967,13 @@ label{
     text-decoration: none;
     background: none!important;
     outline: 0;
+}
+
+
+.px25{
+    padding: 0 25px!important;
+}
+
+.px45{
+    padding: 0 45px!important;
 }

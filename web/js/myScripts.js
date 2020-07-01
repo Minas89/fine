@@ -167,9 +167,9 @@ $('.phone').click(function () {
 
 
 $('.collapse').on('shown.bs.collapse', function() {
-    $(this).prev().children('span').children('i').addClass('fa-minus').removeClass('fa-plus');
+    $(this).prev().children('span').children('i').addClass('fa-angle-up').removeClass('fa-angle-down');
 });
 
 $('.collapse').on('hidden.bs.collapse', function() {
-    $(this).prev().children('span').children('i').addClass('fa-plus').removeClass('fa-minus');
+    $(this).prev().children('span').children('i').addClass('fa-angle-down').removeClass('fa-angle-up');
 });

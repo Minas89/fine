@@ -31,6 +31,8 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new FM\ElfinderBundle\FMElfinderBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

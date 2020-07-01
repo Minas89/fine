@@ -17,7 +17,7 @@
 </head>
 <body>
 <header>
-    <div class="container-fluid">
+    <div class="container-fluid px25">
         <div class="row">
             <div class="col-xs-12 text-center">
                 <div class="logoDiv">
@@ -110,8 +110,11 @@
 </header>
 
 <div id="content">
-    <div class="container-fluid">
+    <div class="container-fluid px25">
         {% block breadcrumbs %}{% endblock %}
+    </div>
+    <div class="container-fluid px45">
+
         {% block content %}{% endblock %}
     </div>
 </div>

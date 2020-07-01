@@ -66,11 +66,16 @@
             </div>
             <div class="pull-right sorting">
                 <form action="" method="get" class="pull-left" id="rightFilterForm">
-                    <select name="sort" class="selectpicker" id="sortProducts" onchange="this.form.submit() {#onchange="addSort(this)#}">
+                    <select name="count" class="selectpicker" id="sortProducts" onchange="this.form.submit() {#onchange="addSort(this)#}">
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                    </select>
+                   {# <select name="sort" class="selectpicker" id="sortProducts" onchange="this.form.submit()">
                         <option value="newest" {% if sort == 'newest' %}selected{% endif %}>{{ "product.newest"|trans }}</option>
                         <option value="price-high" {% if sort == 'price-high' %}selected{% endif %}>{{ "product.priceHL"|trans }}</option>
                         <option value="price-low" {% if sort == 'price-low' %}selected{% endif %}>{{ "product.priceLH"|trans }}</option>
-                    </select>
+                    </select>#}
                 </form>
                 {#<ul id="gridView" class="pull-right">
                     <li {% if view == 'grid' %} class="active"{% endif %}>
@@ -89,13 +94,13 @@
             </div>
         </div>
 
-        <div class="col-sm-3 col-md-3">
+        <div class="col-sm-4 col-md-4">
 {#
             {{ render(controller('AppBundle:Filters:index',{'category' : filterCategory, 'slug' : filterSlug, 'products': products})) }}
 #}
             {% include '@App/Filters/filters.html.twig' %}
         </div>
-        <div class="col-sm-9 col-md-9">
+        <div class="col-sm-8 col-md-8">
             {% include "AppBundle:Products:productList.html.twig" %}
         </div>
     </div>

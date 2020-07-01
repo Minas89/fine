@@ -27,7 +27,7 @@ class ProductsController extends BaseController
             throw $this->createNotFoundException('category or last');
         }
 
-        if($request->query->has('sort')){
+       /* if($request->query->has('sort')){
            $sort = $request->query->get('sort');
         }else{
            $sort = 'newest';
@@ -48,7 +48,7 @@ class ProductsController extends BaseController
                $order = 'ASC';
                break;
         }
-
+*/
 
         $lowPrice = $request->query->get('minPrice');
         $highPrice = $request->query->get('maxPrice');
@@ -76,7 +76,15 @@ class ProductsController extends BaseController
             $colorArray
         );
 
+       // dump($products);die;
 
+        $paginator = $this->get('knp_paginator');
+
+        $pagination = $paginator->paginate(
+            $products, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            3 /*limit per page*/
+        );
 
         $wishes = $this->getUserWishes();
 
@@ -85,8 +93,8 @@ class ProductsController extends BaseController
         return $this->render('AppBundle:Products:byCat.html.twig',array(
             'category' => $maincategory,
             'lastCategory' => $lastcategory,
-            'products' => $products,
-            'sort' => $sort,
+            'products' => $pagination,
+            'sort' => 'newest',
             'colors' => $colors,
             'wishes' => $wishes,
             'filterCategory' => $category,

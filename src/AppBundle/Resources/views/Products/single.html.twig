@@ -128,32 +128,50 @@
                         {{ product.titleArm }}
                     {% endif %}
                 </p>
-               <p> {{ product.year }}</p>
 
+                {% if product.year %}
+                    <p> {{ product.year }}</p>
+                {% endif %}
 
                 {% if product.price is not null %}
                         <p>${{ product.price }}</p>
                 {% endif %}
-                    {% if cart[product.id] is  defined %}
-                        <p>{{ "product.in_cart"|trans }}</p>
-                    {% else %}
-                        <div class="buttons registerForm">
-                            <a href="javascript:void(0)" onclick="addToCart({{ product.id }})" class="btn btn-gold-white btn-lg mt15 w100 h46">
-                                {{ "product.purchase"|trans }}
+
+                <div id="about">
+                    <p>
+                        {% if locale == 'en' %}
+                            {{ product.textEng|raw }}
+                        {% endif %}
+                        {% if locale == 'ru' %}
+                            {{ product.textRus|raw }}
+                        {% endif %}
+                        {% if locale == 'am' %}
+                            {{ product.textArm|raw }}
+                        {% endif %}
+                    </p>
+
+                </div>
+
+                {% if cart[product.id] is  defined %}
+                    <p>{{ "product.in_cart"|trans }}</p>
+                {% else %}
+                    <div class="buttons registerForm">
+                        <a href="javascript:void(0)" onclick="addToCart({{ product.id }})" class="btn btn-gold-white btn-lg mt15 w100 h46">
+                            {{ "product.purchase"|trans }}
+                        </a>
+                    {% if wishes is defined and product in wishes %}
+                        <a href="javascript:void(0)" onclick="removeWish({{ product.id }})" id="awish{{ product.id }}"
+                           class="btn btn-gold-white btn-lg mt15 uppercase singleWishRemove w100 h46">
+                            {{ "product.remove_wishlist"|trans }}
+                        </a>
+                        {% else %}
+                            <a href="javascript:void(0)" onclick="addWish({{ product.id }})" id="awish{{ product.id }}"
+                               class="btn btn-gold-white btn-lg mt15 uppercase singleWishAdd w100 h46">
+                                {{ "product.add_wishlist"|trans }}
                             </a>
-                        {% if wishes is defined and product in wishes %}
-                            <a href="javascript:void(0)" onclick="removeWish({{ product.id }})" id="awish{{ product.id }}"
-                               class="btn btn-gold-white btn-lg mt15 uppercase singleWishRemove w100 h46">
-                                {{ "product.remove_wishlist"|trans }}
-                            </a>
-                            {% else %}
-                                <a href="javascript:void(0)" onclick="addWish({{ product.id }})" id="awish{{ product.id }}"
-                                   class="btn btn-gold-white btn-lg mt15 uppercase singleWishAdd w100 h46">
-                                    {{ "product.add_wishlist"|trans }}
-                                </a>
-                            {% endif %}
-                        </div>
-                    {% endif %}
+                        {% endif %}
+                    </div>
+                {% endif %}
 
                 {% if product.price is null %}
                     <div class="buttons">
@@ -164,10 +182,11 @@
                 {% endif %}
 
 
+
                 <div class="productInfo">
                     <hr class="myhr w100">
-                    <a href="#details" class="text-gold" data-toggle="collapse">
-                        Details <span class="pull-right"><i class="fa fa-plus"></i></span></a>
+                    <a href="#details" class="text-black" data-toggle="collapse">
+                        Details <span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
 
                     <div id="details" class="collapse pt30">
                         <p>{{ "product.ref_number"|trans }}: {{ product.refId }}</p>
@@ -187,8 +206,8 @@
                         {% endfor %}
                     </div>
                     <hr class="myhr w100">
-                    <a href="#shipping" class="text-gold" data-toggle="collapse">
-                        Shipping & Returns <span class="pull-right"><i class="fa fa-plus"></i></span></a>
+                    <a href="#shipping" class="text-black" data-toggle="collapse">
+                        Shipping & Returns <span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
 
                     <div id="shipping" class="collapse pt30">
                         Standard Shipping <br>
@@ -209,21 +228,6 @@
                         Please consult our Return Policy for more information.
                     </div>
                     <hr class="myhr w100">
-                    <a href="#about" class="text-gold" data-toggle="collapse">
-                        About <span class="pull-right"><i class="fa fa-plus"></i></span></a>
-                    <div id="about" class="collapse pt30">
-                        {% if locale == 'en' %}
-                            {{ product.textEng|raw }}
-                        {% endif %}
-                        {% if locale == 'ru' %}
-                            {{ product.textRus|raw }}
-                        {% endif %}
-                        {% if locale == 'am' %}
-                            {{ product.textArm|raw }}
-                        {% endif %}
-                    </div>
-                    <hr class="myhr w100">
-
                 </div>
 
             </div>

@@ -42,7 +42,7 @@ class ProductsRepository extends EntityRepository
         $em = $this->getEntityManager();
 
         $qb = $this->createQueryBuilder('p');
-
+/*
         if(!is_null($creator)){
             $where = 'p.creator = :creator';
             $parametersArray = array('creator' => $creator);
@@ -78,7 +78,7 @@ class ProductsRepository extends EntityRepository
         if(!is_null($maxHeight)){
             $where .= ' AND p.height <= :maxHeight';
             $parametersArray['maxHeight'] =  $maxHeight;
-        }
+        }*/
 
         /*if(!is_null($colorArray)){
             $ids = '';
@@ -99,8 +99,8 @@ class ProductsRepository extends EntityRepository
 
 
 
-        $qb->where($where);
-        $qb->setParameters($parametersArray);
+       /* $qb->where($where);
+        $qb->setParameters($parametersArray);*/
 
         return $qb->getQuery()->getResult();
 

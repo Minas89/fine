@@ -27,82 +27,39 @@ class ProductsRepository extends EntityRepository
         return $stmt->fetchAll();
     }
 
-    public function findFiltered(
-        $category,
-        $minPrice = null,
-        $maxPrice = null,
-        $minWidth = null,
-        $maxWidth = null,
-        $minHeight = null,
-        $maxHeight = null,
-        $colorArray = null,
-        $creator = null
-    )
+    public function findFiltered(Categories $category,$criteria,$order)
     {
-        $em = $this->getEntityManager();
-
         $qb = $this->createQueryBuilder('p');
-/*
-        if(!is_null($creator)){
-            $where = 'p.creator = :creator';
-            $parametersArray = array('creator' => $creator);
-        }else{
-            $where = 'p.category = :category';
-            $parametersArray = array('category' => $category);
-        }
-        if(!is_null($minPrice)){
-            $where .= ' AND p.price >= :minPrice';
-            $parametersArray['minPrice'] =  $minPrice;
-        }
-
-        if(!is_null($maxPrice)){
-            $where .= ' AND p.price <= :maxPrice';
-            $parametersArray['maxPrice'] =  $maxPrice;
-        }
-
-        if(!is_null($minWidth)){
-            $where .= ' AND p.width >= :minWidth';
-            $parametersArray['minWidth'] =  $minWidth;
-        }
-
-        if(!is_null($maxWidth)){
-            $where .= ' AND p.width <= :maxWidth';
-            $parametersArray['maxWidth'] =  $maxWidth;
-        }
-
-        if(!is_null($minHeight)){
-            $where .= ' AND p.height >= :minHeight';
-            $parametersArray['minHeight'] =  $minHeight;
-        }
-
-        if(!is_null($maxHeight)){
-            $where .= ' AND p.height <= :maxHeight';
-            $parametersArray['maxHeight'] =  $maxHeight;
-        }*/
-
-        /*if(!is_null($colorArray)){
-            $ids = '';
-            foreach ($colorArray as $color){
-                $color = $em->getRepository('AppBundle:Colors')->findOneByTitleEng($color);
-                if(empty($ids)){
-                    $ids .= $color->getId();
+        $ids = [];
+        if(count($category->getChildren())){
+            foreach ($category->getChildren() as $child)
+            {
+                if(count($child->getChildren())){
+                    foreach ($child->getChildren() as $child){
+                        $ids[] = $child->getId();
+                    }
                 }else{
-                    $ids .= ','.$color->getId();
+                    $ids[] = $child->getId();
                 }
+
             }
+        }else{
+            $ids[] = $category->getId();
+        }
 
-            $ids = rtrim($ids,',');
+        $qb
+            ->select('p,c')
+            ->innerJoin('p.category','c')
+            ->where($qb->expr()->in('c.id',$ids))
+            ->orderBy("p.".$criteria,$order)
+            ;
 
-            $where  .= " AND p.colors IN($ids)";
-
-        }*/
-
-
-
-       /* $qb->where($where);
-        $qb->setParameters($parametersArray);*/
-
-        return $qb->getQuery()->getResult();
+        try{
+            return $qb->getQuery()->getResult();
+        }catch (\Exception $ex){
+            echo $ex->getMessage();die;
+            return false;
+        }
 
     }
 

@@ -13,24 +13,28 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class ProductsController extends BaseController
 {
-    public function byCatAction($category,$slug,Request $request)
+    public function byCatAction($category,Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $lastcategory = $em->getRepository('AppBundle:Categories')->findOneBySlug($slug);
-        $maincategory = $em->getRepository('AppBundle:Categories')->findOneBySlug($category);
+        $category = $em->getRepository('AppBundle:Categories')->findOneBySlug($category);
 
-        $colors = $em->getRepository('AppBundle:Colors')->findAll();
-
-        if(!$lastcategory or !$maincategory)
+        if(!$category)
         {
             throw $this->createNotFoundException('category or last');
         }
 
-       /* if($request->query->has('sort')){
-           $sort = $request->query->get('sort');
+        if($request->query->has('sorting')){
+           $sort = $request->query->get('sorting');
         }else{
            $sort = 'newest';
+        }
+
+
+        if($request->query->has('count')){
+            $count = $request->query->get('count');
+        }else{
+            $count = 2;
         }
 
         switch($sort) {
@@ -48,42 +52,18 @@ class ProductsController extends BaseController
                $order = 'ASC';
                break;
         }
-*/
 
-        $lowPrice = $request->query->get('minPrice');
-        $highPrice = $request->query->get('maxPrice');
-        $minWidth = $request->query->get('minWidth');
-        $maxWidth = $request->query->get('maxWidth');
-        $minHeight = $request->query->get('minHeight');
-        $maxHeight = $request->query->get('maxHeight');
-        $colorArray = array();
-        if($request->query->has('color'))
-        {
-            $color = $request->query->get('color');
-            $colorArray = explode(',',$color);
-        }else{
-            $color = null;
-        }
 
-        $products = $em->getRepository('AppBundle:Products')->findFiltered(
-            $lastcategory,
-            $lowPrice,
-            $highPrice,
-            $minWidth,
-            $maxWidth,
-            $minHeight,
-            $maxHeight,
-            $colorArray
-        );
+        $products = $em->getRepository('AppBundle:Products')->findFiltered($category,$criteria,$order);
 
-       // dump($products);die;
+        dump(count($products));
 
         $paginator = $this->get('knp_paginator');
 
         $pagination = $paginator->paginate(
             $products, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
-            3 /*limit per page*/
+            $count /*limit per page*/
         );
 
         $wishes = $this->getUserWishes();
@@ -91,14 +71,15 @@ class ProductsController extends BaseController
 
 
         return $this->render('AppBundle:Products:byCat.html.twig',array(
-            'category' => $maincategory,
-            'lastCategory' => $lastcategory,
+            'category' => $category,
+            //'lastCategory' => $lastcategory,
             'products' => $pagination,
-            'sort' => 'newest',
-            'colors' => $colors,
+            'sort' =>  $sort,
+           // 'colors' => $colors,
             'wishes' => $wishes,
             'filterCategory' => $category,
-            'filterSlug' => $slug
+            //'filterSlug' => $slug,
+            'count' => $count
         ));
 
     }

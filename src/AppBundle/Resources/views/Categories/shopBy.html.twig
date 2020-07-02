@@ -20,7 +20,7 @@
                     {% for category in categories  %}
                         <div class="item topCarousel">
                             <div class="carouselImgDiv">
-                                <a href="{{ path('app_category',{ '_locale' : locale, 'slug' : category.slug }) }}" style="background-image:url({% path category.image, 'big' %}) ">
+                                <a href="{{ path('app_products',{ 'category' : category.slug }) }}" style="background-image:url({% path category.image, 'big' %}) ">
                                     {#<img src="{% path product.image, 'big' %}" alt="">#}
                                 </a>
                             </div>
@@ -33,7 +33,7 @@
                             <div class="carouselTitleDiv">
                                 <hr>
                                 <p class="text-center">
-                                    <a href="{{ path('app_category',{ '_locale' : locale, 'slug' : category.slug }) }}">
+                                    <a href="{{ path('app_products',{ 'category' : category.slug }) }}">
                                         {% if locale == 'en' %}
                                             {{ category.titleEng }}
                                         {% endif %}

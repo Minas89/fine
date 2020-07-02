@@ -1,90 +1,41 @@
-{% extends 'AppBundle::layout.html.twig' %}
 
-{% block breadcrumbs %}
-    {% set locale = app.request.get('_locale') %}
-    <div class="row">
-        <ol class="breadcrumb" id="myBreadcrumb">
-            <li><a href="{{ path('app_homepage') }}">Home</a></li>
-            {% if category.parent %}
-                <li>
-                    <a href="{{ path('app_category', {'slug': category.parent.slug}) }}">
-                        {% if locale == 'en' %}
-                            {{ category.parent.titleEng }}
-                        {% elseif locale == 'ru' %}
-                            {{ category.parent.titleRus }}
-                        {% elseif locale == 'am' %}
-                            {{ category.parent.titleArm }}
-                        {% endif %}
-                    </a>
-                </li>
-            {% endif %}
-            <li class="active">
-                {% if locale == 'en' %}
-                    {{ category.titleEng }}
-                {% elseif locale == 'ru' %}
-                    {{ category.titleRus }}
-                {% elseif locale == 'am' %}
-                    {{ category.titleArm }}
-                {% endif %}
-            </li>
-        </ol>
-    </div>
 
-{% endblock %}
-{% block content %}
     {% set locale = app.request.get('_locale') %}
     {% if category %}
         {% if category.children|length > 0 %}
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="text-center">
-                        <h2 class="module-header">
-                            {% if locale == 'en' %}
-                                {{ category.titleEng|upper }}
-                            {% elseif locale == 'ru' %}
-                                {{ category.titleRus|upper }}
-                            {% elseif locale == 'am' %}
-                                {{ category.titleArm|upper }}
+                {% for child in category.children  %}
+                    <div class="col-md-2 col-xs-3">
+                        <div class="carouselImgDiv">
+                            {% if child.children|length > 0 %}
+                                {% set url = path('app_products', {'category': child.slug}) %}
+                            {% else %}
+                                {% set url = path('app_products', {'category': category.slug}) %}
                             {% endif %}
-                        </h2>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="row">
-                        {% for child in category.children  %}
-                            <div class="col-md-3 col-xs-6">
-                                <div class="carouselImgDiv">
-                                    {% if child.children|length > 0 %}
-                                        {% set url = path('app_category', {'slug': child.slug}) %}
-                                    {% else %}
-                                        {% set url = path('app_products', {'category': category.slug, 'slug': child.slug}) %}
-                                    {% endif %}
-                                    <a href="{{ url }}" style="background-image:url({% path child.image, 'big' %})"></a>
-                                </div>
+                            <a href="{{ url }}" style="background-image:url({% path child.image, 'big' %})"></a>
+                        </div>
 
-                                <div class="carouselTitleDiv">
-                                    <hr class="myHR">
-                                    <p class="text-center">
-                                        <a href="{{ url }}">
-                                            {% if locale == 'en' %}
-                                                {{ child.titleEng }}
-                                            {% endif %}
-                                            {% if locale == 'ru' %}
-                                                {{ child.titleRus }}
-                                            {% endif %}
-                                            {% if locale == 'am' %}
-                                                {{ child.titleArm }}
-                                            {% endif %}
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        {% endfor %}
+                        <div class="carouselTitleDiv">
+                            <hr class="myHR">
+                            <p class="text-center">
+                                <a href="{{ url }}">
+                                    {% if locale == 'en' %}
+                                        {{ child.titleEng }}
+                                    {% endif %}
+                                    {% if locale == 'ru' %}
+                                        {{ child.titleRus }}
+                                    {% endif %}
+                                    {% if locale == 'am' %}
+                                        {{ child.titleArm }}
+                                    {% endif %}
+                                </a>
+                            </p>
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
         {% endif %}
 
     {% endif %}
 
-{% endblock %}
+

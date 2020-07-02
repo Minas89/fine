@@ -8,13 +8,13 @@ use AppBundle\Entity\Titles;
 
 class CategoriesController extends BaseController
 {
-    public function catByCatAction($slug)
+    public function catByCatAction($category)
     {
         $em = $this->getDoctrine()->getManager();
 
         $catRepository = $em->getRepository('AppBundle:Categories');
 
-        $category = $catRepository->findOneBySlug($slug);
+       // $category = $catRepository->findOneBySlug($slug);
         if(!$category)
         {
             throw $this->createNotFoundException('category');

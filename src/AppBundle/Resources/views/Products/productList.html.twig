@@ -7,6 +7,31 @@
         {% set class = 'col-md-4' %}
     {% endif %}
     <div class="products">
+        <div class="col-md-12">
+            <div class="pull-right sorting">
+                <form action="" method="get" class="pull-left" id="rightFilterForm">
+
+                    {% if sort is defined %}
+                        <select name="sorted" class="selectpicker" id="sortProducts" onchange="this.form.submit()">
+                            <option value="newest" {% if sort == 'newest' %}selected{% endif %}>{{ "product.newest"|trans }}</option>
+                            <option value="price-high" {% if sort == 'price-high' %}selected{% endif %}>{{ "product.priceHL"|trans }}</option>
+                            <option value="price-low" {% if sort == 'price-low' %}selected{% endif %}>{{ "product.priceLH"|trans }}</option>
+                        </select>
+                    {% endif %}
+
+                    {% if count is defined %}
+                        <select name="count" class="selectpicker" id="sortProducts" onchange="this.form.submit()">
+                            <option value="2" {% if count == 2 %}selected{% endif %}>2 per page</option>
+                            <option value="4" {% if count == 4 %}selected{% endif %}>4 per page</option>
+                            <option value="6" {% if count == 6 %}selected{% endif %}>6 per page</option>
+                        </select>
+                    {% endif %}
+
+                </form>
+
+
+            </div>
+        </div>
         {% for product in products  %}
             {#{% if view == 'grid' %}#}
                 <div class="{{ class }}">
@@ -83,8 +108,10 @@
                     </div>
                 </div>
         {% endfor %}
-        <div class="navigation">
-            {{ knp_pagination_render(products) }}
-        </div>
     </div>
+    {% if route == 'app_products' %}
+    <div class="col-sm-12 tac">
+        {{ knp_pagination_render(products) }}
+    </div>
+    {% endif %}
 </div>

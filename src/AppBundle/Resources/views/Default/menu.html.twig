@@ -21,7 +21,7 @@
                     {% endif %}
                     {% if locale == 'en' %}
                         <li class="{{ class }}">
-                            <a href="{{ path('app_category', {'slug': category.slug}) }}" class="dropdown-toggle">{{ category.titleEng }}</a>
+                            <a href="{{ path('app_products', {'category': category.slug}) }}" class="dropdown-toggle">{{ category.titleEng }}</a>
                             {% if class ==  'dropdown' %}
                                 <div class="row dropdown-menu w320">
                                     <div style="padding: 10px 0">
@@ -31,9 +31,9 @@
                                             </div>
                                             <ul id="catMenu">
                                                 <li><a href="{{ path('app_new_products', {'slug': category.slug}) }}">{{ "menu.new"|trans }} {{ category.titleEng }}</a></li>
-                                                <li><a href="{{ path('app_category', {'slug': category.slug}) }}">{{ "menu.all"|trans }} {{ category.titleEng }}</a></li>
+                                                <li><a href="{{ path('app_products', {'category': category.slug}) }}">{{ "menu.all"|trans }} {{ category.titleEng }}</a></li>
                                                 {% for child in category.children  %}
-                                                    <li><a href="{{ path('app_category', {'slug': child.slug }) }}">{{ child.titleEng }}</a></li>
+                                                    <li><a href="{{ path('app_products', {'category': child.slug }) }}">{{ child.titleEng }}</a></li>
                                                 {% endfor %}
                                             </ul>
                                         </div>

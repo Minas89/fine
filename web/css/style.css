@@ -1642,6 +1642,7 @@ input:-webkit-autofill:active {
 
 .lagunageUl li a{
     color: #000;
+    text-decoration: none !important;
 }
 
 .lagunageUl li.active a{
@@ -1977,3 +1978,30 @@ label{
 .px45{
     padding: 0 45px!important;
 }
+
+.pagination{
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.pagination li.active span{
+    background: #f3f3f3!important;
+    border: 1px solid #ccc!important;
+}
+
+.pagination li a, .pagination li span{
+    margin-right: 10px;
+    margin-left: 10px;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    color: #222!important;
+    text-align: center;
+    min-width: 40px;
+}
+
+.tac{
+    text-align: center!important;
+}
+

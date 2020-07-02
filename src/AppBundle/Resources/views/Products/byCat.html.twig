@@ -7,7 +7,7 @@
             <li><a href="{{ path('app_homepage') }}">Home</a></li>
             {% if category.parent %}
                 <li>
-                    <a href="{{ path('app_category', {'slug': category.parent.slug}) }}">
+                    <a href="{{ path('app_products', {'category': category.parent.slug}) }}">
                         {% if locale == 'en' %}
                             {{ category.parent.titleEng }}
                         {% elseif locale == 'ru' %}
@@ -18,8 +18,8 @@
                     </a>
                 </li>
             {% endif %}
-            <li>
-                <a href="{{ path('app_category', {'slug': category.slug}) }}">
+           {# <li>
+                <a href="{{ path('app_products', {'category': category.slug}) }}">
                     {% if locale == 'en' %}
                         {{ category.titleEng }}
                     {% elseif locale == 'ru' %}
@@ -28,14 +28,14 @@
                         {{ category.titleArm }}
                     {% endif %}
                 </a>
-            </li>
+            </li>#}
             <li class="active">
                 {% if locale == 'en' %}
-                    {{ lastCategory.titleEng }}
+                    {{ category.titleEng }}
                 {% elseif locale == 'ru' %}
-                    {{ lastCategory.titleRus }}
+                    {{ category.titleRus }}
                 {% elseif locale == 'am' %}
-                    {{ lastCategory.titleArm }}
+                    {{ category.titleArm }}
                 {% endif %}
             </li>
         </ol>
@@ -45,53 +45,21 @@
 
 {% block content %}
     {% set locale = app.request.get('_locale') %}
-    {% if app.request.cookies.get('view') %}
-        {% set view = app.request.cookies.get('view')  %}
-    {% else %}
-        {% set view = 'grid' %}
-    {% endif %}
-    {#{% set sort =  app.request.query.get("sort") %}#}
+    {{ render(controller("AppBundle:Categories:catByCat",{'category': category})) }}
     <div class="row">
         <div class="col-xs-12">
             <div class="text-center">
                 <h2 class="module-header">
                     {% if locale == 'en' %}
-                        {{ lastCategory.titleEng }}
+                        {{ category.titleEng }}
                     {% elseif locale == 'ru' %}
-                        {{ lastCategory.titleRus }}
+                        {{ category.titleRus }}
                     {% elseif locale == 'am' %}
-                        {{ lastCategory.titleArm }}
+                        {{ category.titleArm }}
                     {% endif %}
                 </h2>
             </div>
-            <div class="pull-right sorting">
-                <form action="" method="get" class="pull-left" id="rightFilterForm">
-                    <select name="count" class="selectpicker" id="sortProducts" onchange="this.form.submit() {#onchange="addSort(this)#}">
-                        <option value="2">2</option>
-                        <option value="4">4</option>
-                        <option value="6">6</option>
-                    </select>
-                   {# <select name="sort" class="selectpicker" id="sortProducts" onchange="this.form.submit()">
-                        <option value="newest" {% if sort == 'newest' %}selected{% endif %}>{{ "product.newest"|trans }}</option>
-                        <option value="price-high" {% if sort == 'price-high' %}selected{% endif %}>{{ "product.priceHL"|trans }}</option>
-                        <option value="price-low" {% if sort == 'price-low' %}selected{% endif %}>{{ "product.priceLH"|trans }}</option>
-                    </select>#}
-                </form>
-                {#<ul id="gridView" class="pull-right">
-                    <li {% if view == 'grid' %} class="active"{% endif %}>
-                        <a href="javascript:void(0)" class="forIcons" onClick="SetCookie('view','grid','1')">
-                            <i class="fa fa-th-large" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li {% if view == 'list' %} class="active"{% endif %}>
-                        <a href="javascript:void(0)" class="forIcons" onClick="SetCookie('view','list','1')">
-                            <i class="fa fa-bars" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                </ul>#}
 
-
-            </div>
         </div>
 
         <div class="col-sm-4 col-md-4">

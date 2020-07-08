@@ -960,7 +960,7 @@ h2.accountInfo {
     background: #fff;
     /*border: 1px solid #ccc;*/
     min-height: 200px;
-    padding: 30px 20px;
+    /*padding: 30px 20px;*/
 }
 
 /*#filtersDiv:hover{
@@ -2005,3 +2005,6 @@ label{
     text-align: center!important;
 }
 
+.mb30{
+    margin-bottom: 30px !important;
+}

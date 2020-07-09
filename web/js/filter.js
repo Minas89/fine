@@ -9,7 +9,7 @@ $(document).ready(function () {
         var icon = accordion.find('span > i');
 
         icon.toggleClass('fa-angle-down');
-        icon.toggleClass('fa-angle-right');
+        icon.toggleClass('fa-angle-up');
         // toggle accordion link open class
         accordion.toggleClass("open");
         // toggle accordion content
@@ -17,70 +17,92 @@ $(document).ready(function () {
     });
 });
 
-function addColorFilter(color){
-    var url = document.URL;
+$(document).on('click','.filterValue',function () {
+    var a = $(this);
+    var filterName = a.attr('name');
+    var id = a.attr('data-id');
+    removeFilterValue(filterName,id);
 
-    /*window.location.href = url;
-     return false;*/
-    var urlParams = new URLSearchParams(window.location.search);
+    return true;
+});
 
-    if(urlParams.has('color')){
-        url += ',' + color;
-        $('#color'+color).css("border","2px solid #000");
-    }else{
-        if (url.indexOf('?') > -1){
-            url += '&color='+ color
-        }else{
-            url += '?color=' + color
+$(document).ready(function(){
+    $('.addFilterValue').click(function () {
+        var filterName = $(this).attr("name");
+        var filterValue = $(this).val();
+        var locale = $(this).attr('data-locale');
+        var tagName = $(this).prop("tagName");
+
+        switch (tagName){
+            case "INPUT":
+                if($(this).is(':checked')){
+                    if(!$(this).hasClass("sizeType")){
+                        addFilterValue(filterName, filterValue,locale);
+                    }else {
+                        var key = $(this).attr('data-id');
+                        removeFilterValue(filterName,key);
+                    }
+                }else{
+                    var key = $(this).attr('data-id');
+                    if(!$(this).hasClass("sizeType")){
+                        removeFilterValue(filterName,key);
+                    }else {
+                        addFilterValue(filterName, filterValue,locale);
+                    }
+
+                }
+                break;
+            case "A":
+
+                filterValue = $(this).attr('data-id');
+                var attr = $(this).attr('style');
+                var key = $(this).attr('data-id');
+
+                if(filterName === "amount"){
+                    filterValue = $('#amount').val();
+                }
+
+                if (typeof attr !== typeof undefined && attr !== false) {
+                    // alert('aa');return false;
+                    removeFilterValue(filterName,key);
+                }else{
+                    //alert('ab');return false;
+                    addFilterValue(filterName, filterValue,locale);
+                }
+
+                break;
         }
-    }
-    window.location.href = url;
+    });
+
+
+
+
+
+
+
+    })
+});
+
+
+
+function addFilterValue(filterName, filterValue,locale) {
+    $.post("/api/addFilter",{ filterName : filterName, filterValue : filterValue, locale: locale },function (res) {
+        if(res.code == 101){
+            location.reload();
+            return true;
+        }
+    },"json");
+
     return false;
 }
 
-$(".filter_button").click(function(){
-    var minPrice = $('#minPrice').val();
-    var maxPrice = $('#maxPrice').val();
-    var minWidth = $('#minWidth').val();
-    var maxWidth = $('#maxWidth').val();
-    var minHeight = $('#minHeight').val();
-    var maxHeight = $('#maxHeight').val();
+function removeFilterValue(filterName, key) {
+    $.post("/api/removeFilter",{ filterName : filterName, key: key },function (res) {
+        if(res.code == 101){
+            location.reload();
+            return true;
+        }
+    },"json");
 
-    var l = '?';
-
-    if(minPrice){
-        l = l + "minPrice=" + minPrice;
-    }
-
-    if(maxPrice){
-        l = l + "&maxPrice=" + maxPrice;
-    }
-
-    if(minWidth){
-        l = l + "&minWidth=" + minWidth;
-    }
-
-    if(maxWidth){
-        l = l + "&maxWidth=" + maxWidth;
-    }
-
-    if(minHeight){
-        l = l + "&minHeight=" + minHeight;
-    }
-
-    if(maxHeight){
-        l = l + "&maxHeight=" + maxHeight;
-    }
-
-    window.document.location = l;
-});
-
-function addSort(selectObject){
-    var value = selectObject.value;
-
-    var url = document.URL;
-
-    url = url + "&sort=" + value;
-
-    window.document.location = url;
+    return false;
 }

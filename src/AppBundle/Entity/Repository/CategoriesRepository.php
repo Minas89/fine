@@ -23,6 +23,30 @@ class CategoriesRepository extends EntityRepository
             return $qb->getResult();
         }catch (EntityNotFoundException $e){
             error_log($e->getMessage());
+            return false;
+        }
+    }
+
+    public function getForFilter($category,$products)
+    {
+        $list = [];
+        if($products){
+            foreach ($products as $product){
+                $list[] = $product->getId();
+            }
+        }
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb
+            ->select('c')
+            ->from('AppBundle:Categories','c')
+            ->innerJoin('c.products','p')
+            ->where($qb->expr()->in('p.id',$list));
+
+        try{
+            return $qb->getQuery()->getResult();
+        }catch (\Exception $ex){
+            echo $ex->getMessage();die;
+            return false;
         }
     }
 }

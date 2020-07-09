@@ -56,7 +56,6 @@ class ProductsController extends BaseController
 
         $products = $em->getRepository('AppBundle:Products')->findFiltered($category,$criteria,$order);
 
-        dump(count($products));
 
         $paginator = $this->get('knp_paginator');
 
@@ -74,6 +73,7 @@ class ProductsController extends BaseController
             'category' => $category,
             //'lastCategory' => $lastcategory,
             'products' => $pagination,
+            'productsList' => $products,
             'sort' =>  $sort,
            // 'colors' => $colors,
             'wishes' => $wishes,

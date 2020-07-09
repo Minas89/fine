@@ -17,10 +17,10 @@
                     </h2>
                 </div>
                 <div class="shopBy owl-carousel owl-theme">
-                    {% for category in categories  %}
+                    {% for categorObj in categories  %}
                         <div class="item topCarousel">
                             <div class="carouselImgDiv">
-                                <a href="{{ path('app_products',{ 'category' : category.slug }) }}" style="background-image:url({% path category.image, 'big' %}) ">
+                                <a href="{{ path('app_products',{ 'category' : categorObj.slug }) }}" style="background-image:url({% path category.image, 'big' %}) ">
                                     {#<img src="{% path product.image, 'big' %}" alt="">#}
                                 </a>
                             </div>
@@ -33,15 +33,15 @@
                             <div class="carouselTitleDiv">
                                 <hr>
                                 <p class="text-center">
-                                    <a href="{{ path('app_products',{ 'category' : category.slug }) }}">
+                                    <a href="{{ path('app_products',{ 'category' : categorObj.slug }) }}">
                                         {% if locale == 'en' %}
-                                            {{ category.titleEng }}
+                                            {{ categorObj.titleEng }}
                                         {% endif %}
                                         {% if locale == 'ru' %}
-                                            {{ category.titleRus }}
+                                            {{ categorObj.titleRus }}
                                         {% endif %}
                                         {% if locale == 'am' %}
-                                            {{ category.titleArm }}
+                                            {{ categorObj.titleArm }}
                                         {% endif %}
                                     </a>
                                 </p>

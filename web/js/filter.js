@@ -73,14 +73,6 @@ $(document).ready(function(){
                 break;
         }
     });
-
-
-
-
-
-
-
-    })
 });
 
 

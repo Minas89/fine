@@ -489,7 +489,7 @@ button{
 .btn-gold-white {
     background-color: #fff;
     border: 1px solid #c2a661 !important;
-    color: #000;
+    color: #c0a16b;
     width: 80%;
     border-radius: 0 !important;
     font-weight: bold!important;
@@ -995,6 +995,10 @@ a.filterLabel, a.filterLabel:hover, a.filterLabel:link {
 .accordion-container {
     border-bottom: 1px solid #ddd;
     padding-bottom: 15px;
+}
+
+.accordion-content{
+    margin-top: 15px;
 }
 
 a.filterLabel span {
@@ -2007,4 +2011,13 @@ label{
 
 .mb30{
     margin-bottom: 30px !important;
+}
+
+.m0{
+    margin: 0 !important;
+}
+
+.mx0{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }

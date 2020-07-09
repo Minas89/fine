@@ -24,6 +24,7 @@ class FilterController extends BaseController
         $em = $this->getDoctrine()->getManager();
         $productsRepo = $this->getDoctrine()->getRepository('AppBundle:Products');
         $catsRepo = $this->getDoctrine()->getRepository('AppBundle:Categories');
+        $colors = $em->getRepository("AppBundle:Colors")->findAll();
 
         $categories = $catsRepo->getForFilter($category,$products);
         //dump($categories);
@@ -31,6 +32,7 @@ class FilterController extends BaseController
         $viewArray = [];
         $viewArray['products'] = $products;
         $viewArray['categories'] = $categories;
+        $viewArray['colors'] = $colors;
 
         return $this->render('AppBundle:Filters:filters.html.twig',$viewArray);
     }

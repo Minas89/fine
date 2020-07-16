@@ -20,8 +20,8 @@ class DefaultController extends BaseController
     public function changeCurrencyAction(Request $request)
     {
         $currency = $request->request->get('currency');
-        setcookie('fineCurrency',$currency,time() + ( 2 * 365 * 24 * 60 * 60));
+        setcookie('fineCurrency',$currency,time() + ( 2 * 365 * 24 * 60 * 60),'/');
 
-        return new JsonResponse(['code' => 101]);
+        return $this->redirectToReferer();
     }
 }

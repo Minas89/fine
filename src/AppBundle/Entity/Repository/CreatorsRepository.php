@@ -12,4 +12,27 @@ use Doctrine\ORM\EntityRepository;
  */
 class CreatorsRepository extends EntityRepository
 {
+    public function getForFilter($products)
+    {
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb
+            ->select('c')
+            ->from('AppBundle:Creators','c')
+            ->innerJoin('c.products','p');
+        $list = [];
+        if($products){
+            foreach ($products as $product){
+                $list[] = $product->getId();
+            }
+            $qb->where($qb->expr()->in('p.id',$list));
+
+        }
+        try{
+            return $qb->getQuery()->getResult();
+        }catch (\Exception $ex){
+            echo $ex->getMessage();die;
+            return false;
+        }
+    }
 }

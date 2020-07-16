@@ -74,6 +74,11 @@ class Products extends AbstractEntity
      */
     protected $refId;
 
+    /**
+     * @ORM\Column(type="float", name="sale_percent", nullable=true)
+     */
+    protected $salePercent;
+
 
     /**
      * Many Products have Many Colors.
@@ -94,6 +99,16 @@ class Products extends AbstractEntity
      * @ORM\Column(type="integer", name="height", nullable=true)
      */
     protected $height;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Style", inversedBy="products")
+     */
+    protected $style;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Shipping", inversedBy="products")
+     */
+    protected $shipping;
 
     /**
      * Set gallery
@@ -479,5 +494,74 @@ class Products extends AbstractEntity
     public function getHeight()
     {
         return $this->height;
+    }
+
+    /**
+     * Set salePercent
+     *
+     * @param float $salePercent
+     * @return Products
+     */
+    public function setSalePercent($salePercent)
+    {
+        $this->salePercent = $salePercent;
+
+        return $this;
+    }
+
+    /**
+     * Get salePercent
+     *
+     * @return float 
+     */
+    public function getSalePercent()
+    {
+        return $this->salePercent;
+    }
+
+    /**
+     * Set style
+     *
+     * @param \AppBundle\Entity\Style $style
+     * @return Products
+     */
+    public function setStyle(\AppBundle\Entity\Style $style = null)
+    {
+        $this->style = $style;
+
+        return $this;
+    }
+
+    /**
+     * Get style
+     *
+     * @return \AppBundle\Entity\Style 
+     */
+    public function getStyle()
+    {
+        return $this->style;
+    }
+
+    /**
+     * Set shipping
+     *
+     * @param \AppBundle\Entity\Shipping $shipping
+     * @return Products
+     */
+    public function setShipping(\AppBundle\Entity\Shipping $shipping = null)
+    {
+        $this->shipping = $shipping;
+
+        return $this;
+    }
+
+    /**
+     * Get shipping
+     *
+     * @return \AppBundle\Entity\Shipping 
+     */
+    public function getShipping()
+    {
+        return $this->shipping;
     }
 }

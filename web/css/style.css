@@ -489,7 +489,7 @@ button{
 .btn-gold-white {
     background-color: #fff;
     border: 1px solid #c2a661 !important;
-    color: #c0a16b;
+    color: #c0a16b!important;
     width: 80%;
     border-radius: 0 !important;
     font-weight: bold!important;
@@ -2025,3 +2025,19 @@ label{
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
+
+
+#filtersDiv input[type="checkbox"]{
+    margin-top: 3px;
+    margin-right: 5px;
+}
+
+#filtersDiv label{
+    font-size: 14px;
+}
+
+#filtersDiv .goldInput{
+    font-size: 16px;
+}
+
+

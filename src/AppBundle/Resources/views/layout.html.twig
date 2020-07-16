@@ -70,10 +70,9 @@
                     {% set Rus =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'ru'}) ) %}
                     {% set Eng =  path( app.request.get('_route'),app.request.get('_route_params')|merge({'_locale' : 'en'}) ) %}
 
-                    <select name="currency" id="currency" class="selectpicker">
-                        <option value="USD" selected>USD</option>
-                        <option value="AMD">AMD</option>
-                    </select>
+                    {{ render(controller('AppBundle:Default:changeCurrency')) }}
+
+
 
                     <ul class="lagunageUl">
                         <li><a href="{{ Eng }}">EN</a></li>

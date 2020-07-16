@@ -1,5 +1,5 @@
 {% set locale = app.request.get("_locale") %}
-<div id="filtersDiv pl30">
+<div id="filtersDiv" class="pl30">
     <div class="filterHeader">
         <p class="uppercase mb30">Filter within {{ products|length }} results</p>
     </div>
@@ -55,6 +55,14 @@
                             </button>
                         </a>
                     </div>
+                    <div class="col-xs-12 p0">
+                        <hr class="myHR w100">
+                        <label>
+                            <input type="checkbox" name="onSale" id="onSale">
+                            ON SALE
+                        </label>
+                    </div>
+
                 </div>
             </div>
 
@@ -134,6 +142,108 @@
                                         <a href="javascript:void(0)" id="color{{ color.id }}" title="{{ color.titleArm }}" class="oneColor"
                                            style="background-color: {{ color.color }};" onclick="addColorFilter('{{ color.titleEng }}')"></a>
                                     {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if creators is defined and creators|length > 0 %}
+                <div class="accordion-container">
+                    <a href="#" class="accordion-toggle filterLabel">CREATORS
+                        <span class="pull-right arrow">
+                        <i class="fa fa-angle-up fa-2x"></i>
+                    </span>
+                    </a>
+                    <div class="accordion-content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                {% for creator in creators  %}
+                                    <p class="mb0">
+                                        <label class="control-label">
+                                            {#  {% if filterGenders is defined and genderObj.id in filterGenders|keys  %}
+                                                  <input type="checkbox" name="genders" data-id="{{ genderObj.id }}" data-locale="{{ locale }}" value="{{ genderObj.id }}" class="addFilterValue" checked /><i></i>
+                                              {% else %}#}
+                                            <input type="checkbox" name="creators" data-id="{{ creator.id }}" value="{{ creator.id }}" class="addFilterValue"/>
+                                            {# {% endif %}#}
+                                            {% if locale == "en" %}
+                                                {{ creator.titleEng }}
+                                            {% elseif locale == "am" %}
+                                                {{ creator.titleArm }}
+                                            {% endif %}
+                                            {# ({{ gender.count }})#}
+                                        </label>
+                                    </p>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if styles is defined and styles|length > 0 %}
+                <div class="accordion-container">
+                    <a href="#" class="accordion-toggle filterLabel">STYLES
+                        <span class="pull-right arrow">
+                        <i class="fa fa-angle-up fa-2x"></i>
+                    </span>
+                    </a>
+                    <div class="accordion-content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                {% for style in styles  %}
+
+                                    <p class="mb0">
+                                        <label class="control-label">
+                                            {#  {% if filterGenders is defined and genderObj.id in filterGenders|keys  %}
+                                                  <input type="checkbox" name="genders" data-id="{{ genderObj.id }}" data-locale="{{ locale }}" value="{{ genderObj.id }}" class="addFilterValue" checked /><i></i>
+                                              {% else %}#}
+                                            <input type="checkbox" name="creators" data-id="{{ style.id }}" value="{{ style.id }}" class="addFilterValue"/>
+                                            {# {% endif %}#}
+                                            {% if locale == "en" %}
+                                                {{ style.titleEng }}
+                                            {% elseif locale == "am" %}
+                                                {{ style.titleArm }}
+                                            {% endif %}
+                                            {# ({{ gender.count }})#}
+                                        </label>
+                                    </p>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if shippings is defined and shippings|length > 0 %}
+                <div class="accordion-container">
+                    <a href="#" class="accordion-toggle filterLabel">SHIPPING OPTIONS
+                        <span class="pull-right arrow">
+                        <i class="fa fa-angle-up fa-2x"></i>
+                    </span>
+                    </a>
+                    <div class="accordion-content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                {% for shipping in shippings  %}
+
+                                    <p class="mb0">
+                                        <label class="control-label">
+                                            {#  {% if filterGenders is defined and genderObj.id in filterGenders|keys  %}
+                                                  <input type="checkbox" name="genders" data-id="{{ genderObj.id }}" data-locale="{{ locale }}" value="{{ genderObj.id }}" class="addFilterValue" checked /><i></i>
+                                              {% else %}#}
+                                            <input type="checkbox" name="creators" data-id="{{ shipping.id }}" value="{{ shipping.id }}" class="addFilterValue"/>
+                                            {# {% endif %}#}
+                                            {% if locale == "en" %}
+                                                {{ shipping.titleEng }}
+                                            {% elseif locale == "am" %}
+                                                {{ shipping.titleArm }}
+                                            {% endif %}
+                                            {# ({{ gender.count }})#}
+                                        </label>
+                                    </p>
+
                                 {% endfor %}
                             </div>
                         </div>

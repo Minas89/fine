@@ -7,9 +7,8 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
-class ProductsAdmin extends AbstractAdmin
+class StyleAdmin extends AbstractAdmin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -17,15 +16,18 @@ class ProductsAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('id')
             ->add('titleArm')
             ->add('titleRus')
             ->add('titleEng')
+            ->add('textArm')
+            ->add('textRus')
+            ->add('textEng')
             ->add('slug')
             ->add('position')
-            ->add('price')
-            ->add('new')
-            ->add('top')
-            ->add('sale')
+            ->add('metaKeywords')
+            ->add('metaDescription')
+            ->add('created')
         ;
     }
 
@@ -39,22 +41,14 @@ class ProductsAdmin extends AbstractAdmin
             ->add('titleArm')
             ->add('titleRus')
             ->add('titleEng')
+            ->add('textArm')
+            ->add('textRus')
+            ->add('textEng')
             ->add('slug')
-            ->add('top',null,array(
-                'editable' => true
-            ))
-            ->add('sale',null,array(
-                'editable' => true
-            ))
-            ->add('new',null,array(
-                'editable' => true
-            ))
-            ->add('position',null,array(
-                'editable' => true
-            ))
-            ->add('price',null,array(
-                'editable' => true
-            ))
+            ->add('position')
+            ->add('metaKeywords')
+            ->add('metaDescription')
+            ->add('created')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -71,44 +65,12 @@ class ProductsAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('category')
-            ->add('creator')
             ->add('titleArm')
             ->add('titleRus')
             ->add('titleEng')
-            ->add('textArm',CKEditorType::class)
-            ->add('textRus',CKEditorType::class)
-            ->add('textEng',CKEditorType::class)
-            ->add('year')
-            ->add('price')
             ->add('slug')
             ->add('position')
-            ->add('new')
-            ->add('top')
-            ->add('sale')
-            ->add('salePercent')
-            ->add('width')
-            ->add('height')
-            ->add('details','sonata_type_collection',
-                array('by_reference' => false),
-                array('edit' => 'inline',
-                    'inline' => 'table',
-                    'sortable'  => 'position',
-                )
-            )
-            ->add('colors')
-            ->add('image','sonata_type_model_list',array(),array(
-                'link_parameters' => array(
-                    'context' => 'products'
-                )
-            ))
-            ->add('gallery','sonata_type_model_list',array(),array(
-                'link_parameters' => array(
-                    'context' => 'productsGallery'
-                )
-            ))
-            ->add('metaKeywords')
-            ->add('metaDescription')
+
         ;
     }
 
@@ -126,13 +88,10 @@ class ProductsAdmin extends AbstractAdmin
             ->add('textRus')
             ->add('textEng')
             ->add('slug')
-            ->add('new')
-            ->add('top')
-            ->add('sale')
-            ->add('price')
             ->add('position')
             ->add('metaKeywords')
             ->add('metaDescription')
+            ->add('created')
         ;
     }
 }

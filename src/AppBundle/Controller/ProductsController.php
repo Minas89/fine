@@ -34,7 +34,7 @@ class ProductsController extends BaseController
         if($request->query->has('count')){
             $count = $request->query->get('count');
         }else{
-            $count = 2;
+            $count = 50;
         }
 
         switch($sort) {

@@ -1,3 +1,14 @@
 change_currency:
   path: /changeCurrency
-  defaults: { _controller: AppBundle:REST\Default:changeCurrency }
+  defaults: { _controller: AppBundle:Default:changeCurrency }
+
+
+
+add_filter:
+  path: /addFilter
+  defaults: { _controller: AppBundle:Filter:addFilter}
+
+
+remove_filter:
+  path: /removeFilter
+  defaults: { _controller: AppBundle:Filter:removeFilter}

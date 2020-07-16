@@ -21,9 +21,9 @@
 
                     {% if count is defined %}
                         <select name="count" class="selectpicker" id="countProducts" onchange="this.form.submit()">
-                            <option value="2" {% if count == 2 %}selected{% endif %}>2 per page</option>
-                            <option value="4" {% if count == 4 %}selected{% endif %}>4 per page</option>
-                            <option value="6" {% if count == 6 %}selected{% endif %}>6 per page</option>
+                            <option value="2" {% if count == 50 %}selected{% endif %}>50 per page</option>
+                            <option value="4" {% if count == 100 %}selected{% endif %}>100 per page</option>
+                            <option value="6" {% if count == 150 %}selected{% endif %}>150 per page</option>
                         </select>
                     {% endif %}
 
@@ -74,7 +74,12 @@
                         {% if product.price is not null %}
 
                             <span class="product-price-item">
-                                ${{ product.price }}
+                                {% if product.sale %}
+                                    {% set minusSum = product.price * product.salePercent/100|round %}
+                                    ${{ product.price - minusSum }} Sale Price | {{ product.salePercent }}%
+                                {% else %}
+                                    ${{ product.price }}
+                                {% endif %}
                             </span>
 
                         {% endif %}

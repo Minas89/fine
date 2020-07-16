@@ -36,4 +36,18 @@ class DefaultController extends BaseController
 
     }
 
+    public function changeCurrencyAction(Request $request)
+    {
+        if ($request->isMethod(Request::METHOD_POST)){
+            $currency = $request->request->get('currency');
+            setcookie('fineCurrency',$currency,time() + ( 2 * 365 * 24 * 60 * 60),'/');
+
+            return $this->redirectToReferer();
+        }
+
+        return $this->render('AppBundle:Default:currency.html.twig',[
+            'currency' => $this->getCurrency()
+        ]);
+    }
+
 }

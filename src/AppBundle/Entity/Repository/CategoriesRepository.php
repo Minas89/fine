@@ -29,18 +29,21 @@ class CategoriesRepository extends EntityRepository
 
     public function getForFilter($category,$products)
     {
-        $list = [];
-        if($products){
-            foreach ($products as $product){
-                $list[] = $product->getId();
-            }
-        }
+
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb
             ->select('c')
             ->from('AppBundle:Categories','c')
             ->innerJoin('c.products','p')
-            ->where($qb->expr()->in('p.id',$list));
+            ;
+        $list = [];
+        if($products){
+            foreach ($products as $product){
+                $list[] = $product->getId();
+            }
+
+            $qb->where($qb->expr()->in('p.id',$list));
+        }
 
         try{
             return $qb->getQuery()->getResult();

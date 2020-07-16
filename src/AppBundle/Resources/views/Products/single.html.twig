@@ -14,7 +14,7 @@
             <li><a href="{{ path('app_homepage') }}">Home</a></li>
             {% if category.parent.parent %}
                 <li>
-                    <a href="{{ path('app_category', {'slug': category.parent.parent.slug}) }}">
+                    <a href="{{ path('app_products', {'category': category.parent.parent.slug}) }}">
                         {% if locale == 'en' %}
                             {{ category.parent.parent.titleEng }}
                         {% elseif locale == 'ru' %}
@@ -27,7 +27,7 @@
             {% endif %}
             {% if category.parent %}
                 <li>
-                    <a href="{{ path('app_category', {'slug': category.parent.slug}) }}">
+                    <a href="{{ path('app_products', {'category': category.parent.slug}) }}">
                         {% if locale == 'en' %}
                             {{ category.parent.titleEng }}
                         {% elseif locale == 'ru' %}
@@ -40,9 +40,9 @@
             {% endif %}
             <li>
                 {% if category.children|length > 0 %}
-                    {% set url = path('app_category', {'slug': child.slug}) %}
+                    {% set url = path('app_products', {'category': child.slug}) %}
                 {% else %}
-                    {% set url = path('app_products', {'category': category.parent.slug, 'slug': category.slug}) %}
+                    {% set url = path('app_products', {'category': category.parent.slug }) %}
                 {% endif %}
                 <a href="{{ url }}">
                     {% if locale == 'en' %}
@@ -173,22 +173,22 @@
                     </div>
                 {% endif %}
 
-                {% if product.price is null %}
+         {#       {% if product.price is null %}
                     <div class="buttons">
                         <button  data-toggle="modal" data-target="#priceRequest" class="btn btn-gold btn-lg mt15 h46 w100">{{ "product.price_request"|trans|upper }}</button>
                         <a href="#" class="btn btn-gold btn-lg mt15">{{ "product.contact_seller"|trans|upper }}</a>
                     </div>
 
                 {% endif %}
-
+#}
 
 
                 <div class="productInfo">
                     <hr class="myhr w100">
                     <a href="#details" class="text-black" data-toggle="collapse">
-                        Details <span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
+                        Details <span class="pull-right"><i class="fa fa-angle-up"></i></span></a>
 
-                    <div id="details" class="collapse pt30">
+                    <div id="details" class="collapse in pt30">
                         <p>{{ "product.ref_number"|trans }}: {{ product.refId }}</p>
                         {% for detail in product.details  %}
                             <div class="detailDiv">
@@ -207,9 +207,9 @@
                     </div>
                     <hr class="myhr w100">
                     <a href="#shipping" class="text-black" data-toggle="collapse">
-                        Shipping & Returns <span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
+                        Shipping & Returns <span class="pull-right"><i class="fa fa-angle-up"></i></span></a>
 
-                    <div id="shipping" class="collapse pt30">
+                    <div id="shipping" class="collapse in pt30">
                         Standard Shipping <br>
                         Delivery in 5-8 working days <br>
                         Express Shipping

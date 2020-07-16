@@ -78,7 +78,6 @@ $(document).ready(function() {
 });
 
 $("#currency").change(function () {
-    console.log(14)
     var value = $("#currency").val();
     $.post("/api/changeCurrency", {currency: value}, function (res) {
         if (res.code == 101) {

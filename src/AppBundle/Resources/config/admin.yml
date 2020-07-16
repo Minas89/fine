@@ -82,3 +82,17 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Titles }
         public: true
+
+    app.admin.style:
+        class: AppBundle\Admin\StyleAdmin
+        arguments: [~, AppBundle\Entity\Style, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Style }
+        public: true
+
+    app.admin.shipping:
+        class: AppBundle\Admin\ShippingAdmin
+        arguments: [~, AppBundle\Entity\Shipping, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Shipping }
+        public: true

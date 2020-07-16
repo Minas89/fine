@@ -3,15 +3,11 @@
     {% set locale = app.request.get('_locale') %}
     {% if category %}
         {% if category.children|length > 0 %}
-            <div class="row">
+            <div class="row pl30 pt30">
                 {% for child in category.children  %}
                     <div class="col-md-2 col-xs-3">
                         <div class="carouselImgDiv">
-                            {% if child.children|length > 0 %}
-                                {% set url = path('app_products', {'category': child.slug}) %}
-                            {% else %}
-                                {% set url = path('app_products', {'category': category.slug}) %}
-                            {% endif %}
+                            {% set url = path('app_products', {'category': child.slug}) %}
                             <a href="{{ url }}" style="background-image:url({% path child.image, 'big' %})"></a>
                         </div>
 

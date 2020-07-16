@@ -20,7 +20,7 @@
                     {% endif %}
 
                     {% if count is defined %}
-                        <select name="count" class="selectpicker" id="sortProducts" onchange="this.form.submit()">
+                        <select name="count" class="selectpicker" id="countProducts" onchange="this.form.submit()">
                             <option value="2" {% if count == 2 %}selected{% endif %}>2 per page</option>
                             <option value="4" {% if count == 4 %}selected{% endif %}>4 per page</option>
                             <option value="6" {% if count == 6 %}selected{% endif %}>6 per page</option>

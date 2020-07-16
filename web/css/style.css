@@ -1634,6 +1634,10 @@ input:-webkit-autofill:active {
     margin-top: -95px;
 }
 
+.topMenuDiv .bootstrap-select{
+    width: 75px!important;
+}
+
 .lagunageUl{
     list-style-type: none;
     float: right;

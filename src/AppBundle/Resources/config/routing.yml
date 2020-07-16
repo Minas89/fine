@@ -10,6 +10,10 @@ app_blog:
     requirements:
            _locale: am|ru|en
 
+api_routes:
+  resource: "@AppBundle/Resources/config/routing/api.yml"
+  prefix: /api
+
 app_cart:
     resource: "@AppBundle/Resources/config/routing/cart.yml"
     prefix: /{_locale}/cart

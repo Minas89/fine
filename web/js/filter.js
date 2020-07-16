@@ -26,28 +26,28 @@ $(document).on('click','.filterValue',function () {
     return true;
 });
 
-$(document).ready(function(){
+$(document).ready(function() {
     $('.addFilterValue').click(function () {
         var filterName = $(this).attr("name");
         var filterValue = $(this).val();
         var locale = $(this).attr('data-locale');
         var tagName = $(this).prop("tagName");
 
-        switch (tagName){
+        switch (tagName) {
             case "INPUT":
-                if($(this).is(':checked')){
-                    if(!$(this).hasClass("sizeType")){
-                        addFilterValue(filterName, filterValue,locale);
-                    }else {
+                if ($(this).is(':checked')) {
+                    if (!$(this).hasClass("sizeType")) {
+                        addFilterValue(filterName, filterValue, locale);
+                    } else {
                         var key = $(this).attr('data-id');
-                        removeFilterValue(filterName,key);
+                        removeFilterValue(filterName, key);
                     }
-                }else{
+                } else {
                     var key = $(this).attr('data-id');
-                    if(!$(this).hasClass("sizeType")){
-                        removeFilterValue(filterName,key);
-                    }else {
-                        addFilterValue(filterName, filterValue,locale);
+                    if (!$(this).hasClass("sizeType")) {
+                        removeFilterValue(filterName, key);
+                    } else {
+                        addFilterValue(filterName, filterValue, locale);
                     }
 
                 }
@@ -58,23 +58,37 @@ $(document).ready(function(){
                 var attr = $(this).attr('style');
                 var key = $(this).attr('data-id');
 
-                if(filterName === "amount"){
+                if (filterName === "amount") {
                     filterValue = $('#amount').val();
                 }
 
                 if (typeof attr !== typeof undefined && attr !== false) {
                     // alert('aa');return false;
-                    removeFilterValue(filterName,key);
-                }else{
+                    removeFilterValue(filterName, key);
+                } else {
                     //alert('ab');return false;
-                    addFilterValue(filterName, filterValue,locale);
+                    addFilterValue(filterName, filterValue, locale);
                 }
 
                 break;
         }
     });
+
+
 });
 
+$("#currency").change(function () {
+    console.log(14)
+    var value = $("#currency").val();
+    $.post("/api/changeCurrency", {currency: value}, function (res) {
+        if (res.code == 101) {
+            location.reload();
+            return true;
+        }
+    }, "json");
+
+    return false;
+});
 
 
 function addFilterValue(filterName, filterValue,locale) {

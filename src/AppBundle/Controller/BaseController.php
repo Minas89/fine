@@ -23,6 +23,11 @@ class BaseController extends Controller
             setcookie('sessId',$sessionKey,time() + ( 2 * 365 * 24 * 60 * 60));
         }
 
+        if(!isset($_COOKIE['fineCurrency'])){
+            $currency = 'USD';
+            setcookie('fineCurrency',$currency,time() + ( 2 * 365 * 24 * 60 * 60));
+        }
+
     }
 
     protected function getSessId(){
@@ -31,6 +36,17 @@ class BaseController extends Controller
         $cookies = $request->cookies;
         if($cookies->has('sessId')){
             $csessId = $cookies->get('sessId');
+        }
+
+        return $csessId;
+    }
+
+    protected function getCurrency(){
+        $request = Request::createFromGlobals();
+        $csessId = false;
+        $cookies = $request->cookies;
+        if($cookies->has('fineCurrency')){
+            $csessId = $cookies->get('fineCurrency');
         }
 
         return $csessId;

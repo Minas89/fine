@@ -1,0 +1,3 @@
+change_currency:
+  path: /changeCurrency
+  defaults: { _controller: AppBundle:REST\Default:changeCurrency }

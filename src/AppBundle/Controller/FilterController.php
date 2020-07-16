@@ -33,6 +33,7 @@ class FilterController extends BaseController
         $viewArray['products'] = $products;
         $viewArray['categories'] = $categories;
         $viewArray['colors'] = $colors;
+        $viewArray['currency'] = $this->getCurrency();
 
         return $this->render('AppBundle:Filters:filters.html.twig',$viewArray);
     }

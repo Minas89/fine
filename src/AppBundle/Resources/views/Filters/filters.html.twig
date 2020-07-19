@@ -40,16 +40,19 @@
                 </a>
                 <div class="accordion-content row mx0">
                     <div class="col-md-4 pl0">
-                        <input type="text" class="form-control goldInput input-lg" placeholder="{{ currency }} min">
+                        <input {% if filters.minPrice is defined %}value="{{ filters.minPrice }}"{% endif %}
+                               type="text" id="minPrice" class="form-control goldInput input-lg" placeholder="{{ currency }} min">
                     </div>
                     <div class="col-md-1 p0 text-center mt15">
                         to
                     </div>
                     <div class="col-md-4 pr0">
-                        <input type="text" class="form-control goldInput input-lg" placeholder="{{ currency }} max">
+                        <input {% if filters.maxPrice is defined %}value="{{ filters.maxPrice }}"{% endif %}
+
+                               type="text" id="maxPrice" class="form-control goldInput input-lg" placeholder="{{ currency }} max">
                     </div>
                     <div class="col-md-3 pr0 text-right">
-                        <a href="#">
+                        <a href="javascript:void(0)" name="amount" class="addFilterValue">
                             <button class="btn btn-gold-white">
                                 <i class="fa fa-angle-right fa-2x"></i>
                             </button>
@@ -58,7 +61,7 @@
                     <div class="col-xs-12 p0">
                         <hr class="myHR w100">
                         <label>
-                            <input type="checkbox" name="onSale" id="onSale">
+                            <input {% if filters.onSale is defined %}checked{% endif %}  type="checkbox" name="onSale" id="onSale" class="addFilterValue">
                             ON SALE
                         </label>
                     </div>
@@ -78,16 +81,18 @@
                             HEIGHT
                         </div>
                         <div class="col-md-4 pl0">
-                            <input type="text" class="form-control goldInput input-lg" placeholder="cm">
+                            <input {% if filters.minHeight is defined %}value="{{ filters.minHeight }}"{% endif %}
+                                    type="text" id="minHeight" class="form-control goldInput input-lg" placeholder="cm">
                         </div>
                         <div class="col-md-1 p0 text-center mt15">
                             to
                         </div>
                         <div class="col-md-4 pr0">
-                            <input type="text" class="form-control goldInput input-lg" placeholder="cm">
+                            <input {% if filters.maxHeight is defined %}value="{{ filters.maxHeight }}"{% endif %}
+                                    type="text" id="maxHeight" class="form-control goldInput input-lg" placeholder="cm">
                         </div>
                         <div class="col-md-3 pr0 text-right">
-                            <a href="#">
+                            <a href="javascript:void(0)" class="addFilterValue" name="height">
                                 <button class="btn btn-gold-white">
                                     <i class="fa fa-angle-right fa-2x"></i>
                                 </button>
@@ -99,16 +104,18 @@
                             WIDTH
                         </div>
                         <div class="col-md-4 pl0">
-                            <input type="text" class="form-control goldInput input-lg" placeholder="cm">
+                            <input {% if filters.minWidth is defined %}value="{{ filters.minWidth }}"{% endif %}
+                                    type="text" id="minWidth" class="form-control goldInput input-lg" placeholder="cm">
                         </div>
                         <div class="col-md-1 p0 text-center mt15">
                             to
                         </div>
                         <div class="col-md-4 pr0">
-                            <input type="text" class="form-control goldInput input-lg" placeholder="cm">
+                            <input {% if filters.maxWidth is defined %}value="{{ filters.maxWidth }}"{% endif %}
+                                    type="text" id="maxWidth" class="form-control goldInput input-lg" placeholder="cm">
                         </div>
                         <div class="col-md-3 pr0 text-right">
-                            <a href="#">
+                            <a href="javascript:void(0)" class="addFilterValue" name="width">
                                 <button class="btn btn-gold-white">
                                     <i class="fa fa-angle-right fa-2x"></i>
                                 </button>
@@ -130,18 +137,20 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 {% for color in colors %}
-                                    {% if locale == 'en' %}
-                                        <a href="javascript:void(0)" id="color{{ color.titleEng }}" title="{{ color.titleEng }}" class="oneColor"
-                                           style="background-color: {{ color.color }};" onclick="addColorFilter('{{ color.titleEng }}')"></a>
+                                    {% if filters['colors'] is defined and color.id in filters['colors']|keys %}
+                                        <a href="javascript:void(0)"  name="colors" data-id="{{ color.id }}" id="color{{ color.titleEng }}" title="{{ color.titleEng }}" class="addFilterValue" style="display: block;">
+                                            <span style="background-color: {{ color.color }};border: 2px solid #000"  class="oneColor">
+
+                                            </span>
+                                        </a>
+                                    {% else %}
+                                        <a href="javascript:void(0)"  name="colors" data-id="{{ color.id }}" id="color{{ color.titleEng }}" title="{{ color.titleEng }}" class="addFilterValue">
+                                            <span style="background-color: {{ color.color }}" class="oneColor">
+
+                                            </span>
+                                        </a>
                                     {% endif %}
-                                    {% if locale == 'ru' %}
-                                        <a href="javascript:void(0)" id="color{{ color.id }}" title="{{ color.titleRus }}" class="oneColor"
-                                           style="background-color: {{ color.color }};" onclick="addColorFilter('{{ color.titleEng }}')"></a>
-                                    {% endif %}
-                                    {% if locale == 'am' %}
-                                        <a href="javascript:void(0)" id="color{{ color.id }}" title="{{ color.titleArm }}" class="oneColor"
-                                           style="background-color: {{ color.color }};" onclick="addColorFilter('{{ color.titleEng }}')"></a>
-                                    {% endif %}
+
                                 {% endfor %}
                             </div>
                         </div>

@@ -27,7 +27,7 @@ class ProductsRepository extends EntityRepository
         return $stmt->fetchAll();
     }
 
-    public function findFiltered(Categories $category,$criteria,$order)
+    public function findFiltered(Categories $category,$criteria,$order, array $filters)
     {
         $qb = $this->createQueryBuilder('p');
         $ids = [];
@@ -53,6 +53,36 @@ class ProductsRepository extends EntityRepository
             ->where($qb->expr()->in('c.id',$ids))
             ->orderBy("p.".$criteria,$order)
             ;
+
+
+        if(isset($filters['minPrice']) and isset($filters['maxPrice'])){
+            $qb->andWhere($qb->expr()->between('p.price',$filters['minPrice'],$filters['maxPrice']));
+        }
+
+        if(isset($filters['onSale'])){
+            $qb->andWhere('p.sale = 1');
+        }
+
+        if(isset($filters['minHeight']) and isset($filters['maxHeight'])){
+            $qb->andWhere($qb->expr()->between('p.height',$filters['minHeight'],$filters['maxHeight']));
+        }
+
+        if(isset($filters['minWidth']) and isset($filters['maxWidth'])){
+            $qb->andWhere($qb->expr()->between('p.width',$filters['minWidth'],$filters['maxWidth']));
+        }
+
+        if(isset($filters['colors'])){
+            $colors = $filters['colors'];
+            $colorIds = [];
+            foreach ($colors as $key => $color){
+                $colorIds[] = (int)$key;
+            }
+
+            //var_dump($colorIds);die;
+            $qb->innerJoin('p.colors','colors');
+            $qb->andWhere($qb->expr()->in('colors.id',$colorIds));
+           // $params['colorIds'] = $colorIds;
+        }
 
         try{
             return $qb->getQuery()->getResult();

@@ -59,7 +59,15 @@ $(document).ready(function() {
                 var key = $(this).attr('data-id');
 
                 if (filterName === "amount") {
-                    filterValue = $('#amount').val();
+                    filterValue = $('#minPrice').val() + ' ' +  $('#maxPrice').val();
+                }
+
+                if (filterName === "height") {
+                    filterValue = $('#minHeight').val() + ' ' +  $('#maxHeight').val();
+                }
+
+                if (filterName === "width") {
+                    filterValue = $('#minWidth').val() + ' ' +  $('#maxWidth').val();
                 }
 
                 if (typeof attr !== typeof undefined && attr !== false) {
@@ -77,17 +85,7 @@ $(document).ready(function() {
 
 });
 
-$("#currency").change(function () {
-    var value = $("#currency").val();
-    $.post("/api/changeCurrency", {currency: value}, function (res) {
-        if (res.code == 101) {
-            location.reload();
-            return true;
-        }
-    }, "json");
 
-    return false;
-});
 
 
 function addFilterValue(filterName, filterValue,locale) {

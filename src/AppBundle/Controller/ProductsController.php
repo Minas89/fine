@@ -53,8 +53,14 @@ class ProductsController extends BaseController
                break;
         }
 
+        $filters = [];
+        $session = new Session();
+        if($session->has('filters')){
+            $filters = $session->get('filters');
+        }
 
-        $products = $em->getRepository('AppBundle:Products')->findFiltered($category,$criteria,$order);
+        dump($filters);
+        $products = $em->getRepository('AppBundle:Products')->findFiltered($category,$criteria,$order,$filters);
 
 
         $paginator = $this->get('knp_paginator');

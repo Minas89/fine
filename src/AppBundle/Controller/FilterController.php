@@ -117,6 +117,25 @@ class FilterController extends BaseController
                     }
                     break;
 
+                case "creators":
+                    $creators = [];
+                    if(isset($filtersArray['creators'])){
+                        $creators = $filtersArray['creators'];
+                    }
+                    $creator = $em->getRepository('AppBundle:Creators')->find((int)$filterValue);
+                    $title = $creator->getTitleEng();
+                    /* if($locale == "en"){
+
+                     }elseif ($locale == "am"){
+                         $title = $color->getTitleArm();
+                     }*/
+                    $creators[$filterValue] = $title;
+                    $add = $this->addFilterArraySession('creators',$creators);
+                    if(!$add){
+                        $error = true;
+                    }
+                    break;
+
                 default:
                     $add = $this->addFilterArraySession($filterName,$filterValue);
                     if(!$add){

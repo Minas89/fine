@@ -21,13 +21,13 @@ class CreatorsRepository extends EntityRepository
             ->from('AppBundle:Creators','c')
             ->innerJoin('c.products','p');
         $list = [];
-        if($products){
+        /*if($products){
             foreach ($products as $product){
                 $list[] = $product->getId();
             }
             $qb->where($qb->expr()->in('p.id',$list));
 
-        }
+        }*/
         try{
             return $qb->getQuery()->getResult();
         }catch (\Exception $ex){

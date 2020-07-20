@@ -84,6 +84,18 @@ class ProductsRepository extends EntityRepository
            // $params['colorIds'] = $colorIds;
         }
 
+        if(isset($filters['creators'])){
+            $creators = $filters['creators'];
+            $creatorIds = [];
+            foreach ($creators as $key => $creator){
+                $creatorIds[] = (int)$key;
+            }
+
+            //var_dump($colorIds);die;
+            $qb->andWhere($qb->expr()->in('p.creator',$creatorIds));
+            // $params['colorIds'] = $colorIds;
+        }
+
         try{
             return $qb->getQuery()->getResult();
         }catch (\Exception $ex){

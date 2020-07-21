@@ -17,7 +17,6 @@ class FilterController extends BaseController
     public function filtersAction($products,$category)
     {
         $session = new Session();
-        //$session->clear();die;
         $filters = [];
         if($session->has('filters')){
             $filters = $session->get('filters');
@@ -131,6 +130,43 @@ class FilterController extends BaseController
                      }*/
                     $creators[$filterValue] = $title;
                     $add = $this->addFilterArraySession('creators',$creators);
+                    if(!$add){
+                        $error = true;
+                    }
+                    break;
+                case "styles":
+                    $styles = [];
+                    if(isset($filtersArray['styles'])){
+                        $styles = $filtersArray['styles'];
+                    }
+                    $style = $em->getRepository('AppBundle:Style')->find((int)$filterValue);
+                    $title = $style->getTitleEng();
+                    /* if($locale == "en"){
+
+                     }elseif ($locale == "am"){
+                         $title = $color->getTitleArm();
+                     }*/
+                    $styles[$filterValue] = $title;
+                    $add = $this->addFilterArraySession('styles',$styles);
+                    if(!$add){
+                        $error = true;
+                    }
+                    break;
+
+                case "shippings":
+                    $shippings = [];
+                    if(isset($filtersArray['shippings'])){
+                        $shippings = $filtersArray['shippings'];
+                    }
+                    $shipping = $em->getRepository('AppBundle:Shipping')->find((int)$filterValue);
+                    $title = $shipping->getTitleEng();
+                    /* if($locale == "en"){
+
+                     }elseif ($locale == "am"){
+                         $title = $color->getTitleArm();
+                     }*/
+                    $shippings[$filterValue] = $title;
+                    $add = $this->addFilterArraySession('shippings',$shippings);
                     if(!$add){
                         $error = true;
                     }

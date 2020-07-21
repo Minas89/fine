@@ -96,6 +96,31 @@ class ProductsRepository extends EntityRepository
             // $params['colorIds'] = $colorIds;
         }
 
+        if(isset($filters['styles'])){
+            $styles = $filters['styles'];
+            $stylesIds = [];
+            foreach ($styles as $key => $creator){
+                $stylesIds[] = (int)$key;
+            }
+
+            //var_dump($colorIds);die;
+            $qb->andWhere($qb->expr()->in('p.style',$stylesIds));
+            // $params['colorIds'] = $colorIds;
+        }
+
+        if(isset($filters['shippings'])){
+            $shippings = $filters['shippings'];
+            $shippingsIds = [];
+            foreach ($shippings as $key => $shipping){
+                $shippingsIds[] = (int)$key;
+            }
+
+            //var_dump($colorIds);die;
+            $qb->andWhere($qb->expr()->in('p.shipping',$shippingsIds));
+            // $params['colorIds'] = $colorIds;
+        }
+
+
         try{
             return $qb->getQuery()->getResult();
         }catch (\Exception $ex){

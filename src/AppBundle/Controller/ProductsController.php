@@ -15,6 +15,8 @@ class ProductsController extends BaseController
 {
     public function byCatAction($category,Request $request)
     {
+
+
         $em = $this->getDoctrine()->getManager();
 
         $category = $em->getRepository('AppBundle:Categories')->findOneBySlug($category);
@@ -55,6 +57,7 @@ class ProductsController extends BaseController
 
         $filters = [];
         $session = new Session();
+       // $session->clear();die;
         if($session->has('filters')){
             $filters = $session->get('filters');
         }

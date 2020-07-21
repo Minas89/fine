@@ -171,10 +171,9 @@
                                 {% for creator in creators  %}
                                     <p class="mb0">
                                         <label class="control-label">
-                                            {#  {% if filterGenders is defined and genderObj.id in filterGenders|keys  %}
-                                                  <input type="checkbox" name="genders" data-id="{{ genderObj.id }}" data-locale="{{ locale }}" value="{{ genderObj.id }}" class="addFilterValue" checked /><i></i>
-                                              {% else %}#}
-                                            <input type="checkbox" name="creators" data-id="{{ creator.id }}" value="{{ creator.id }}" class="addFilterValue"/>
+
+                                            <input type="checkbox" name="creators" data-id="{{ creator.id }}" value="{{ creator.id }}" class="addFilterValue"
+                                                    {% if filters['creators'] is defined and creator.id in filters['creators']|keys %}checked{% endif %}/>
                                             {# {% endif %}#}
                                             {% if locale == "en" %}
                                                 {{ creator.titleEng }}
@@ -205,10 +204,8 @@
 
                                     <p class="mb0">
                                         <label class="control-label">
-                                            {#  {% if filterGenders is defined and genderObj.id in filterGenders|keys  %}
-                                                  <input type="checkbox" name="genders" data-id="{{ genderObj.id }}" data-locale="{{ locale }}" value="{{ genderObj.id }}" class="addFilterValue" checked /><i></i>
-                                              {% else %}#}
-                                            <input type="checkbox" name="creators" data-id="{{ style.id }}" value="{{ style.id }}" class="addFilterValue"/>
+                                            <input type="checkbox" name="styles" data-id="{{ style.id }}" value="{{ style.id }}" class="addFilterValue"
+                                                   {% if filters['styles'] is defined and style.id in filters['styles']|keys %}checked{% endif %}/>
                                             {# {% endif %}#}
                                             {% if locale == "en" %}
                                                 {{ style.titleEng }}
@@ -239,11 +236,8 @@
 
                                     <p class="mb0">
                                         <label class="control-label">
-                                            {#  {% if filterGenders is defined and genderObj.id in filterGenders|keys  %}
-                                                  <input type="checkbox" name="genders" data-id="{{ genderObj.id }}" data-locale="{{ locale }}" value="{{ genderObj.id }}" class="addFilterValue" checked /><i></i>
-                                              {% else %}#}
-                                            <input type="checkbox" name="creators" data-id="{{ shipping.id }}" value="{{ shipping.id }}" class="addFilterValue"/>
-                                            {# {% endif %}#}
+                                            <input type="checkbox" name="shippings" data-id="{{ shipping.id }}" value="{{ shipping.id }}" class="addFilterValue"
+                                                   {% if filters['shippings'] is defined and shipping.id in filters['shippings']|keys %}checked{% endif %}/>
                                             {% if locale == "en" %}
                                                 {{ shipping.titleEng }}
                                             {% elseif locale == "am" %}

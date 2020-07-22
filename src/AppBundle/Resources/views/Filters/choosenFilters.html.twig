@@ -1,0 +1,57 @@
+
+<ul id="filtersUl">
+    {% if app.session.has('filters') %}
+        {% set filter = app.session.get('filters') %}
+        {# PRICE #}
+        {% if filter['minPrice'] is defined  %}
+            {% set minPrice = filter['minPrice'] %}
+        {% endif %}
+        {% if filter['maxPrice'] is defined %}
+            {% set maxPrice = filter['maxPrice'] %}
+        {% endif %}
+        {% if minPrice is defined and maxPrice is defined %}
+            <li>
+                <a href="javascript:void(0)" name="amount" class="filterValue">
+                    {{ minPrice|default(null) }} - {{ maxPrice|default(null) }}
+                </a>
+            </li>
+        {% endif %}
+        {# PRICE #}
+
+        {# FREE #}
+        {% if filter['free'] is defined %}
+            <li>
+                <a href="javascript:void(0)" name="free" class="filterValue">
+                    {{ "product.free"|trans }}
+                </a>
+            </li>
+        {% endif %}
+        {# FREE #}
+
+        {# COLORS #}
+        {% if filter['colors'] is defined %}
+            {% set colors = filter['colors'] %}
+            {% for key,color in colors %}
+                <li>
+                    <a href="javascript:void(0)" name="colors" data-id="{{ key }}" class="filterValue">
+                        {{ color }}
+                    </a>
+                </li>
+            {% endfor %}
+        {% endif %}
+        {# COLORS #}
+
+        {# STYLES #}
+        {% if filter['styles'] is defined %}
+            {% set styles = filter['styles'] %}
+            {% for key,style in styles %}
+                <li>
+                    <a href="javascript:void(0)" name="styles" data-id="{{ key }}" class="filterValue">
+                        {{ style }}
+                    </a>
+                </li>
+            {% endfor %}
+        {% endif %}
+        {# STYLES #}
+    {% endif %}
+</ul>

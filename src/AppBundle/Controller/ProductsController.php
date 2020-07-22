@@ -57,7 +57,7 @@ class ProductsController extends BaseController
 
         $filters = [];
         $session = new Session();
-       // $session->clear();die;
+        //$session->clear();die;
         if($session->has('filters')){
             $filters = $session->get('filters');
         }

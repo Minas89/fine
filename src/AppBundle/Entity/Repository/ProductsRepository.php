@@ -77,11 +77,8 @@ class ProductsRepository extends EntityRepository
             foreach ($colors as $key => $color){
                 $colorIds[] = (int)$key;
             }
-
-            //var_dump($colorIds);die;
             $qb->innerJoin('p.colors','colors');
             $qb->andWhere($qb->expr()->in('colors.id',$colorIds));
-           // $params['colorIds'] = $colorIds;
         }
 
         if(isset($filters['creators'])){
@@ -90,10 +87,7 @@ class ProductsRepository extends EntityRepository
             foreach ($creators as $key => $creator){
                 $creatorIds[] = (int)$key;
             }
-
-            //var_dump($colorIds);die;
             $qb->andWhere($qb->expr()->in('p.creator',$creatorIds));
-            // $params['colorIds'] = $colorIds;
         }
 
         if(isset($filters['styles'])){
@@ -102,10 +96,7 @@ class ProductsRepository extends EntityRepository
             foreach ($styles as $key => $creator){
                 $stylesIds[] = (int)$key;
             }
-
-            //var_dump($colorIds);die;
             $qb->andWhere($qb->expr()->in('p.style',$stylesIds));
-            // $params['colorIds'] = $colorIds;
         }
 
         if(isset($filters['shippings'])){
@@ -114,17 +105,14 @@ class ProductsRepository extends EntityRepository
             foreach ($shippings as $key => $shipping){
                 $shippingsIds[] = (int)$key;
             }
-
-            //var_dump($colorIds);die;
             $qb->andWhere($qb->expr()->in('p.shipping',$shippingsIds));
-            // $params['colorIds'] = $colorIds;
         }
 
 
         try{
             return $qb->getQuery()->getResult();
         }catch (\Exception $ex){
-            echo $ex->getMessage();die;
+            //echo $ex->getMessage();die;
             return false;
         }
 
@@ -243,4 +231,108 @@ class ProductsRepository extends EntityRepository
 
         return $qb->getResult();
     }
+
+    public function getLowestPrice()
+    {
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQuery(
+            "SELECT MIN(p.price) as min_price FROM AppBundle:Products p
+                  ORDER BY min_price ASC"
+        )->setMaxResults(1);
+
+        try{
+            return $qb->getSingleScalarResult();
+        }catch (\Exception $exception){
+           // echo $exception->getMessage();die;
+            return false;
+        }
+    }
+
+    public function getHighestPrice()
+    {
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQuery(
+            "SELECT MAX(p.price) as max_price FROM AppBundle:Products p
+                  ORDER BY max_price DESC"
+        )->setMaxResults(1);
+
+        try{
+            return $qb->getSingleScalarResult();
+        }catch (\Exception $exception){
+           // echo $exception->getMessage();die;
+            return false;
+        }
+    }
+
+    public function getLowestHeight()
+    {
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQuery(
+            "SELECT MIN(p.height) as min_price FROM AppBundle:Products p
+                  ORDER BY min_price ASC"
+        )->setMaxResults(1);
+
+        try{
+            return $qb->getSingleScalarResult();
+        }catch (\Exception $exception){
+           // echo $exception->getMessage();die;
+            return false;
+        }
+    }
+
+    public function getHighestHeight()
+    {
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQuery(
+            "SELECT MAX(p.height) as max_price FROM AppBundle:Products p
+                  ORDER BY max_price DESC"
+        )->setMaxResults(1);
+
+        try{
+            return $qb->getSingleScalarResult();
+        }catch (\Exception $exception){
+            //echo $exception->getMessage();die;
+            return false;
+        }
+    }
+
+    public function getLowestWidth()
+    {
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQuery(
+            "SELECT MIN(p.width) as min_price FROM AppBundle:Products p
+                  ORDER BY min_price ASC"
+        )->setMaxResults(1);
+
+        try{
+            return $qb->getSingleScalarResult();
+        }catch (\Exception $exception){
+           // echo $exception->getMessage();die;
+            return false;
+        }
+    }
+
+    public function getHighestWidth()
+    {
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQuery(
+            "SELECT MAX(p.width) as max_price FROM AppBundle:Products p
+                  ORDER BY max_price DESC"
+        )->setMaxResults(1);
+
+        try{
+            return $qb->getSingleScalarResult();
+        }catch (\Exception $exception){
+           // echo $exception->getMessage();die;
+            return false;
+        }
+    }
+
+
 }

@@ -1,4 +1,4 @@
-<form action="{{ path('change_currency') }}" method="post" class="pull-left">
+<form action="{{ path('change_currency') }}" method="post" class="pull-left rightFilterForm">
     <select name="currency" id="currency" class="selectpicker" onchange="this.form.submit()">
         <option value="USD" {% if currency == "USD" %}selected{% endif %}>USD</option>
         <option value="AMD" {% if currency == "AMD" %}selected{% endif %}>AMD</option>

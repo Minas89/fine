@@ -2,6 +2,7 @@
 <div id="filtersDiv" class="pl30">
     <div class="filterHeader">
         <p class="uppercase mb30">Filter within {{ products|length }} results</p>
+        {% include 'AppBundle:Filters:choosenFilters.html.twig' %}
     </div>
     <div class="row">
         <div class="col-xs-12">

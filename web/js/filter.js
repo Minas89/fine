@@ -32,18 +32,18 @@ $(document).ready(function() {
         var filterValue = $(this).val();
         var locale = $(this).attr('data-locale');
         var tagName = $(this).prop("tagName");
-
+        var key;
         switch (tagName) {
             case "INPUT":
                 if ($(this).is(':checked')) {
                     if (!$(this).hasClass("sizeType")) {
                         addFilterValue(filterName, filterValue, locale);
                     } else {
-                        var key = $(this).attr('data-id');
+                         key = $(this).attr('data-id');
                         removeFilterValue(filterName, key);
                     }
                 } else {
-                    var key = $(this).attr('data-id');
+                     key = $(this).attr('data-id');
                     if (!$(this).hasClass("sizeType")) {
                         removeFilterValue(filterName, key);
                     } else {
@@ -56,18 +56,18 @@ $(document).ready(function() {
 
                 filterValue = $(this).attr('data-id');
                 var attr = $(this).attr('style');
-                var key = $(this).attr('data-id');
+                 key = $(this).attr('data-id');
 
                 if (filterName === "amount") {
-                    filterValue = $('#minPrice').val() + ' ' +  $('#maxPrice').val();
+                    filterValue = $('#minPrice').val() + " " +  $('#maxPrice').val();
                 }
 
                 if (filterName === "height") {
-                    filterValue = $('#minHeight').val() + ' ' +  $('#maxHeight').val();
+                    filterValue = $('#minHeight').val() + " " +  $('#maxHeight').val();
                 }
 
                 if (filterName === "width") {
-                    filterValue = $('#minWidth').val() + ' ' +  $('#maxWidth').val();
+                    filterValue = $('#minWidth').val() + " " +  $('#maxWidth').val();
                 }
 
                 if (typeof attr !== typeof undefined && attr !== false) {

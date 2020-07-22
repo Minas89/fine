@@ -65,9 +65,15 @@ class FilterController extends BaseController
         if(!is_null($filterName)){
             switch ($filterName){
                 case "amount":
-                    $amount = explode(" ",$filterValue);
-                    $minPrice = (int)$amount[0];
-                    $maxPrice = (int)$amount[1];
+                    if($filterValue != " "){
+                        $amount = explode(" ",$filterValue);
+                        $minPrice = (int)$amount[0];
+                        $maxPrice = (int)$amount[1];
+                    }else{
+                        $minPrice = $em->getRepository('AppBundle:Products')->getLowestPrice();
+                        $maxPrice = $em->getRepository('AppBundle:Products')->getHighestPrice();
+                    }
+
                     $add1 = $this->addFilterArraySession('minPrice',$minPrice);
                     $add2 = $this->addFilterArraySession('maxPrice',$maxPrice);
                     if(!($add1 and $add2)){
@@ -75,9 +81,15 @@ class FilterController extends BaseController
                     }
                     break;
                 case "height":
-                    $height = explode(" ",$filterValue);
-                    $minHeight = (int)$height[0];
-                    $maxHeight = (int)$height[1];
+                    if($filterValue != " "){
+                        $height = explode(" ",$filterValue);
+                        $minHeight = (int)$height[0];
+                        $maxHeight = (int)$height[1];
+                    }else{
+                        $minHeight = $em->getRepository('AppBundle:Products')->getLowestHeight();
+                        $maxHeight = $em->getRepository('AppBundle:Products')->getHighestHeight();
+                    }
+
                     $add1 = $this->addFilterArraySession('minHeight',$minHeight);
                     $add2 = $this->addFilterArraySession('maxHeight',$maxHeight);
                     if(!($add1 and $add2)){
@@ -86,9 +98,15 @@ class FilterController extends BaseController
                     break;
 
                 case "width":
-                    $width = explode(" ",$filterValue);
-                    $minWidth = (int)$width[0];
-                    $maxWidth = (int)$width[1];
+                    if($filterValue != " "){
+                        $width = explode(" ",$filterValue);
+                        $minWidth = (int)$width[0];
+                        $maxWidth = (int)$width[1];
+                    }else{
+                        $minWidth = $em->getRepository('AppBundle:Products')->getLowestWidth();
+                        $maxWidth = $em->getRepository('AppBundle:Products')->getHighestWidth();
+                    }
+
                     $add1 = $this->addFilterArraySession('minWidth',$minWidth);
                     $add2 = $this->addFilterArraySession('maxWidth',$maxWidth);
                     if(!($add1 and $add2)){

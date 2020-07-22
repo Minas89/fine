@@ -830,11 +830,11 @@ input[type='radio']:checked:after {
 }
 */
 
-#rightFilterForm ul.dropdown-menu{
+.rightFilterForm ul.dropdown-menu{
     padding: 0 10px!important;
 }
 
-#rightFilterForm ul.dropdown-menu > .active > a, #rightFilterForm ul.dropdown-menu > .active > a:hover, #rightFilterForm ul.dropdown-menu > .active > a:focus {
+.rightFilterForm ul.dropdown-menu > .active > a, .rightFilterForm ul.dropdown-menu > .active > a:hover, .rightFilterForm ul.dropdown-menu > .active > a:focus {
     color: #fff;
     text-decoration: none;
     background: none!important;
@@ -1971,7 +1971,7 @@ label{
     padding: 0 10px!important;
 }
 
-.birthdayDiv ul.dropdown-menu > .active > a, #rightFilterForm ul.dropdown-menu > .active > a:hover, #rightFilterForm ul.dropdown-menu > .active > a:focus {
+.birthdayDiv ul.dropdown-menu > .active > a, .rightFilterForm ul.dropdown-menu > .active > a:hover, .rightFilterForm ul.dropdown-menu > .active > a:focus {
     color: #fff;
     text-decoration: none;
     background: none!important;

@@ -64,6 +64,24 @@ class FilterController extends BaseController
         $error = false;
         if(!is_null($filterName)){
             switch ($filterName){
+                case "categories":
+                    $categories = [];
+                    if(isset($filtersArray['categories'])){
+                        $categories = $filtersArray['categories'];
+                    }
+                    $category = $em->getRepository('AppBundle:Categories')->find((int)$filterValue);
+                    $title = $category->getTitleEng();
+                    /* if($locale == "en"){
+
+                     }elseif ($locale == "am"){
+                         $title = $color->getTitleArm();
+                     }*/
+                    $categories[$filterValue] = $title;
+                    $add = $this->addFilterArraySession('categories',$categories);
+                    if(!$add){
+                        $error = true;
+                    }
+                    break;
                 case "amount":
                     if($filterValue != " "){
                         $amount = explode(" ",$filterValue);

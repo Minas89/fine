@@ -2025,7 +2025,7 @@ label{
 #filtersDiv {
     background: #fff;
     min-height: 200px;
-    height: 800px;
+    height: 1000px;
     overflow-y: scroll;
 
 }
@@ -2037,6 +2037,7 @@ label{
 
 #filtersDiv label{
     font-size: 14px;
+    line-height: 1.5;
 }
 
 #filtersDiv .goldInput{
@@ -2098,4 +2099,8 @@ label{
     width: 16px;
     height: 16px;
     background-position: -160px -5px;
+}
+
+.mb10{
+    margin-bottom: 10px !important;
 }

@@ -170,7 +170,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 {% for creator in creators  %}
-                                    <p class="mb0">
+                                    <div class="mb10 checkbox">
                                         <label class="control-label">
 
                                             <input type="checkbox" name="creators" data-id="{{ creator.id }}" value="{{ creator.id }}" class="addFilterValue"
@@ -183,7 +183,7 @@
                                             {% endif %}
                                             {# ({{ gender.count }})#}
                                         </label>
-                                    </p>
+                                    </div>
 
                                 {% endfor %}
                             </div>
@@ -203,7 +203,7 @@
                             <div class="col-xs-12">
                                 {% for style in styles  %}
 
-                                    <p class="mb0">
+                                    <div class="mb10 checkbox">
                                         <label class="control-label">
                                             <input type="checkbox" name="styles" data-id="{{ style.id }}" value="{{ style.id }}" class="addFilterValue"
                                                    {% if filters['styles'] is defined and style.id in filters['styles']|keys %}checked{% endif %}/>
@@ -215,7 +215,7 @@
                                             {% endif %}
                                             {# ({{ gender.count }})#}
                                         </label>
-                                    </p>
+                                    </div>
 
                                 {% endfor %}
                             </div>
@@ -235,7 +235,7 @@
                             <div class="col-xs-12">
                                 {% for shipping in shippings  %}
 
-                                    <p class="mb0">
+                                    <div class="mb10 checkbox">
                                         <label class="control-label">
                                             <input type="checkbox" name="shippings" data-id="{{ shipping.id }}" value="{{ shipping.id }}" class="addFilterValue"
                                                    {% if filters['shippings'] is defined and shipping.id in filters['shippings']|keys %}checked{% endif %}/>
@@ -246,7 +246,7 @@
                                             {% endif %}
                                             {# ({{ gender.count }})#}
                                         </label>
-                                    </p>
+                                    </div>
 
                                 {% endfor %}
                             </div>

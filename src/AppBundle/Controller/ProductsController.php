@@ -62,7 +62,6 @@ class ProductsController extends BaseController
             $filters = $session->get('filters');
         }
 
-        dump($filters);
         $products = $em->getRepository('AppBundle:Products')->findFiltered($category,$criteria,$order,$filters);
 
 

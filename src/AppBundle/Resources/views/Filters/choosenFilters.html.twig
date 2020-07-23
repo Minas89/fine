@@ -12,21 +12,37 @@
         {% if minPrice is defined and maxPrice is defined %}
             <li>
                 <a href="javascript:void(0)" name="amount" class="filterValue">
-                    {{ minPrice|default(null) }} - {{ maxPrice|default(null) }}
+                    PRICE: {{ minPrice|default(null) }} - {{ maxPrice|default(null) }}
                 </a>
             </li>
         {% endif %}
         {# PRICE #}
 
         {# FREE #}
-        {% if filter['free'] is defined %}
+        {% if filter['onSale'] is defined %}
             <li>
-                <a href="javascript:void(0)" name="free" class="filterValue">
-                    {{ "product.free"|trans }}
+                <a href="javascript:void(0)" name="onSale" class="filterValue">
+                    ON SALE
                 </a>
             </li>
         {% endif %}
         {# FREE #}
+
+        {% if filters['minHeight'] is defined and  filters['maxHeight'] is defined %}
+            <li>
+                <a href="javascript:void(0)" name="height" class="filterValue">
+                    HEIGHT: {{ filters['minHeight']|default(null) }} - {{ filters['maxHeight']|default(null) }}
+                </a>
+            </li>
+        {% endif %}
+
+        {% if filters['minWidth'] is defined and  filters['maxWidth'] is defined %}
+            <li>
+                <a href="javascript:void(0)" name="width" class="filterValue">
+                    WIDTH: {{ filters['minWidth']|default(null) }} - {{ filters['maxWidth']|default(null) }}
+                </a>
+            </li>
+        {% endif %}
 
         {# COLORS #}
         {% if filter['colors'] is defined %}
@@ -34,12 +50,23 @@
             {% for key,color in colors %}
                 <li>
                     <a href="javascript:void(0)" name="colors" data-id="{{ key }}" class="filterValue">
-                        {{ color }}
+                        COLOR: {{ color }}
                     </a>
                 </li>
             {% endfor %}
         {% endif %}
         {# COLORS #}
+
+        {% if filter['creators'] is defined %}
+            {% set creators = filter['creators'] %}
+            {% for key,creator in creators %}
+                <li>
+                    <a href="javascript:void(0)" name="creators" data-id="{{ key }}" class="filterValue">
+                        CREATOR: {{ creator }}
+                    </a>
+                </li>
+            {% endfor %}
+        {% endif %}
 
         {# STYLES #}
         {% if filter['styles'] is defined %}
@@ -47,7 +74,7 @@
             {% for key,style in styles %}
                 <li>
                     <a href="javascript:void(0)" name="styles" data-id="{{ key }}" class="filterValue">
-                        {{ style }}
+                        STYLE: {{ style }}
                     </a>
                 </li>
             {% endfor %}

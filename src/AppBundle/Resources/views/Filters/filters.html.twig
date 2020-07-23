@@ -1,5 +1,5 @@
 {% set locale = app.request.get("_locale") %}
-<div id="filtersDiv" class="pl30">
+<div id="filtersDiv" class="px30">
     <div class="filterHeader">
         <p class="uppercase mb30">Filter within {{ products|length }} results</p>
         {% include 'AppBundle:Filters:choosenFilters.html.twig' %}

@@ -225,6 +225,22 @@ class FilterController extends BaseController
                         $error = true;
                     }
                     break;
+                case "height":
+                    $remove1 = $this->removeFilterArraySession('minHeight');
+                    $remove2 = $this->removeFilterArraySession('maxHeight');
+                    if(!($remove1 and $remove2)){
+                        $error = true;
+                    }
+                    break;
+
+                case "width":
+                    $remove1 = $this->removeFilterArraySession('minWidth');
+                    $remove2 = $this->removeFilterArraySession('maxWidth');
+                    if(!($remove1 and $remove2)){
+                        $error = true;
+                    }
+                    break;
+
                 case "colors":
                     $key = $request->request->get('key',null);
                     $remove = $this->removeFilterArraySession('colors',$key);
@@ -232,17 +248,10 @@ class FilterController extends BaseController
                         $error = true;
                     }
                     break;
-                case "seasons":
-                    $key = $request->request->get('key',null);
-                    $remove = $this->removeFilterArraySession('seasons',$key);
-                    if(!$remove){
-                        $error = true;
-                    }
-                    break;
 
-                case "occasions":
+                case "creators":
                     $key = $request->request->get('key',null);
-                    $remove = $this->removeFilterArraySession('occasions',$key);
+                    $remove = $this->removeFilterArraySession('creators',$key);
                     if(!$remove){
                         $error = true;
                     }
@@ -255,56 +264,7 @@ class FilterController extends BaseController
                         $error = true;
                     }
                     break;
-                case "conditions":
-                    $key = $request->request->get('key',null);
-                    $remove = $this->removeFilterArraySession('conditions',$key);
-                    if(!$remove){
-                        $error = true;
-                    }
-                    break;
-                case "colors":
-                    $key = $request->request->get('key',null);
-                    $remove = $this->removeFilterArraySession('colors',$key);
-                    if(!$remove){
-                        $error = true;
-                    }
-                    break;
-                case "sizes":
-                    $key = $request->request->get('key',null);
-                    $remove = $this->removeFilterArraySession('sizes',$key);
-                    if(!$remove){
-                        $error = true;
-                    }
-                    break;
-                case "standarts":
-                    $key = $request->request->get('key',null);
-                    $remove = $this->removeFilterArraySession('standarts',$key);
-                    if(!$remove){
-                        $error = true;
-                    }
-                    break;
-                case "genders":
-                    $key = $request->request->get('key',null);
-                    $remove = $this->removeFilterArraySession('genders',$key);
-                    if(!$remove){
-                        $error = true;
-                    }
-                    break;
-                case "categories":
-                    $key = $request->request->get('key',null);
-                    $remove = $this->removeFilterArraySession('categories',$key);
-                    if(!$remove){
-                        $error = true;
-                    }
-                    break;
 
-                case "parentCategory":
-                    $remove = $this->removeFilterArraySession('parentCategoryId');
-                    $remove2 = $this->removeFilterArraySession('parentCategoryTitle');
-                    if(!$remove or !$remove2){
-                        $error = true;
-                    }
-                    break;
                 default:
                     $remove = $this->removeFilterArraySession($filterName);
                     if(!$remove){

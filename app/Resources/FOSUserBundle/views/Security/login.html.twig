@@ -1,18 +1,27 @@
 {% extends "AppBundle::layout.html.twig" %}
 
-{% block content %}
-
-    {% set locale = app.request.get('_locale') %}
+{% block breadcrumbs %}
     <div class="row">
 
         <ol class="breadcrumb" id="myBreadcrumb">
             <li><a href="{{ path('app_homepage') }}">Home</a></li>
             <li class="active">
-                    log In
+                log In
             </li>
         </ol>
 
     </div>
+{% endblock %}
+{% block content %}
+
+    {% if error  %}
+        {% set errorClass = 'has-error' %}
+    {% else %}
+        {% set errorClass = '' %}
+    {% endif %}
+
+
+    {% set locale = app.request.get('_locale') %}
     <div class="row">
         <div class="text-center">
             <h2 class="module-header mb15">
@@ -27,24 +36,25 @@
             {% endif %}
         </div>
         <div class="col-xs-12 col-md-4 col-md-offset-4">
-            <form action="{{ path("fos_user_security_check") }}" method="post" role="form" id="loginForm" class="registerForm">
+            <form action="{{ path("fos_user_security_check") }}" method="post" role="form" id="loginForm" class="registerForm" novalidate>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-                <div class="form-group">
-                    <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                <div class="form-group {{ errorClass }} has-feedback">
+                    <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}
+                        <span class="mandatory">*</span></label>
                     <input type="text" id="username" name="_username"
                            value="" class="form-control input-lg goldInput" required="required" autocomplete="new-password" />
                 </div>
 
-                <div class="form-group">
-                    <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                <div class="form-group {{ errorClass }} has-feedback">
+                    <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}<span class="mandatory">*</span></label>
                     <input type="password" id="password" name="_password" required="required"
                            class="form-control input-lg goldInput" autocomplete="new-password" />
                 </div>
-                <a href="{{ path('fos_user_resetting_request') }}" class=" pull-right  text-gold">Forgot password?</a><br>
+                <a href="{{ path('fos_user_resetting_request') }}" class=" pull-right  text-gold">Forgot your password?</a><br>
 
                 <div class="form-group">
-                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                    <input type="checkbox" id="remember_me" name="_remember_me" class="fs16" value="on"/>
                     <label for="remember_me" style="text-transform: none">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
                 </div>
 

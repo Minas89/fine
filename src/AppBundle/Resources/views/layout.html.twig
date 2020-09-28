@@ -34,12 +34,12 @@
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                 <li>
                                     <a href="{{ path('fos_user_profile_show') }}">
-                                        {{ app.user.username }}
+                                        {{ app.user.username|upper }}
                                     </a>
                                 </li>
                                 <li><span>|</span></li>
                                 <li>
-                                    <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+                                    <a href="{{ path('fos_user_security_logout') }}">Log Out</a>
                                 </li>
                             {% else %}
                                 <li>

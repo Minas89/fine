@@ -2104,3 +2104,14 @@ label{
 .mb10{
     margin-bottom: 10px !important;
 }
+
+.posAbsArrow{
+    position: absolute;
+    top: 3px;
+    right: 8px;
+    z-index: 1000;
+}
+
+.bs-caret{
+    display: none;
+}

@@ -1,5 +1,17 @@
 {% extends "AppBundle::layout.html.twig" %}
 
+{% block breadcrumbs %}
+    <div class="row">
+
+        <ol class="breadcrumb" id="myBreadcrumb">
+            <li><a href="{{ path('app_homepage') }}">Home</a></li>
+            <li class="active">
+                Sign Up
+            </li>
+        </ol>
+
+    </div>
+{% endblock %}
 {% block content %}
 
 {% if form_errors(form.title) %}
@@ -20,17 +32,11 @@
     {% set hasErrorLast = '' %}
 {% endif %}
 
-    <div class="row">
-
-        <ol class="breadcrumb" id="myBreadcrumb">
-            <li><a href="{{ path('app_homepage') }}">Home</a></li>
-            <li class="active">
-                Sign Up
-            </li>
-        </ol>
-
-    </div>
-
+{% if form_errors(form.dateOfBirth) %}
+    {% set hasErrorBirthday = 'has-error' %}
+{% else %}
+    {% set hasErrorBirthday = '' %}
+{% endif %}
     <div class="row">
         <div class="text-center">
             <h2 class="module-header mb0">
@@ -48,9 +54,11 @@
                     </div>
 
 
-                     <div class="form-group col-md-12 forTitle  has-feedback">
+                     <div class="form-group col-md-12 has-feedback">
                          {{ form_label(form.title) }}<span class="mandatory">*</span>
-                         {{ form_widget(form.title,{'attr' : { 'class' : 'pl0' } }) }}
+                         <div class="forTitle">
+                             {{ form_widget(form.title,{'attr' : { 'class' : 'pl0' } }) }}
+                         </div>
                          <div class="errorDiv pl0">{{ form_errors(form.title) }}</div>
                      </div>
                      <div class="form-group col-md-12 {{ hasErrorFirst }} has-feedback">
@@ -64,7 +72,7 @@
                          <div class="errorDiv pl0">{{ form_errors(form.lastname) }}</div>
                      </div>
 
-                      <div class="form-group col-md-12 has-feedback birthdayDiv">
+                      <div class="form-group col-md-12 {{ hasErrorBirthday }} has-feedback birthdayDiv">
                            {{ form_label(form.dateOfBirth) }}<span class="mandatory">*</span>
                           <div class="row">
                               <div class="col-md-4">
@@ -82,9 +90,11 @@
 
                       </div>
 
-                    <div class="form-group col-md-12 forTitle  has-feedback">
+                    <div class="form-group col-md-12 has-feedback">
                         {{ form_label(form.gender) }}<span class="mandatory">*</span>
-                        {{ form_widget(form.gender,{'attr' : { 'class' : 'pl0' } }) }}
+                        <div class="forTitle">
+                            {{ form_widget(form.gender,{'attr' : { 'class' : 'pl0' } }) }}
+                        </div>
                         <div class="errorDiv pl0">{{ form_errors(form.gender) }}</div>
                     </div>
 
@@ -98,13 +108,7 @@
                      </div>
 
                     {{ form_row(form._token) }}
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-gold-white w100 h46 btn-lg">{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}</button>
-                        <div class="mt15">
-                            Already have an account? <a href="{{ path('fos_user_security_login') }}">Log In</a>
-                        </div>
-                    </div>
-
+                    {% include "AppBundle:Components:haveAccount.html.twig" %}
                 </div>
 
             </div>

@@ -46,17 +46,6 @@
 {% endif %}
 
 <div class="row">
-
-    <ol class="breadcrumb" id="myBreadcrumb">
-        <li><a href="{{ path('app_homepage') }}">Home</a></li>
-        <li class="active">
-            Sign Up
-        </li>
-    </ol>
-
-</div>
-
-<div class="row">
     <div class="text-center">
         <h2 class="module-header mb0">
             {{ "user.register"|trans }}
@@ -160,12 +149,7 @@
                 <div class="errorDiv pl0">{{ form_errors(form.termsAccepted) }}</div>
             </div>#}
             {{ form_row(form._token) }}
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-gold-white w100 h46 btn-lg">{{ 'registration.continue'|trans({}, 'FOSUserBundle') }}</button>
-                <div class="mt15">
-                    Already have an account? <a href="{{ path('fos_user_security_login') }}" class="text-gold">Log In</a>
-                </div>
-            </div>
+            {% include "AppBundle:Components:haveAccount.html.twig" %}
 
         </div>
        

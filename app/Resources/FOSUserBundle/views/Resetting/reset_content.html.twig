@@ -1,11 +1,30 @@
-<div class="row">
+{% if form_errors(form.new.first)  %}
+    {% set hasErrorFirst = 'has-error' %}
+{% else %}
+    {% set hasErrorFirst = '' %}
+{% endif %}
+{% if form_errors(form.new.second)  %}
+    {% set hasErrorSecond = 'has-error' %}
+{% else %}
+    {% set hasErrorSecond = '' %}
+{% endif %}
+<div class="row pt20">
     <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-        <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
-            {{ form_widget(form) }}
-            <div>
-                <input type="submit" value="{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}" />
+        <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="registerForm" novalidate>
+            <div class="form-group {{ hasErrorFirst }} has-feedback">
+                {{ form_label(form.new.first) }}<span class="mandatory">*</span>
+                {{ form_widget(form.new.first,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
+                <div class="errorDiv pl0">{{ form_errors(form.new.first) }}</div>
+            </div>
+            <div class="form-group {{ hasErrorFirst }} has-feedback">
+                {{ form_label(form.new.second) }}<span class="mandatory">*</span>
+                {{ form_widget(form.new.second,{'attr' : { 'class' : 'goldInput form-control input-lg', 'autocomplete' : 'off' }}) }}
+                <div class="errorDiv pl0">{{ form_errors(form.new.second) }}</div>
+                {{ form_rest(form) }}
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-gold-white w100 btn-lg">CHANGE PASSWORD</button>
             </div>
         </form>
     </div>
 </div>
-

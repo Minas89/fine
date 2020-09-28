@@ -1,18 +1,22 @@
 {% extends "AppBundle::layout.html.twig" %}
-
-{% block content %}
     {% set locale = app.request.get('_locale') %}
+
+{% block breadcrumbs %}
     <div class="row">
 
         <ol class="breadcrumb" id="myBreadcrumb">
             <li><a href="{{ path('app_homepage') }}">Home</a></li>
             <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
             <li class="active">
-               Forgot password
+                Forgot password
             </li>
         </ol>
 
     </div>
+{% endblock %}
+
+{% block content %}
+
     <div class="text-center">
         <h2 class="module-header mb15">
             Forgot password

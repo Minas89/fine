@@ -1,7 +1,36 @@
 {% extends "AppBundle::layout.html.twig" %}
 
-{% block content %}
-<p>
-{{ 'resetting.check_email'|trans({'%email%': email}, 'FOSUserBundle') }}
-</p>
+{% block breadcrumbs %}
+    <div class="row">
+
+        <ol class="breadcrumb" id="myBreadcrumb">
+            <li><a href="{{ path('app_homepage') }}">Home</a></li>
+            <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+            <li class="active">
+                Forgot password
+            </li>
+        </ol>
+
+    </div>
 {% endblock %}
+
+{% block content %}
+    {% set locale = app.request.get('_locale') %}
+    <div class="text-center">
+        <h2 class="module-header mb15">
+            Forgot password
+        </h2>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4 pt20 text-center">
+        <p>
+           {# {{ 'resetting.check_email'|trans({'%email%': email}, 'FOSUserBundle') }}#}
+            Your request has been sent.
+        </p>
+        <p>
+            <a href="{{ path('app_homepage') }}" class="btn btn-gold-white w100 btn-lg h46">
+                SUBMIT
+            </a>
+        </p>
+    </div>
+
+{% endblock content %}

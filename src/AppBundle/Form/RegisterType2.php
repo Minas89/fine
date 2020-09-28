@@ -69,7 +69,7 @@ class RegisterType2 extends AbstractType
                 'choices' => array(
                     'f' => 'Female',
                     'm' => 'Male',
-                    'u' => 'Prefer not to naswer'
+                    'u' => 'Prefer not to answer'
                 ),
                 'multiple' => false,
                 'expanded' => true,

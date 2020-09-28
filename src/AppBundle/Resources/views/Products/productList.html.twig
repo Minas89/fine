@@ -10,23 +10,27 @@
         <div class="col-md-12">
             <div class="pull-right sorting">
                 <form action="" method="get" class="pull-left rightFilterForm" id="rightFilterForm">
-
                     {% if sort is defined %}
-                        <select name="sorted" class="selectpicker" id="sortProducts" onchange="this.form.submit()">
-                            <option value="newest" {% if sort == 'newest' %}selected{% endif %}>{{ "product.newest"|trans }}</option>
-                            <option value="price-high" {% if sort == 'price-high' %}selected{% endif %}>{{ "product.priceHL"|trans }}</option>
-                            <option value="price-low" {% if sort == 'price-low' %}selected{% endif %}>{{ "product.priceLH"|trans }}</option>
-                        </select>
+                        <div style="float: left; margin-right: 15px; position: relative">
+                            <i class="fa fa-angle-down fa-2x posAbsArrow"></i>
+                            <select name="sorted" class="selectpicker" id="sortProducts" onchange="this.form.submit()">
+                                <option value="newest" {% if sort == 'newest' %}selected{% endif %}>{{ "product.newest"|trans }}</option>
+                                <option value="price-high" {% if sort == 'price-high' %}selected{% endif %}>{{ "product.priceHL"|trans }}</option>
+                                <option value="price-low" {% if sort == 'price-low' %}selected{% endif %}>{{ "product.priceLH"|trans }}</option>
+                            </select>
+                        </div>
                     {% endif %}
 
                     {% if count is defined %}
+                    <div style="float: left; position: relative">
+                        <i class="fa fa-angle-down fa-2x posAbsArrow"></i>
                         <select name="count" class="selectpicker" id="countProducts" onchange="this.form.submit()">
-                            <option value="2" {% if count == 50 %}selected{% endif %}>50 per page</option>
-                            <option value="4" {% if count == 100 %}selected{% endif %}>100 per page</option>
-                            <option value="6" {% if count == 150 %}selected{% endif %}>150 per page</option>
+                            <option value="2" {% if count == 50 %}selected{% endif %}>50 PER PAGE</option>
+                            <option value="4" {% if count == 100 %}selected{% endif %}>100 PER PAGE</option>
+                            <option value="6" {% if count == 150 %}selected{% endif %}>150 PER PAGE</option>
                         </select>
+                    </div>
                     {% endif %}
-
                 </form>
 
 
@@ -44,7 +48,6 @@
 
                     <div class="carouselTitleDiv">
                         <hr class="myHR">
-
                             <a href="#">
                                 {% if product.creator %}
                                     {% if locale == 'en' %}
@@ -57,7 +60,8 @@
                                         {{ product.creator.titleArm }}
                                     {% endif %}
                                 {% endif %}
-                            </a><br>
+                            </a>
+                            <br>
 
                             <a href="{{ url }}">
                                 {% if locale == 'en' %}
@@ -108,8 +112,6 @@
                              {% endif %}
 
                         </span>
-
-
                     </div>
                 </div>
         {% endfor %}
